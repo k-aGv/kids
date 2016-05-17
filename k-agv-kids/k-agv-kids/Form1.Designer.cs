@@ -45,6 +45,10 @@
             this.aGVStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.greekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.game_panel = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pb_lift = new System.Windows.Forms.PictureBox();
@@ -65,10 +69,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tb_commands = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.greekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pb_start = new System.Windows.Forms.PictureBox();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.levelEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lift)).BeginInit();
@@ -77,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pb_down)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_up)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_start)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -95,6 +99,7 @@
             this.newGameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newGameToolStripMenuItem1,
             this.clearToolStripMenuItem,
+            this.levelEditorToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
             this.newGameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -104,7 +109,8 @@
             // 
             this.newGameToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
-            this.chooseLevelToolStripMenuItem});
+            this.chooseLevelToolStripMenuItem,
+            this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
             this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.newGameToolStripMenuItem1.Text = "New Game";
@@ -124,31 +130,31 @@
             this.toolStripMenuItem4,
             this.toolStripMenuItem5});
             this.chooseLevelToolStripMenuItem.Name = "chooseLevelToolStripMenuItem";
-            this.chooseLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chooseLevelToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.chooseLevelToolStripMenuItem.Text = "Choose level";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem2.Text = "1 (Very easy)";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem3.Text = "2 (Easy)";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem4.Text = "3 (Normal)";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuItem5.Text = "4 (Hard)";
             // 
             // clearToolStripMenuItem
@@ -212,6 +218,35 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.languageToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.greekToolStripMenuItem,
+            this.englishToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.languageToolStripMenuItem.Text = "Language";
+            // 
+            // greekToolStripMenuItem
+            // 
+            this.greekToolStripMenuItem.Name = "greekToolStripMenuItem";
+            this.greekToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.greekToolStripMenuItem.Text = "Greek";
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.englishToolStripMenuItem.Text = "English";
             // 
             // game_panel
             // 
@@ -404,40 +439,33 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Commands";
             // 
-            // optionsToolStripMenuItem
+            // pb_start
             // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.languageToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.pb_start.Location = new System.Drawing.Point(751, 319);
+            this.pb_start.Name = "pb_start";
+            this.pb_start.Size = new System.Drawing.Size(60, 60);
+            this.pb_start.TabIndex = 5;
+            this.pb_start.TabStop = false;
             // 
-            // languageToolStripMenuItem
+            // exportToolStripMenuItem
             // 
-            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.greekToolStripMenuItem,
-            this.englishToolStripMenuItem});
-            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.languageToolStripMenuItem.Text = "Language";
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Text = "Export...";
             // 
-            // greekToolStripMenuItem
+            // levelEditorToolStripMenuItem
             // 
-            this.greekToolStripMenuItem.Name = "greekToolStripMenuItem";
-            this.greekToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.greekToolStripMenuItem.Text = "Greek";
-            // 
-            // englishToolStripMenuItem
-            // 
-            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-            this.englishToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.englishToolStripMenuItem.Text = "English";
+            this.levelEditorToolStripMenuItem.Name = "levelEditorToolStripMenuItem";
+            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.levelEditorToolStripMenuItem.Text = "Level Editor";
+            this.levelEditorToolStripMenuItem.Click += new System.EventHandler(this.levelEditorToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 400);
+            this.Controls.Add(this.pb_start);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tb_commands);
             this.Controls.Add(this.groupBox2);
@@ -459,6 +487,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pb_up)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_start)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -507,6 +536,9 @@
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem greekToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pb_start;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem levelEditorToolStripMenuItem;
     }
 }
 

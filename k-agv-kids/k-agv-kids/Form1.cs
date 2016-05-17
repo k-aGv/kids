@@ -18,7 +18,7 @@ namespace k_agv_kids
         Color pb_backcolor;
         Bitmap _tempImage;
 
-        int grid_res=10;//levels should have a random resolution 
+        int grid_res=50;//levels should have a random resolution 
 
         public Form1()
         {
@@ -81,7 +81,7 @@ namespace k_agv_kids
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
             }
-            else //lift
+            else if ((sender as PictureBox).Name == "pb_lift")
             {
                 pb_backcolor = pb_left.BackColor;
                 pb_lift.BackColor = Color.Gray;
@@ -91,7 +91,20 @@ namespace k_agv_kids
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
             }
+            else //pb_start
+            {
+                if (isRunning)
+                {
+                    pb_start.Image = Image.FromFile(getResDir() + "start.png");
+                    isRunning = !isRunning;
+                }
+                else
+                {
+                    pb_start.Image = Image.FromFile(getResDir() + "pause.png");
+                    isRunning = !isRunning;
+                }
 
+            }
         }
         private void pb_left_MouseUp(object sender, MouseEventArgs e)
         {
@@ -140,6 +153,12 @@ namespace k_agv_kids
         {
             reset();
             drawGrid();
+            StartFromLevel_1();
+        }
+
+        private void levelEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Run the editor
         }
         
     }

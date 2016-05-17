@@ -13,6 +13,7 @@ namespace k_agv_kids
 {
     public partial class Form1 : Form
     {
+        bool isRunning = false;
         private string getResDir()
         {
             DirectoryInfo dir = new DirectoryInfo(
@@ -51,6 +52,11 @@ namespace k_agv_kids
             pb_up.SizeMode = PictureBoxSizeMode.StretchImage;
             pb_up.Image.RotateFlip(RotateFlipType.Rotate90FlipX);
 
+            //start/stop button
+            pb_start.Image = Image.FromFile(getResDir() + "pause.png");
+            pb_start.SizeMode = PictureBoxSizeMode.StretchImage;
+            isRunning = true;
+
             //clone the event to buttons
             pb_right.MouseDown += new MouseEventHandler(pb_left_MouseDown);
             pb_right.MouseUp += new MouseEventHandler(pb_left_MouseUp);
@@ -63,6 +69,10 @@ namespace k_agv_kids
 
             pb_lift.MouseDown += new MouseEventHandler(pb_left_MouseDown);
             pb_lift.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+
+            pb_start.MouseDown += new MouseEventHandler(pb_left_MouseDown);
+            pb_start.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+
 
             //Richbox's backcolor.has to be same as picturebox's
             tb_commands.BackColor = game_panel.BackColor;
@@ -126,6 +136,10 @@ namespace k_agv_kids
             {
                 for_warning.FillEllipse(b, 5, 5, 20, 20);
             }
+        }
+        private void StartFromLevel_1()
+        {
+
         }
     }
 }
