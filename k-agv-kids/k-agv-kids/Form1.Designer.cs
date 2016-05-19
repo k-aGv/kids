@@ -60,6 +60,7 @@
             this.pb_down = new System.Windows.Forms.PictureBox();
             this.pb_up = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.warning_panel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.lift_label = new System.Windows.Forms.Label();
@@ -75,7 +76,7 @@
             this.pb_start = new System.Windows.Forms.PictureBox();
             this.ofd_level = new System.Windows.Forms.OpenFileDialog();
             this.anim_timer = new System.Windows.Forms.Timer(this.components);
-            this.label6 = new System.Windows.Forms.Label();
+            this.load_timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lift)).BeginInit();
@@ -116,7 +117,7 @@
             this.chooseLevelToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
             this.newGameToolStripMenuItem1.Text = "New Game";
             // 
             // newToolStripMenuItem
@@ -166,7 +167,7 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.exportToolStripMenuItem.Text = "Import";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -180,7 +181,7 @@
             this.aGVStageToolStripMenuItem,
             this.allToolStripMenuItem});
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // commandsToolStripMenuItem
@@ -228,14 +229,14 @@
             // levelEditorToolStripMenuItem
             // 
             this.levelEditorToolStripMenuItem.Name = "levelEditorToolStripMenuItem";
-            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.levelEditorToolStripMenuItem.Text = "Level Editor";
             this.levelEditorToolStripMenuItem.Click += new System.EventHandler(this.levelEditorToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -352,6 +353,15 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Score and stats";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(107, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "%";
             // 
             // warning_panel
             // 
@@ -478,14 +488,10 @@
             this.anim_timer.Interval = 500;
             this.anim_timer.Tick += new System.EventHandler(this.anim_timer_Tick);
             // 
-            // label6
+            // load_timer
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(107, 68);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "%";
+            this.load_timer.Interval = 500;
+            this.load_timer.Tick += new System.EventHandler(this.load_timer_Tick);
             // 
             // Form1
             // 
@@ -569,6 +575,7 @@
         private System.Windows.Forms.OpenFileDialog ofd_level;
         private System.Windows.Forms.Timer anim_timer;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Timer load_timer;
     }
 }
 

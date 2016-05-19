@@ -16,6 +16,7 @@ namespace k_agv_kids
         bool isRunning = false;
         private string getResDir()
         {
+            
             DirectoryInfo dir = new DirectoryInfo(
             Directory.GetCurrentDirectory());
             while (dir != null && !dir.GetFiles("*.sln").Any())
@@ -23,6 +24,9 @@ namespace k_agv_kids
                 dir = dir.Parent;
             }
             return Convert.ToString(dir.FullName + "\\k-agv-kids\\Resources\\");
+            //ONLY FOR RELEASE
+            //return Convert.ToString(Directory.GetCurrentDirectory() + "\\Resources\\");
+
         }
         private void init()
         {
@@ -106,20 +110,6 @@ namespace k_agv_kids
                 //Watch out.Grid's size is 500+1,350+1...+1 because the known border bug
             }
 
-
-
-
-            /*  Point _tempAGV = new Point(grid_res, 0);
-              agv.Location = _tempAGV;
-              agv.BackColor = game_panel.BackColor;
-              agv.BorderStyle = BorderStyle.FixedSingle;
-              agv.SizeMode = PictureBoxSizeMode.StretchImage;
-              agv.Size = new Size(res_offset + 1, res_offset + 1); 
-              agv.Visible = true;
-              agv.Image = Image.FromFile(getResDir() + "empty.png");
-              game_panel.Controls.Add(agv);
-            
-              */
             updateWarningState();
 
         }
@@ -166,7 +156,8 @@ namespace k_agv_kids
          */
         private void ShowMap(int[,] map)
         {
-            Point _tempAGV = new Point(grid_res, 0);
+            agv = new PictureBox();
+            Point _tempAGV = new Point((entrance_x * res_offset) + res_offset, (entrance_y * res_offset));
             agv.Location = _tempAGV;
             agv.BackColor = game_panel.BackColor;
             agv.BorderStyle = BorderStyle.FixedSingle;
@@ -202,7 +193,7 @@ namespace k_agv_kids
                         else if (map[j, i] == 3) //wall
                         {
                             pb_array[array_counter].Name = "Wall" + "_" + array_counter;
-                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "wallobst.png");
+                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "wall.png");
                         }
                         else //load
                         {

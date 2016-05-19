@@ -23,12 +23,13 @@ namespace k_agv_kids
         PictureBox agv = new PictureBox();
         PictureBox[] pb_array=new PictureBox[100];
         int array_counter=0;
-
+        bool isLoaded = false;
         char[] commands_array;
 
         int grid_res=50;//levels should have a random resolution 
 
         int[,] map;
+        int entrance_x, entrance_y;
 
         int width_blocks,height_blocks,res_offset;
         string commands = "";
@@ -195,7 +196,9 @@ namespace k_agv_kids
 
         private void levelEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Run the editor
+            //Run the editor.RELEASE ONLY
+            //Process.Start(Directory.GetCurrentDirectory() + "\\editor.exe");
+            MessageBox.Show("This feature is working only on release version.\r\nPlease build from scratch.");
         }
 
        /*
@@ -325,6 +328,11 @@ namespace k_agv_kids
                     {
                         //MessageBox.Show(_s);
                         map[i, z] = Convert.ToInt32(_s);
+                        if (Convert.ToInt32(_s) == 1)
+                        {
+                            entrance_x = i;
+                            entrance_y = z;
+                        }
                         i++;
                         //MessageBox.Show("" + map[i, z]);
                     }
@@ -386,14 +394,34 @@ namespace k_agv_kids
                 }
                 else //lift
                 {
-                    agv.Image = Image.FromFile(getResDir() + "full.png");
+                    agv.Image = Image.FromFile(getResDir() + "half.png");
+                    load_timer.Start();
+                    anim_timer.Stop();
                    
                 }
                 animCounter++;
             }
           
         }
+        private void load_timer_Tick(object sender, EventArgs e)
+        {
+            if (isLoaded == false)
+            {
+                agv.Image = Image.FromFile(getResDir() + "full.png");
+                isLoaded = true;
+                load_timer.Stop();
+                anim_timer.Start();
+            }
+            else
+            {
+                agv.Image = Image.FromFile(getResDir() + "empty.png");
+                isLoaded = false;
+                load_timer.Stop();
+                anim_timer.Start();
+            }
+        }
 
+     
        
         
     }
