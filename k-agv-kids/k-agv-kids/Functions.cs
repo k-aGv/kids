@@ -78,11 +78,11 @@ namespace k_agv_kids
             tb_commands.BackColor = game_panel.BackColor;
 
             //Create the grid.
-            drawGrid(50);
+            drawGrid();
             
 
         }
-        private void drawGrid(int grid_res)
+        private void drawGrid()
         {
             for_grid = game_panel.CreateGraphics();
             int a, b;
