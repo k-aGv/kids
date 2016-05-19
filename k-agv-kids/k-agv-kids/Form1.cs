@@ -236,7 +236,8 @@ namespace k_agv_kids
                             MessageBox.Show(map[i, z] + "");
                         }
                         i++;
-                        
+                        if (z == map.GetLength(1) - 1)
+                            break; //no break = error when trying to read the map.getlenght(1) line
                     //}
                     //debug crashes after the read of the 1st line.(Reads empty string from file.missing var?)
                     words = reader.ReadLine().Split(delim);
