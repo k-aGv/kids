@@ -161,7 +161,7 @@ namespace k_agv_kids
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             reset();
-            drawGrid();
+            drawGrid(50);
             StartFromLevel_1();
         }
 
@@ -172,9 +172,13 @@ namespace k_agv_kids
 
        
 
-        private void inportToolStripMenuItem_Click(object sender, EventArgs e)
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            reset();
+            ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
+            ofd_level.FileName = "";
+            level_label.Text = "Custom level";
+
             if (ofd_level.ShowDialog() == DialogResult.OK)
             {
                 StreamReader reader = new StreamReader(ofd_level.FileName);
@@ -225,13 +229,12 @@ namespace k_agv_kids
                 //parse the map
                 //prepare the delims to get coords
 
-                //char[] delim = { ' ' };
+               
                 words = reader.ReadLine().Split(delim);
                 
                 for (int z = 0; z < map.GetLength(1); z++)
                 {
-                    //for (int i = 0; i < map.GetLength(0); i++)
-                    //{
+                    
                     int i = 0;
                     foreach (string _s in words)
                     {
@@ -242,17 +245,14 @@ namespace k_agv_kids
                     }
                     if (z == map.GetLength(1) - 1)
                     { } //no break = error when trying to read the map.getlenght(1) line
-                    //}
+                    
                     else
                         words = reader.ReadLine().Split(delim);
                 }
                 //MessageBox.Show("Finished import");
                 reader.Close();
                 ShowMap(map);
-
-
-                
-
+                drawGrid(res_offset);
 
             }
             
