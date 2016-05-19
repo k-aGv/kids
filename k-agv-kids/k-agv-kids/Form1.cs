@@ -9,7 +9,6 @@ using System.Windows.Forms;
 
 using System.IO;
 
-
 namespace k_agv_kids
 {
     public partial class Form1 : Form
@@ -24,11 +23,17 @@ namespace k_agv_kids
         PictureBox[] pb_array=new PictureBox[100];
         int array_counter=0;
 
+        char[] commands_array;
+
         int grid_res=50;//levels should have a random resolution 
 
         int[,] map;
 
         int width_blocks,height_blocks,res_offset;
+        string commands = "";
+        int commandCounter = 0;
+        Point tempLocation = new Point(0, 0);
+        int animCounter = 0;
 
         public Form1()
         {
@@ -41,8 +46,6 @@ namespace k_agv_kids
         }
 
       
-    
-
         private void Form1_Load(object sender, EventArgs e)
         {
             init();
@@ -50,6 +53,7 @@ namespace k_agv_kids
 
         private void pb_left_MouseDown(object sender, MouseEventArgs e)
         {
+
             //Tricky way to detect which button pressed
             if ((sender as PictureBox).Name == "pb_left")
             {
@@ -60,6 +64,8 @@ namespace k_agv_kids
                 _tempImage = new Bitmap(pb_left.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
+                commands += "<";//add the command to our 'command vault'
+                commandCounter++;
             }
             else if ((sender as PictureBox).Name == "pb_right")
             {
@@ -70,6 +76,8 @@ namespace k_agv_kids
                 _tempImage = new Bitmap(pb_right.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
+                commands += ">";//add the command to our 'command vault'
+                commandCounter++;
             }
             else if ((sender as PictureBox).Name == "pb_up")
             {
@@ -80,6 +88,8 @@ namespace k_agv_kids
                 _tempImage = new Bitmap(pb_up.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
+                commands += "^";//add the command to our 'command vault'
+                commandCounter++;
             }
             else if ((sender as PictureBox).Name == "pb_down")
             {
@@ -90,6 +100,8 @@ namespace k_agv_kids
                 _tempImage = new Bitmap(pb_down.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
+                commands += "V";//add the command to our 'command vault'
+                commandCounter++;
             }
             else if ((sender as PictureBox).Name == "pb_lift")
             {
@@ -100,18 +112,32 @@ namespace k_agv_kids
                 _tempImage = new Bitmap(pb_lift.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
+                commands += "L";//add the command to our 'command vault'
+                commandCounter++;
             }
             else //pb_start
             {
+                isRunning = !isRunning;
                 if (isRunning)
                 {
                     pb_start.Image = Image.FromFile(getResDir() + "start.png");
-                    isRunning = !isRunning;
+                    commands_array = new char[commandCounter];
+                    commands_array = commands.ToCharArray();
+                    /*debug
+                    for (int i = 0; i < commandCounter; i++)
+                    {
+                        MessageBox.Show(commands_array[i]+"");
+                    }
+                     */
+                    anim_timer.Start();
+                   
+
                 }
                 else
                 {
-                    pb_start.Image = Image.FromFile(getResDir() + "pause.png");
+                    commands = "";
                     isRunning = !isRunning;
+                    anim_timer.Stop();
                 }
 
             }
@@ -139,7 +165,7 @@ namespace k_agv_kids
 
         private void batteryLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            battery_label.Text = "0%";
+            battery_label.Text = "0";
         }
 
         private void levelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -154,7 +180,8 @@ namespace k_agv_kids
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Clear panel + 
+            game_panel.Invalidate();
+            removeControls(game_panel, typeof(PictureBox));
             reset();
         }
 
@@ -175,6 +202,7 @@ namespace k_agv_kids
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             reset();
+            
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
             level_label.Text = "Custom level";
@@ -253,10 +281,63 @@ namespace k_agv_kids
                 reader.Close();
                 ShowMap(map);
                 drawGrid(res_offset);
+                pb_start.Visible = true;
 
             }
             
         }
+
+        private void anim_timer_Tick(object sender, EventArgs e)
+        {
+            pb_start.Visible = false;
+            if (animCounter == commandCounter)
+            {
+                isRunning = !isRunning;
+                pb_start.Visible = true;
+                anim_timer.Stop();
+            }
+            else
+            {
+                battery_label.Text = Convert.ToString(Convert.ToInt32(battery_label.Text) - 5) ;
+                score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
+                if (commands_array[animCounter] == '<')
+                {
+                    tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
+                    agv.Location = tempLocation;
+                    drawGrid(res_offset);
+                    
+                }
+                else if (commands_array[animCounter] == '>')
+                {
+                    tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
+                    agv.Location = tempLocation;
+                    drawGrid(res_offset);
+                    
+                }
+                else if (commands_array[animCounter] == 'V')
+                {
+                    tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
+                    agv.Location = tempLocation;
+                    drawGrid(res_offset);
+                }
+                else if (commands_array[animCounter] == '^')
+                {
+                    tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
+                    agv.Location = tempLocation;
+                    drawGrid(res_offset);
+                   
+                }
+                else //lift
+                {
+                    agv.Image = Image.FromFile(getResDir() + "full.png");
+                   
+                }
+                animCounter++;
+            }
+          
+        }
+
+       
         
     }
 }
