@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +74,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pb_start = new System.Windows.Forms.PictureBox();
             this.ofd_level = new System.Windows.Forms.OpenFileDialog();
+            this.anim_timer = new System.Windows.Forms.Timer(this.components);
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lift)).BeginInit();
@@ -118,9 +121,10 @@
             // 
             // newToolStripMenuItem
             // 
+            this.newToolStripMenuItem.Enabled = false;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newToolStripMenuItem.Text = "Start";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.newToolStripMenuItem.Text = "Start(Still a BETA)";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // chooseLevelToolStripMenuItem
@@ -130,9 +134,10 @@
             this.toolStripMenuItem3,
             this.toolStripMenuItem4,
             this.toolStripMenuItem5});
+            this.chooseLevelToolStripMenuItem.Enabled = false;
             this.chooseLevelToolStripMenuItem.Name = "chooseLevelToolStripMenuItem";
-            this.chooseLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.chooseLevelToolStripMenuItem.Text = "Choose level";
+            this.chooseLevelToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.chooseLevelToolStripMenuItem.Text = "Choose level(Still a BETA)";
             // 
             // toolStripMenuItem2
             // 
@@ -238,6 +243,7 @@
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem});
+            this.optionsToolStripMenuItem.Enabled = false;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -329,6 +335,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.warning_panel);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.lift_label);
@@ -366,7 +373,7 @@
             // lift_label
             // 
             this.lift_label.AutoSize = true;
-            this.lift_label.Location = new System.Drawing.Point(81, 118);
+            this.lift_label.Location = new System.Drawing.Point(78, 119);
             this.lift_label.Name = "lift_label";
             this.lift_label.Size = new System.Drawing.Size(10, 13);
             this.lift_label.TabIndex = 5;
@@ -466,6 +473,20 @@
             // 
             this.ofd_level.FileName = "openFileDialog1";
             // 
+            // anim_timer
+            // 
+            this.anim_timer.Interval = 500;
+            this.anim_timer.Tick += new System.EventHandler(this.anim_timer_Tick);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(107, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "%";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -546,6 +567,8 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem levelEditorToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofd_level;
+        private System.Windows.Forms.Timer anim_timer;
+        private System.Windows.Forms.Label label6;
     }
 }
 

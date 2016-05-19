@@ -26,7 +26,7 @@ namespace k_agv_kids
         }
         private void init()
         {
-           
+            isRunning = false;
             //initialize picturebox's attributes
 
             //Carry button
@@ -53,9 +53,9 @@ namespace k_agv_kids
             pb_up.Image.RotateFlip(RotateFlipType.Rotate90FlipX);
 
             //start/stop button
-            pb_start.Image = Image.FromFile(getResDir() + "pause.png");
+            pb_start.Image = Image.FromFile(getResDir() + "start.png");
             pb_start.SizeMode = PictureBoxSizeMode.StretchImage;
-            isRunning = true;
+            pb_start.Visible = false;
 
             //clone the event to buttons
             pb_right.MouseDown += new MouseEventHandler(pb_left_MouseDown);
@@ -125,10 +125,14 @@ namespace k_agv_kids
         }
         private void reset()
         {
-           
+            //reset commands
+            commands = "";
+
+            pb_start.Visible = false;
+
             //Reset to '0' to get prepared for new game
             score_label.Text = "0";
-            battery_label.Text = "100%";
+            battery_label.Text = "100";
             level_label.Text = "1";
             lift_label.Text = "Waiting orders";
 
@@ -212,9 +216,34 @@ namespace k_agv_kids
                 }
         }
 
-        private void StartFromLevel_1()
+        //99% sorcery
+        private void removeControls(Control _c, Type _toBeRemoved)
         {
-
+            List<Control> controlTemplate = new List<Control>();
+            Stack<Control> _stack = new Stack<Control>();
+            _stack.Push(_c);
+            while (_stack.Count > 0)
+            {
+                Control custom_control = _stack.Pop();
+                foreach (Control child in custom_control.Controls)
+                {
+                    if (child.GetType() == _toBeRemoved)
+                    {
+                        controlTemplate.Add(child);
+                    }
+                    else if (true == child.HasChildren)
+                    {
+                        _stack.Push(child);
+                    }
+                }
+            }
+            foreach (Control custom_control in controlTemplate)
+            {
+                _c.Controls.Remove(custom_control);
+                custom_control.Dispose();
+            }
         }
+
+
     }
 }
