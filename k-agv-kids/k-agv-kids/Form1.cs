@@ -169,7 +169,7 @@ namespace k_agv_kids
 
        
 
-        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inportToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
             if (ofd_level.ShowDialog() == DialogResult.OK)
