@@ -6,3 +6,11 @@ C:\Users\Administrator\Desktop\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-
 C:\Users\Administrator\Desktop\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-agv-kids.exe
 C:\Users\Administrator\Desktop\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-agv-kids.pdb
 C:\Users\Administrator\Desktop\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-agv-kids.csprojResolveAssemblyReference.cache
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\bin\Debug\k-agv-kids.exe
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\bin\Debug\k-agv-kids.pdb
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-agv-kids.csprojResolveAssemblyReference.cache
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k_agv_kids.Form1.resources
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k_agv_kids.Properties.Resources.resources
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-agv-kids.csproj.GenerateResource.Cache
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-agv-kids.exe
+C:\Users\Administrator.Γιάννης-PC\Desktop\GIT\k-aGv\kids\k-agv-kids\k-agv-kids\obj\x86\Debug\k-agv-kids.pdb

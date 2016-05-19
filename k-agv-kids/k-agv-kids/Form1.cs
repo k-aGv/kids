@@ -224,19 +224,20 @@ namespace k_agv_kids
 
                 //char[] delim = { ' ' };
                 words = reader.ReadLine().Split(delim);
-
+                int i=0;
                 for (int z = 0; z < map.GetLength(1); z++)
                 {
-                    for (int i = 0; i < map.GetLength(0); i++)
-                    {
+                    //for (int i = 0; i < map.GetLength(0); i++)
+                    //{
                         foreach (string _s in words)
                         {
                             //MessageBox.Show(_s);
                             map[i, z] = Convert.ToInt32(_s);
                             MessageBox.Show(map[i, z] + "");
                         }
+                        i++;
                         
-                    }
+                    //}
                     //debug crashes after the read of the 1st line.(Reads empty string from file.missing var?)
                     words = reader.ReadLine().Split(delim);
                 }
