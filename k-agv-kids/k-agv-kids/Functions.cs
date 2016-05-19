@@ -22,7 +22,7 @@ namespace k_agv_kids
             {
                 dir = dir.Parent;
             }
-            return Convert.ToString(dir.FullName+"\\k-agv-kids\\Resources\\");
+            return Convert.ToString(dir.FullName + "\\k-agv-kids\\Resources\\");
         }
         private void init()
         {
@@ -38,7 +38,7 @@ namespace k_agv_kids
             pb_left.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //down button
-            pb_down.Image=Image.FromFile(getResDir()+ "arrow.png");
+            pb_down.Image = Image.FromFile(getResDir() + "arrow.png");
             pb_down.SizeMode = PictureBoxSizeMode.StretchImage;
             pb_down.Image.RotateFlip(RotateFlipType.Rotate90FlipY);
 
@@ -79,7 +79,7 @@ namespace k_agv_kids
 
             //Create the grid.
             //drawGrid(50);
-            
+
 
         }
         private void drawGrid(int grid_res)
@@ -90,7 +90,7 @@ namespace k_agv_kids
             //speed up the refresh animation rate by lowering grid's paint quality.
             //  !care
             for_grid.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic;
-           
+
             using (Pen gridPen = new Pen(Color.Black))
             {
                 //Using -O3 optimization for For() loops
@@ -106,20 +106,20 @@ namespace k_agv_kids
                 //Watch out.Grid's size is 500+1,350+1...+1 because the known border bug
             }
 
+
+
+
+            /*  Point _tempAGV = new Point(grid_res, 0);
+              agv.Location = _tempAGV;
+              agv.BackColor = game_panel.BackColor;
+              agv.BorderStyle = BorderStyle.FixedSingle;
+              agv.SizeMode = PictureBoxSizeMode.StretchImage;
+              agv.Size = new Size(res_offset + 1, res_offset + 1); 
+              agv.Visible = true;
+              agv.Image = Image.FromFile(getResDir() + "empty.png");
+              game_panel.Controls.Add(agv);
             
-            
-            
-          /*  Point _tempAGV = new Point(grid_res, 0);
-            agv.Location = _tempAGV;
-            agv.BackColor = game_panel.BackColor;
-            agv.BorderStyle = BorderStyle.FixedSingle;
-            agv.SizeMode = PictureBoxSizeMode.StretchImage;
-            agv.Size = new Size(res_offset + 1, res_offset + 1); 
-            agv.Visible = true;
-            agv.Image = Image.FromFile(getResDir() + "empty.png");
-            game_panel.Controls.Add(agv);
-            
-            */
+              */
             updateWarningState();
 
         }
@@ -176,7 +176,7 @@ namespace k_agv_kids
             agv.Image = Image.FromFile(getResDir() + "empty.png");
             game_panel.Controls.Add(agv);
 
-            for(int i=0;i<map.GetLength(1);i++)
+            for (int i = 0; i < map.GetLength(1); i++)
                 for (int j = 0; j < map.GetLength(0); j++)
                 {
                     if (map[j, i] != 0)
@@ -187,7 +187,7 @@ namespace k_agv_kids
                         pb_array[array_counter].BorderStyle = BorderStyle.FixedSingle;
                         pb_array[array_counter].Location = _tempPoint;
                         pb_array[array_counter].SizeMode = PictureBoxSizeMode.StretchImage;
-                        pb_array[array_counter].Size = new Size(res_offset+1, res_offset+1); //+1 so the Picturebox borders will get on top of the grid lines
+                        pb_array[array_counter].Size = new Size(res_offset + 1, res_offset + 1); //+1 so the Picturebox borders will get on top of the grid lines
                         pb_array[array_counter].Visible = true;
                         if (map[j, i] == 1) //entrance
                         {
@@ -222,28 +222,44 @@ namespace k_agv_kids
             List<Control> controlTemplate = new List<Control>();
             Stack<Control> _stack = new Stack<Control>();
             _stack.Push(_c);
-            while (_stack.Count > 0)
+            try
             {
-                Control custom_control = _stack.Pop();
-                foreach (Control child in custom_control.Controls)
+                while (_stack.Count > 0)
                 {
-                    if (child.GetType() == _toBeRemoved)
+                    Control custom_control = _stack.Pop();
+                    foreach (Control child in custom_control.Controls)
                     {
-                        controlTemplate.Add(child);
+                        if (child.GetType() == _toBeRemoved)
+                        {
+                            controlTemplate.Add(child);
+                        }
+                        else if (true == child.HasChildren)
+                        {
+                            _stack.Push(child);
+                        }
                     }
-                    else if (true == child.HasChildren)
-                    {
-                        _stack.Push(child);
-                    }
+
                 }
             }
+            catch (Exception e)
+            {
+                throw new errorFetchException("Stack overflow", e);
+
+            } 
             foreach (Control custom_control in controlTemplate)
             {
                 _c.Controls.Remove(custom_control);
                 custom_control.Dispose();
             }
         }
-
-
+        class errorFetchException : Exception
+        {
+            const string leak = "A wild memory leak appeared on your stack!";
+            public errorFetchException(string msg, Exception _inner) :
+                base(String.Format(msg, leak, _inner))
+            {
+                MessageBox.Show(this.Message);
+            }
+        }
     }
 }
