@@ -160,7 +160,7 @@ namespace k_agv_kids
                         pb_array[array_counter].BorderStyle = BorderStyle.FixedSingle;
                         pb_array[array_counter].Location = _tempPoint;
                         pb_array[array_counter].SizeMode = PictureBoxSizeMode.StretchImage;
-                        pb_array[array_counter].Size = new Size(res_offset, res_offset);
+                        pb_array[array_counter].Size = new Size(res_offset+1, res_offset+1); //+1 so the Picturebox borders will get on top of the grid lines
                         pb_array[array_counter].Visible = true;
                         if (map[j, i] == 1) //entrance
                         {
