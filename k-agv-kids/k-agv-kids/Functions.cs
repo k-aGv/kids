@@ -105,7 +105,8 @@ namespace k_agv_kids
                 }
                 //Watch out.Grid's size is 500+1,350+1...+1 because the known border bug
             }
-           
+
+            
             updateWarningState();
 
         }
@@ -137,6 +138,57 @@ namespace k_agv_kids
                 for_warning.FillEllipse(b, 5, 5, 20, 20);
             }
         }
+        /*
+         * Map file
+         * --------
+         * 0=clean block
+         * 1=entrance
+         * 2=exit
+         * 3=wall
+         * 4=load
+         */
+        private void ShowMap(int[,] map)
+        {
+            for(int i=0;i<map.GetLength(1);i++)
+                for (int j = 0; j < map.GetLength(0); j++)
+                {
+                    if (map[j, i] != 0)
+                    {
+                        pb_array[array_counter] = new PictureBox();
+                        Point _tempPoint = new Point(j * res_offset, i * res_offset);
+                        pb_array[array_counter].BackColor = game_panel.BackColor;
+                        pb_array[array_counter].BorderStyle = BorderStyle.FixedSingle;
+                        pb_array[array_counter].Location = _tempPoint;
+                        pb_array[array_counter].SizeMode = PictureBoxSizeMode.StretchImage;
+                        pb_array[array_counter].Size = new Size(res_offset, res_offset);
+                        pb_array[array_counter].Visible = true;
+                        if (map[j, i] == 1) //entrance
+                        {
+                            pb_array[array_counter].Name = "Entrance" + "_" + array_counter;
+                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "entrance.png");
+                        }
+                        else if (map[j, i] == 2) //exit
+                        {
+                            pb_array[array_counter].Name = "Exit" + "_" + array_counter;
+                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "exit.png");
+                        }
+                        else if (map[j, i] == 3) //wall
+                        {
+                            pb_array[array_counter].Name = "Wall" + "_" + array_counter;
+                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "wallobst.png");
+                        }
+                        else //load
+                        {
+                            pb_array[array_counter].Name = "Load" + "_" + array_counter;
+                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "loads.png");
+                        }
+
+                        game_panel.Controls.Add(pb_array[array_counter]);
+                        array_counter++;
+                    }
+                }
+        }
+
         private void StartFromLevel_1()
         {
 

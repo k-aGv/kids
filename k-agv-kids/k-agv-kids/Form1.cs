@@ -16,9 +16,12 @@ namespace k_agv_kids
     {
         Graphics for_warning;
         Graphics for_grid;
-
+        
         Color pb_backcolor;
         Bitmap _tempImage;
+
+        PictureBox[] pb_array=new PictureBox[100];
+        int array_counter=0;
 
         int grid_res=50;//levels should have a random resolution 
 
@@ -224,30 +227,35 @@ namespace k_agv_kids
 
                 //char[] delim = { ' ' };
                 words = reader.ReadLine().Split(delim);
-                int i=0;
+                
                 for (int z = 0; z < map.GetLength(1); z++)
                 {
                     //for (int i = 0; i < map.GetLength(0); i++)
                     //{
-                        foreach (string _s in words)
-                        {
-                            //MessageBox.Show(_s);
-                            map[i, z] = Convert.ToInt32(_s);
-                            MessageBox.Show(map[i, z] + "");
-                        }
+                    int i = 0;
+                    foreach (string _s in words)
+                    {
+                        //MessageBox.Show(_s);
+                        map[i, z] = Convert.ToInt32(_s);
                         i++;
-                        if (z == map.GetLength(1) - 1)
-                            break; //no break = error when trying to read the map.getlenght(1) line
+                        //MessageBox.Show("" + map[i, z]);
+                    }
+                    if (z == map.GetLength(1) - 1)
+                    { } //no break = error when trying to read the map.getlenght(1) line
                     //}
-                    //debug crashes after the read of the 1st line.(Reads empty string from file.missing var?)
-                    words = reader.ReadLine().Split(delim);
+                    else
+                        words = reader.ReadLine().Split(delim);
                 }
+                //MessageBox.Show("Finished import");
+                reader.Close();
+                ShowMap(map);
 
 
                 
 
 
             }
+            
         }
         
     }
