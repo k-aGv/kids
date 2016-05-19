@@ -78,7 +78,7 @@ namespace k_agv_kids
             tb_commands.BackColor = game_panel.BackColor;
 
             //Create the grid.
-            drawGrid(50);
+            //drawGrid(50);
             
 
         }
@@ -107,6 +107,19 @@ namespace k_agv_kids
             }
 
             
+            
+            
+          /*  Point _tempAGV = new Point(grid_res, 0);
+            agv.Location = _tempAGV;
+            agv.BackColor = game_panel.BackColor;
+            agv.BorderStyle = BorderStyle.FixedSingle;
+            agv.SizeMode = PictureBoxSizeMode.StretchImage;
+            agv.Size = new Size(res_offset + 1, res_offset + 1); 
+            agv.Visible = true;
+            agv.Image = Image.FromFile(getResDir() + "empty.png");
+            game_panel.Controls.Add(agv);
+            
+            */
             updateWarningState();
 
         }
@@ -149,6 +162,16 @@ namespace k_agv_kids
          */
         private void ShowMap(int[,] map)
         {
+            Point _tempAGV = new Point(grid_res, 0);
+            agv.Location = _tempAGV;
+            agv.BackColor = game_panel.BackColor;
+            agv.BorderStyle = BorderStyle.FixedSingle;
+            agv.SizeMode = PictureBoxSizeMode.StretchImage;
+            agv.Size = new Size(res_offset + 1, res_offset + 1);
+            agv.Visible = true;
+            agv.Image = Image.FromFile(getResDir() + "empty.png");
+            game_panel.Controls.Add(agv);
+
             for(int i=0;i<map.GetLength(1);i++)
                 for (int j = 0; j < map.GetLength(0); j++)
                 {

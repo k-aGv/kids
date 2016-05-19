@@ -20,6 +20,7 @@ namespace k_agv_kids
         Color pb_backcolor;
         Bitmap _tempImage;
 
+        PictureBox agv = new PictureBox();
         PictureBox[] pb_array=new PictureBox[100];
         int array_counter=0;
 
@@ -149,7 +150,6 @@ namespace k_agv_kids
         private void aGVStageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Will work on it
-            
         }
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
@@ -161,8 +161,8 @@ namespace k_agv_kids
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             reset();
-            drawGrid(50);
-            StartFromLevel_1();
+            drawGrid(grid_res);
+            //StartFromLevel_1();
         }
 
         private void levelEditorToolStripMenuItem_Click(object sender, EventArgs e)
