@@ -60,16 +60,13 @@
             this.pb_down = new System.Windows.Forms.PictureBox();
             this.pb_up = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.warning_panel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.lift_label = new System.Windows.Forms.Label();
             this.lift_state = new System.Windows.Forms.Label();
             this.level_label = new System.Windows.Forms.Label();
-            this.battery_label = new System.Windows.Forms.Label();
             this.score_label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_commands = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -77,6 +74,7 @@
             this.ofd_level = new System.Windows.Forms.OpenFileDialog();
             this.anim_timer = new System.Windows.Forms.Timer(this.components);
             this.load_timer = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lift)).BeginInit();
@@ -95,7 +93,7 @@
             this.optionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(822, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1025, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -273,7 +271,7 @@
             // game_panel
             // 
             this.game_panel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.game_panel.Location = new System.Drawing.Point(13, 28);
+            this.game_panel.Location = new System.Drawing.Point(257, 22);
             this.game_panel.Name = "game_panel";
             this.game_panel.Size = new System.Drawing.Size(501, 351);
             this.game_panel.TabIndex = 1;
@@ -285,7 +283,7 @@
             this.groupBox1.Controls.Add(this.pb_right);
             this.groupBox1.Controls.Add(this.pb_down);
             this.groupBox1.Controls.Add(this.pb_up);
-            this.groupBox1.Location = new System.Drawing.Point(539, 182);
+            this.groupBox1.Location = new System.Drawing.Point(764, 84);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(176, 169);
             this.groupBox1.TabIndex = 2;
@@ -336,32 +334,20 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.warning_panel);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.lift_label);
             this.groupBox2.Controls.Add(this.lift_state);
             this.groupBox2.Controls.Add(this.level_label);
-            this.groupBox2.Controls.Add(this.battery_label);
             this.groupBox2.Controls.Add(this.score_label);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(520, 28);
+            this.groupBox2.Location = new System.Drawing.Point(12, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(225, 148);
+            this.groupBox2.Size = new System.Drawing.Size(225, 117);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Score and stats";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(107, 68);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "%";
             // 
             // warning_panel
             // 
@@ -383,7 +369,7 @@
             // lift_label
             // 
             this.lift_label.AutoSize = true;
-            this.lift_label.Location = new System.Drawing.Point(78, 119);
+            this.lift_label.Location = new System.Drawing.Point(78, 92);
             this.lift_label.Name = "lift_label";
             this.lift_label.Size = new System.Drawing.Size(10, 13);
             this.lift_label.TabIndex = 5;
@@ -392,7 +378,7 @@
             // lift_state
             // 
             this.lift_state.AutoSize = true;
-            this.lift_state.Location = new System.Drawing.Point(7, 119);
+            this.lift_state.Location = new System.Drawing.Point(7, 92);
             this.lift_state.Name = "lift_state";
             this.lift_state.Size = new System.Drawing.Size(50, 13);
             this.lift_state.TabIndex = 4;
@@ -401,20 +387,11 @@
             // level_label
             // 
             this.level_label.AutoSize = true;
-            this.level_label.Location = new System.Drawing.Point(78, 95);
+            this.level_label.Location = new System.Drawing.Point(78, 68);
             this.level_label.Name = "level_label";
             this.level_label.Size = new System.Drawing.Size(13, 13);
             this.level_label.TabIndex = 3;
             this.level_label.Text = "0";
-            // 
-            // battery_label
-            // 
-            this.battery_label.AutoSize = true;
-            this.battery_label.Location = new System.Drawing.Point(78, 68);
-            this.battery_label.Name = "battery_label";
-            this.battery_label.Size = new System.Drawing.Size(13, 13);
-            this.battery_label.TabIndex = 3;
-            this.battery_label.Text = "0";
             // 
             // score_label
             // 
@@ -428,20 +405,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 95);
+            this.label3.Location = new System.Drawing.Point(7, 68);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Level:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Battery Level:";
             // 
             // label1
             // 
@@ -454,7 +422,7 @@
             // 
             // tb_commands
             // 
-            this.tb_commands.Location = new System.Drawing.Point(751, 51);
+            this.tb_commands.Location = new System.Drawing.Point(946, 43);
             this.tb_commands.Name = "tb_commands";
             this.tb_commands.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.tb_commands.Size = new System.Drawing.Size(60, 261);
@@ -465,7 +433,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(752, 32);
+            this.label5.Location = new System.Drawing.Point(943, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 4;
@@ -473,7 +441,7 @@
             // 
             // pb_start
             // 
-            this.pb_start.Location = new System.Drawing.Point(751, 319);
+            this.pb_start.Location = new System.Drawing.Point(946, 310);
             this.pb_start.Name = "pb_start";
             this.pb_start.Size = new System.Drawing.Size(60, 60);
             this.pb_start.TabIndex = 5;
@@ -493,11 +461,21 @@
             this.load_timer.Interval = 500;
             this.load_timer.Tick += new System.EventHandler(this.load_timer_Tick);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(12, 171);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(225, 202);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Vehicle status";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 400);
+            this.ClientSize = new System.Drawing.Size(1025, 388);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pb_start);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tb_commands);
@@ -541,10 +519,8 @@
         private System.Windows.Forms.PictureBox pb_lift;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label level_label;
-        private System.Windows.Forms.Label battery_label;
         private System.Windows.Forms.Label score_label;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lift_label;
         private System.Windows.Forms.Label lift_state;
@@ -574,8 +550,8 @@
         private System.Windows.Forms.ToolStripMenuItem levelEditorToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofd_level;
         private System.Windows.Forms.Timer anim_timer;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Timer load_timer;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

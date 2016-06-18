@@ -122,7 +122,6 @@ namespace k_agv_kids
 
             //Reset to '0' to get prepared for new game
             score_label.Text = "0";
-            battery_label.Text = "100";
             level_label.Text = "1";
             lift_label.Text = "Waiting orders";
 

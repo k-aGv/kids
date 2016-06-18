@@ -167,7 +167,7 @@ namespace k_agv_kids
 
         private void batteryLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            battery_label.Text = "0";
+           
         }
 
         private void levelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -363,7 +363,7 @@ namespace k_agv_kids
             }
             else
             {
-                battery_label.Text = Convert.ToString(Convert.ToInt32(battery_label.Text) - 5) ;
+                
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
                 if (commands_array[animCounter] == '<')
                 {
