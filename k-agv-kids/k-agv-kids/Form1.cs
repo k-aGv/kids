@@ -70,6 +70,8 @@ namespace k_agv_kids
 
         private void pb_left_MouseDown(object sender, MouseEventArgs e)
         {
+            Clipboard.Clear();//Empty the clipboard
+            Application.DoEvents();
 
             //Tricky way to detect which button pressed
             if ((sender as PictureBox).Name == "pb_left")
@@ -77,7 +79,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_left.BackColor = Color.Gray;
 
-                Clipboard.Clear();//Empty the clipboard
+                
                 _tempImage = new Bitmap(pb_left.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -89,7 +91,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_right.BackColor = Color.Gray;
 
-                Clipboard.Clear();//Empty the clipboard
+                
                 _tempImage = new Bitmap(pb_right.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -101,7 +103,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_up.BackColor = Color.Gray;
 
-                Clipboard.Clear();//Empty the clipboard
+                
                 _tempImage = new Bitmap(pb_up.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -113,7 +115,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_down.BackColor = Color.Gray;
 
-                Clipboard.Clear();//Empty the clipboard
+                
                 _tempImage = new Bitmap(pb_down.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -125,7 +127,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_lift.BackColor = Color.Gray;
 
-                Clipboard.Clear();//Empty the clipboard
+               
                 _tempImage = new Bitmap(pb_lift.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -384,7 +386,7 @@ namespace k_agv_kids
             {
                 
 
-                if (pb_emissions_co2.Value >= pb_emissions_co2.Maximum - 3*kidagv.checkEmissionsCO2())
+                if (pb_emissions_co2.Value >= pb_emissions_co2.Maximum - 2*kidagv.checkEmissionsCO2())
                 {
                     pbColorChanger.SetState(pb_emissions_co2, 2);
                     emission_status.Text = "Be careful!Too much emission exposed!";
@@ -395,7 +397,7 @@ namespace k_agv_kids
                     }
 
                 }
-                if (pb_emissions_no2.Value >= pb_emissions_no2.Maximum - 3 * kidagv.checkEmissionsNO2())
+                if (pb_emissions_no2.Value >= pb_emissions_no2.Maximum - 2 * kidagv.checkEmissionsNO2())
                 {
                     pbColorChanger.SetState(pb_emissions_no2, 2);
                     emission_status.Text = "Be careful!Too much emission exposed!";
@@ -406,7 +408,7 @@ namespace k_agv_kids
                         warning = true;
                     }
                 }
-                if (pb_battery.Value < pb_battery.Value - 7)
+                if (pb_battery.Value < pb_battery.Maximum - 6)
                 {
                     pbColorChanger.SetState(pb_battery, 2);
                     emission_status.Text = "Low fuel!";

@@ -31,7 +31,8 @@ namespace k_agv_kids
         private void init()
         {
             isRunning = false;
-            
+
+            Clipboard.Clear();
 
             //predefine the maximum emissions that are allowed
             pb_battery.Value = 10;
