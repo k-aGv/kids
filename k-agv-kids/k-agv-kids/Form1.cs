@@ -10,28 +10,37 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
 
+using System.Runtime.InteropServices;
 namespace k_agv_kids
 {
+
     public partial class Form1 : Form
     {
+        
+        bool warning = false;
+        bool isFirstRun = true;
+
         Graphics for_warning;
         Graphics for_grid;
-        
+
         Color pb_backcolor;
         Bitmap _tempImage;
 
         PictureBox agv = new PictureBox();
-        PictureBox[] pb_array=new PictureBox[100];
-        int array_counter=0;
+        PictureBox[] pb_array = new PictureBox[100];
+
+        agv kidagv;
+
+        int array_counter = 0;
         bool isLoaded = false;
         char[] commands_array;
 
-        int grid_res=50;//levels should have a random resolution 
+        int grid_res = 50;//levels should have a random resolution 
 
         int[,] map;
         int entrance_x, entrance_y;
 
-        int width_blocks,height_blocks,res_offset;
+        int width_blocks, height_blocks, res_offset;
         string commands = "";
         int commandCounter = 0;
         Point tempLocation = new Point(0, 0);
@@ -47,10 +56,16 @@ namespace k_agv_kids
             Application.Exit();
         }
 
-      
+
         private void Form1_Load(object sender, EventArgs e)
         {
             init();
+
+            //just to be initialized.
+            kidagv = new agv(1);
+
+            initType(1);
+
         }
 
         private void pb_left_MouseDown(object sender, MouseEventArgs e)
@@ -131,8 +146,15 @@ namespace k_agv_kids
                         MessageBox.Show(commands_array[i]+"");
                     }
                      */
+                    if (isFirstRun)
+                    {
+                        pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
+                        pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
+                        isFirstRun = !isFirstRun;
+                    }
                     anim_timer.Start();
-                   
+                    
+
 
                 }
                 else
@@ -146,13 +168,13 @@ namespace k_agv_kids
         }
         private void pb_left_MouseUp(object sender, MouseEventArgs e)
         {
-            pb_left.BackColor 
+            pb_left.BackColor
                             = pb_right.BackColor
                             = pb_up.BackColor
                             = pb_down.BackColor
                             = pb_lift.BackColor
                             = pb_backcolor;
-           
+
         }
 
         private void commandsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -165,10 +187,7 @@ namespace k_agv_kids
             score_label.Text = "0";
         }
 
-        private void batteryLevelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
+
 
         private void levelToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -201,51 +220,51 @@ namespace k_agv_kids
             MessageBox.Show("This feature is working only on release version.\r\nPlease build from scratch.");
         }
 
-       /*
-        static string GetMd5Hash(MD5 md5Hash, string input)
-        {
+        /*
+         static string GetMd5Hash(MD5 md5Hash, string input)
+         {
 
-            // Convert the input string to a byte array and compute the hash.
-            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+             // Convert the input string to a byte array and compute the hash.
+             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-            // Create a new Stringbuilder to collect the bytes
-            // and create a string.
-            StringBuilder sBuilder = new StringBuilder();
+             // Create a new Stringbuilder to collect the bytes
+             // and create a string.
+             StringBuilder sBuilder = new StringBuilder();
 
-            // Loop through each byte of the hashed data 
-            // and format each one as a hexadecimal string.
-            for (int i = 0; i < data.Length; i++)
-            {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
+             // Loop through each byte of the hashed data 
+             // and format each one as a hexadecimal string.
+             for (int i = 0; i < data.Length; i++)
+             {
+                 sBuilder.Append(data[i].ToString("x2"));
+             }
 
-            // Return the hexadecimal string.
-            return sBuilder.ToString();
-        }
+             // Return the hexadecimal string.
+             return sBuilder.ToString();
+         }
 
-        // Verify a hash against a string.
-        static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
-        {
-            // Hash the input.
-            string hashOfInput = GetMd5Hash(md5Hash, input);
+         // Verify a hash against a string.
+         static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
+         {
+             // Hash the input.
+             string hashOfInput = GetMd5Hash(md5Hash, input);
 
-            // Create a StringComparer an compare the hashes.
-            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+             // Create a StringComparer an compare the hashes.
+             StringComparer comparer = StringComparer.OrdinalIgnoreCase;
 
-            if (0 == comparer.Compare(hashOfInput, hash))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        */
+             if (0 == comparer.Compare(hashOfInput, hash))
+             {
+                 return true;
+             }
+             else
+             {
+                 return false;
+             }
+         }
+         */
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             reset();
-            
+
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
             level_label.Text = "Custom level";
@@ -269,17 +288,17 @@ namespace k_agv_kids
                 */
 
                 StreamReader reader = new StreamReader(ofd_level.FileName);
-                
+
                 reader.ReadLine();//read the first line "Map Info:"
                 string map_details = reader.ReadLine(); //second line are the map's details
-               
+
                 //Start second line's split
-                char[] delim = {' '};
+                char[] delim = { ' ' };
                 string[] words = map_details.Split(delim);
 
                 bool isNumber;
                 int _tempNumber;
-                int whichNumber=1;
+                int whichNumber = 1;
                 foreach (string _s in words)
                 {
                     isNumber = int.TryParse(_s, out _tempNumber);
@@ -299,14 +318,14 @@ namespace k_agv_kids
                         {
                             res_offset = Convert.ToInt32(_s);
                         }
-                      
+
                     }
                 }
                 //End of data import
 
-               /*debug
-                *MessageBox.Show(width_blocks + " " + height_blocks + " " + res_offset);
-                */
+                /*debug
+                 *MessageBox.Show(width_blocks + " " + height_blocks + " " + res_offset);
+                 */
 
                 //skip the 3rd line
                 reader.ReadLine();
@@ -317,12 +336,12 @@ namespace k_agv_kids
                 //parse the map
                 //prepare the delims to get coords
 
-               
+
                 words = reader.ReadLine().Split(delim);
-                
+
                 for (int z = 0; z < map.GetLength(1); z++)
                 {
-                    
+
                     int i = 0;
                     foreach (string _s in words)
                     {
@@ -338,7 +357,7 @@ namespace k_agv_kids
                     }
                     if (z == map.GetLength(1) - 1)
                     { } //no break = error when trying to read the map.getlenght(1) line
-                    
+
                     else
                         words = reader.ReadLine().Split(delim);
                 }
@@ -349,7 +368,7 @@ namespace k_agv_kids
                 pb_start.Visible = true;
 
             }
-            
+
         }
 
         private void anim_timer_Tick(object sender, EventArgs e)
@@ -364,20 +383,46 @@ namespace k_agv_kids
             else
             {
                 
+
+                if (pb_emissions_co2.Value >= pb_emissions_co2.Maximum - 3*kidagv.checkEmissionsCO2())
+                {
+                    pbColorChanger.SetState(pb_emissions_co2, 2);
+                    emission_status.Text = "Be careful!Too much emission exposed!";
+                    emission_status.ForeColor = Color.Red;
+                    using (SolidBrush b = new SolidBrush(Color.Red))
+                    {
+                        for_warning.FillEllipse(b, 5, 5, 20, 20);
+                    }
+
+                }
+                if (pb_emissions_no2.Value >= pb_emissions_no2.Maximum - 3 * kidagv.checkEmissionsNO2())
+                {
+                    pbColorChanger.SetState(pb_emissions_no2, 2);
+                    emission_status.Text = "Be careful!Too much emission exposed!";
+                    emission_status.ForeColor = Color.Red;
+                    using (SolidBrush b = new SolidBrush(Color.Red))
+                    {
+                        for_warning.FillEllipse(b, 5, 5, 20, 20);
+                        warning = true;
+                    }
+                }
+
+
+
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
                 if (commands_array[animCounter] == '<')
                 {
                     tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
                     agv.Location = tempLocation;
                     drawGrid(res_offset);
-                    
+
                 }
                 else if (commands_array[animCounter] == '>')
                 {
                     tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
                     agv.Location = tempLocation;
                     drawGrid(res_offset);
-                    
+
                 }
                 else if (commands_array[animCounter] == 'V')
                 {
@@ -390,18 +435,49 @@ namespace k_agv_kids
                     tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
                     agv.Location = tempLocation;
                     drawGrid(res_offset);
-                   
+
                 }
                 else //lift
                 {
                     agv.Image = Image.FromFile(getResDir() + "half.png");
                     load_timer.Start();
                     anim_timer.Stop();
-                   
+                }
+               
+
+                if (kidagv.type == 1)
+                {
+                    pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
+                    pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
+                }
+                else if (kidagv.type == 2)
+                {
+                    pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
+                    pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
+                }
+                else 
+                {
+                    pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
+                    pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
+                }
+                
+                
+                if (pb_emissions_no2.Value == 10)
+                {
+                    MessageBox.Show("You lost!");
+                    pb_emissions_no2.Value = pb_emissions_no2.Maximum;
+                    anim_timer.Stop();
+                }
+                if (pb_emissions_co2.Value == 10)
+                {
+                    MessageBox.Show("You lost!");
+                    pb_emissions_no2.Value = pb_emissions_no2.Maximum;
+                    anim_timer.Stop();
                 }
                 animCounter++;
+               
             }
-          
+
         }
         private void load_timer_Tick(object sender, EventArgs e)
         {
@@ -421,8 +497,33 @@ namespace k_agv_kids
             }
         }
 
-     
-       
-        
+        private void batteryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initType(1);
+        }
+
+        private void petrolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initType(2);
+        }
+
+        private void lPGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initType(3);
+        }
+
+        private void pb_start_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pb_down_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
     }
 }

@@ -31,6 +31,12 @@ namespace k_agv_kids
         private void init()
         {
             isRunning = false;
+            
+
+            //predefine the maximum emissions that are allowed
+            pb_emissions_co2.Maximum = 10;
+            pb_emissions_no2.Maximum = 10;
+
             //initialize picturebox's attributes
 
             //Carry button
@@ -131,6 +137,26 @@ namespace k_agv_kids
 
             //Empty the Clipboard...(A wild bug appeared)
             Clipboard.Clear();
+
+            //Reset warning LED
+            using (SolidBrush b = new SolidBrush(Color.Green))
+            {
+                for_warning.FillEllipse(b, 5, 5, 20, 20);
+            }
+
+            //Reset progress bars
+            pbColorChanger.SetState(pb_emissions_no2, 1);
+            pbColorChanger.SetState(pb_emissions_co2, 1);
+            pb_emissions_co2.Value = 0;
+            pb_emissions_no2.Value = 0;
+            emission_status.Text = "emissions status";
+            emission_status.ForeColor = Color.Black;
+
+            warning = false;
+            isFirstRun = true;
+
+            commands_array= new char[0];
+
         }
         private void updateWarningState()
         {
@@ -139,9 +165,12 @@ namespace k_agv_kids
             //add perfect quality to those graphics;
             for_warning.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            using (SolidBrush b = new SolidBrush(Color.Green))
+            if (!warning)
             {
-                for_warning.FillEllipse(b, 5, 5, 20, 20);
+                using (SolidBrush b = new SolidBrush(Color.Green))
+                {
+                    for_warning.FillEllipse(b, 5, 5, 20, 20);
+                }
             }
         }
         /*
@@ -249,6 +278,39 @@ namespace k_agv_kids
                 base(String.Format(msg, leak, _inner))
             {
                 MessageBox.Show(this.Message);
+            }
+        }
+        public void initType(int _type)
+        {
+            if (_type == 1)
+            {
+                type.Text = "Battery";
+                type_label.Text = "Battery level:";
+                kidagv = new agv(1);
+                pb_battery.Value = 100;
+                batteryToolStripMenuItem.Checked = true;
+                petrolToolStripMenuItem.Checked = false;
+                lPGToolStripMenuItem.Checked = false;
+            }
+            else if (_type == 2)
+            {
+                type.Text = "Petrol";
+                type_label.Text = "Petrol level:";
+                kidagv = new agv(2);
+                //emissions has to start from value '0'
+                batteryToolStripMenuItem.Checked = false;
+                petrolToolStripMenuItem.Checked = true;
+                lPGToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                type.Text = "LPG";
+                type_label.Text = "LPG level:";
+                kidagv = new agv(3);
+                //emissions has to start from value '0'
+                batteryToolStripMenuItem.Checked = false;
+                petrolToolStripMenuItem.Checked = false;
+                lPGToolStripMenuItem.Checked = true;
             }
         }
     }
