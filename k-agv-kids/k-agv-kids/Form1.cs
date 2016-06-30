@@ -406,6 +406,17 @@ namespace k_agv_kids
                         warning = true;
                     }
                 }
+                if (pb_battery.Value < pb_battery.Value - 7)
+                {
+                    pbColorChanger.SetState(pb_battery, 2);
+                    emission_status.Text = "Low fuel!";
+                    emission_status.ForeColor = Color.Red;
+                    using (SolidBrush b = new SolidBrush(Color.Red))
+                    {
+                        for_warning.FillEllipse(b, 5, 5, 20, 20);
+                        warning = true;
+                    }
+                }
 
 
 
@@ -449,16 +460,19 @@ namespace k_agv_kids
                 {
                     pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
                     pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
+                    pb_battery.Value -= 1;
                 }
                 else if (kidagv.type == 2)
                 {
                     pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
                     pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
+                    pb_battery.Value -= 1;
                 }
                 else 
                 {
                     pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
                     pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
+                    pb_battery.Value -= 1;
                 }
                 
                 

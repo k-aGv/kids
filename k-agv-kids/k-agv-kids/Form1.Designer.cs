@@ -581,10 +581,11 @@
             // pb_battery
             // 
             this.pb_battery.Location = new System.Drawing.Point(82, 52);
+            this.pb_battery.Maximum = 10;
             this.pb_battery.Name = "pb_battery";
             this.pb_battery.Size = new System.Drawing.Size(137, 23);
             this.pb_battery.TabIndex = 0;
-            this.pb_battery.Value = 100;
+            this.pb_battery.Value = 10;
             // 
             // emission_status
             // 

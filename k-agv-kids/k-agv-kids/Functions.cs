@@ -34,6 +34,8 @@ namespace k_agv_kids
             
 
             //predefine the maximum emissions that are allowed
+            pb_battery.Value = 10;
+
             pb_emissions_co2.Maximum = 10;
             pb_emissions_no2.Maximum = 10;
 
@@ -147,6 +149,8 @@ namespace k_agv_kids
             //Reset progress bars
             pbColorChanger.SetState(pb_emissions_no2, 1);
             pbColorChanger.SetState(pb_emissions_co2, 1);
+            pbColorChanger.SetState(pb_battery, 1);
+            pb_battery.Value = pb_battery.Maximum;
             pb_emissions_co2.Value = 0;
             pb_emissions_no2.Value = 0;
             emission_status.Text = "emissions status";
