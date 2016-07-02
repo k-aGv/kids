@@ -228,6 +228,11 @@ namespace k_agv_kids
                             pb_array[array_counter].Name = "Wall" + "_" + array_counter;
                             pb_array[array_counter].Image = Image.FromFile(getResDir() + "wall.png");
                         }
+                        else if (map[j, i] == 4) //station
+                        {
+                            pb_array[array_counter].Name = "Station" + "_" + array_counter;
+                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "station.png");
+                        }
                         else //load
                         {
                             pb_array[array_counter].Name = "Load" + "_" + array_counter;
