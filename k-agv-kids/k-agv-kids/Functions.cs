@@ -14,7 +14,37 @@ namespace k_agv_kids
     public partial class Form1 : Form
     {
         bool isRunning = false;
+        bool warning = false;
+        bool isFirstRun = true;
 
+        Graphics for_warning;
+        Graphics for_grid;
+
+        Color pb_backcolor;
+        Bitmap _tempImage;
+
+        PictureBox agv = new PictureBox();
+        PictureBox[] pb_array = new PictureBox[100];
+
+        agv kidagv;
+
+        int array_counter = 0;
+        bool isLoaded = false;
+        char[] commands_array;
+
+        int grid_res = 50;//levels should have a random resolution 
+
+        int[,] map;
+        int entrance_x, entrance_y;
+
+        int width_blocks, height_blocks, res_offset;
+        string commands = "";
+        int commandCounter = 0;
+        Point tempLocation = new Point(0, 0);
+        int animCounter = 0;
+
+
+       
         public void initType(int _type)
         {
             if (_type == 1)
@@ -49,6 +79,10 @@ namespace k_agv_kids
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Returns the local Resources directory</returns>
         private string getResDir()
         {
             
@@ -126,11 +160,14 @@ namespace k_agv_kids
             //Richbox's backcolor.has to be same as picturebox's
             tb_commands.BackColor = game_panel.BackColor;
 
-            //Create the grid.
-            //drawGrid(50);
 
 
         }
+
+        /// <summary>
+        /// Draws the grid.
+        /// </summary>
+        /// <param name="grid_res">The grid resolution (Pixels)</param>
         private void drawGrid(int grid_res)
         {
             for_grid = game_panel.CreateGraphics();
@@ -223,6 +260,11 @@ namespace k_agv_kids
          * 3=wall
          * 4=load
          */
+
+        /// <summary>
+        /// Shows the map to panel.
+        /// </summary>
+        /// <param name="map">2D array of k-aGv map file</param>
         private void ShowMap(int[,] map)
         {
             agv = new PictureBox();
@@ -281,7 +323,7 @@ namespace k_agv_kids
                 }
         }
 
-        //99% sorcery
+        //99% sorcery.nothing to explain here
         private void removeControls(Control _c, Type _toBeRemoved)
         {
             List<Control> controlTemplate = new List<Control>();

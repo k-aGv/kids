@@ -17,35 +17,7 @@ namespace k_agv_kids
     public partial class Form1 : Form
     {
         
-        bool warning = false;
-        bool isFirstRun = true;
-
-        Graphics for_warning;
-        Graphics for_grid;
-
-        Color pb_backcolor;
-        Bitmap _tempImage;
-
-        PictureBox agv = new PictureBox();
-        PictureBox[] pb_array = new PictureBox[100];
-
-        agv kidagv;
-
-        int array_counter = 0;
-        bool isLoaded = false;
-        char[] commands_array;
-
-        int grid_res = 50;//levels should have a random resolution 
-
-        int[,] map;
-        int entrance_x, entrance_y;
-
-        int width_blocks, height_blocks, res_offset;
-        string commands = "";
-        int commandCounter = 0;
-        Point tempLocation = new Point(0, 0);
-        int animCounter = 0;
-
+       
         public Form1()
         {
             InitializeComponent();
@@ -60,10 +32,8 @@ namespace k_agv_kids
         private void Form1_Load(object sender, EventArgs e)
         {
             init();
-
             //just to be initialized.
             kidagv = new agv(1);
-
             initType(1);
 
         }
@@ -142,12 +112,6 @@ namespace k_agv_kids
                     pb_start.Image = Image.FromFile(getResDir() + "start.png");
                     commands_array = new char[commandCounter];
                     commands_array = commands.ToCharArray();
-                    /*debug
-                    for (int i = 0; i < commandCounter; i++)
-                    {
-                        MessageBox.Show(commands_array[i]+"");
-                    }
-                     */
                     if (isFirstRun)
                     {
                         pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
@@ -155,9 +119,6 @@ namespace k_agv_kids
                         isFirstRun = !isFirstRun;
                     }
                     anim_timer.Start();
-                    
-
-
                 }
                 else
                 {
@@ -222,47 +183,7 @@ namespace k_agv_kids
             MessageBox.Show("This feature is working only on release version.\r\nPlease build from scratch.");
         }
 
-        /*
-         static string GetMd5Hash(MD5 md5Hash, string input)
-         {
-
-             // Convert the input string to a byte array and compute the hash.
-             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-             // Create a new Stringbuilder to collect the bytes
-             // and create a string.
-             StringBuilder sBuilder = new StringBuilder();
-
-             // Loop through each byte of the hashed data 
-             // and format each one as a hexadecimal string.
-             for (int i = 0; i < data.Length; i++)
-             {
-                 sBuilder.Append(data[i].ToString("x2"));
-             }
-
-             // Return the hexadecimal string.
-             return sBuilder.ToString();
-         }
-
-         // Verify a hash against a string.
-         static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
-         {
-             // Hash the input.
-             string hashOfInput = GetMd5Hash(md5Hash, input);
-
-             // Create a StringComparer an compare the hashes.
-             StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-
-             if (0 == comparer.Compare(hashOfInput, hash))
-             {
-                 return true;
-             }
-             else
-             {
-                 return false;
-             }
-         }
-         */
+        
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -274,21 +195,7 @@ namespace k_agv_kids
 
             if (ofd_level.ShowDialog() == DialogResult.OK)
             {
-                /*
-                StreamReader _r = new StreamReader(ofd_level.FileName+".md5");
-                string hash = _r.ReadLine();
-                using (MD5 md5hash = MD5.Create())
-                {
-                    string source = GetMd5Hash(md5hash, ofd_level.FileName);
-                    if (VerifyMd5Hash(md5hash, source,hash))
-                    {
-                        MessageBox.Show("same");
-                    }
-                    else
-                        MessageBox.Show("no");
-                }
-                _r.Close();
-                */
+               
                 groupBox1.Visible = true;
                 StreamReader reader = new StreamReader(ofd_level.FileName);
 
@@ -326,10 +233,6 @@ namespace k_agv_kids
                 }
                 //End of data import
 
-                /*debug
-                 *MessageBox.Show(width_blocks + " " + height_blocks + " " + res_offset);
-                 */
-
                 //skip the 3rd line
                 reader.ReadLine();
 
@@ -348,7 +251,6 @@ namespace k_agv_kids
                     int i = 0;
                     foreach (string _s in words)
                     {
-                        //MessageBox.Show(_s);
                         map[i, z] = Convert.ToInt32(_s);
                         if (Convert.ToInt32(_s) == 1)
                         {
@@ -356,15 +258,13 @@ namespace k_agv_kids
                             entrance_y = z;
                         }
                         i++;
-                        //MessageBox.Show("" + map[i, z]);
+                        
                     }
                     if (z == map.GetLength(1) - 1)
                     { } //no break = error when trying to read the map.getlenght(1) line
-
                     else
                         words = reader.ReadLine().Split(delim);
                 }
-                //MessageBox.Show("Finished import");
                 reader.Close();
                 ShowMap(map);
                 drawGrid(res_offset);
@@ -420,8 +320,6 @@ namespace k_agv_kids
                         warning = true;
                     }
                 }
-
-
 
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
                 if (commands_array[animCounter] == '<')
@@ -528,7 +426,6 @@ namespace k_agv_kids
         {
             initType(3);
         }
-
 
 
     }

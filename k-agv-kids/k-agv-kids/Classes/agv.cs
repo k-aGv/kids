@@ -63,6 +63,10 @@ namespace k_agv_kids
 
         public agv() { }
 
+        /// <summary>
+        /// Function to check emissions CO2 of AGV
+        /// </summary>
+        /// <returns>Returns the predeclared emissions of selected AGV</returns>
         public int checkEmissionsCO2()
         {
             if (type == 1)
@@ -78,6 +82,11 @@ namespace k_agv_kids
                 return l_co2;   
             }
         }
+
+        /// <summary>
+        /// Function to check emissions NO2 of AGV
+        /// </summary>
+        /// <returns>Returns the predeclared emissions of selected AGV</returns>
         public int checkEmissionsNO2()
         {
             if (type == 1)
@@ -93,7 +102,6 @@ namespace k_agv_kids
                 return l_no2;
             }
             
-
         }
     }
 }
