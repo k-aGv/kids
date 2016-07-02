@@ -265,8 +265,9 @@ namespace k_agv_kids
          */
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            reset();
 
+            reset();
+            
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
             level_label.Text = "Custom level";
@@ -288,7 +289,7 @@ namespace k_agv_kids
                 }
                 _r.Close();
                 */
-
+                groupBox1.Visible = true;
                 StreamReader reader = new StreamReader(ofd_level.FileName);
 
                 reader.ReadLine();//read the first line "Map Info:"
@@ -527,17 +528,6 @@ namespace k_agv_kids
         {
             initType(3);
         }
-
-        private void pb_start_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pb_down_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
 

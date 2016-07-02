@@ -14,6 +14,41 @@ namespace k_agv_kids
     public partial class Form1 : Form
     {
         bool isRunning = false;
+
+        public void initType(int _type)
+        {
+            if (_type == 1)
+            {
+                type.Text = "Battery";
+                type_label.Text = "Battery level:";
+                kidagv = new agv(1);
+                pb_battery.Value = 100;
+                batteryToolStripMenuItem.Checked = true;
+                petrolToolStripMenuItem.Checked = false;
+                lPGToolStripMenuItem.Checked = false;
+            }
+            else if (_type == 2)
+            {
+                type.Text = "Petrol";
+                type_label.Text = "Petrol level:";
+                kidagv = new agv(2);
+                //emissions has to start from value '0'
+                batteryToolStripMenuItem.Checked = false;
+                petrolToolStripMenuItem.Checked = true;
+                lPGToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                type.Text = "LPG";
+                type_label.Text = "LPG level:";
+                kidagv = new agv(3);
+                //emissions has to start from value '0'
+                batteryToolStripMenuItem.Checked = false;
+                petrolToolStripMenuItem.Checked = false;
+                lPGToolStripMenuItem.Checked = true;
+            }
+        }
+
         private string getResDir()
         {
             
@@ -32,6 +67,7 @@ namespace k_agv_kids
         {
             isRunning = false;
 
+            groupBox1.Visible = false;
             Clipboard.Clear();
 
             //predefine the maximum emissions that are allowed
@@ -290,38 +326,6 @@ namespace k_agv_kids
                 MessageBox.Show(this.Message);
             }
         }
-        public void initType(int _type)
-        {
-            if (_type == 1)
-            {
-                type.Text = "Battery";
-                type_label.Text = "Battery level:";
-                kidagv = new agv(1);
-                pb_battery.Value = 100;
-                batteryToolStripMenuItem.Checked = true;
-                petrolToolStripMenuItem.Checked = false;
-                lPGToolStripMenuItem.Checked = false;
-            }
-            else if (_type == 2)
-            {
-                type.Text = "Petrol";
-                type_label.Text = "Petrol level:";
-                kidagv = new agv(2);
-                //emissions has to start from value '0'
-                batteryToolStripMenuItem.Checked = false;
-                petrolToolStripMenuItem.Checked = true;
-                lPGToolStripMenuItem.Checked = false;
-            }
-            else
-            {
-                type.Text = "LPG";
-                type_label.Text = "LPG level:";
-                kidagv = new agv(3);
-                //emissions has to start from value '0'
-                batteryToolStripMenuItem.Checked = false;
-                petrolToolStripMenuItem.Checked = false;
-                lPGToolStripMenuItem.Checked = true;
-            }
-        }
+        
     }
 }

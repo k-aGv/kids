@@ -362,7 +362,7 @@
             this.pb_down.Size = new System.Drawing.Size(42, 39);
             this.pb_down.TabIndex = 0;
             this.pb_down.TabStop = false;
-            this.pb_down.Click += new System.EventHandler(this.pb_down_Click);
+       
             // 
             // pb_up
             // 
@@ -486,7 +486,7 @@
             this.pb_start.Size = new System.Drawing.Size(60, 60);
             this.pb_start.TabIndex = 5;
             this.pb_start.TabStop = false;
-            this.pb_start.Click += new System.EventHandler(this.pb_start_Click);
+            
             // 
             // ofd_level
             // 
