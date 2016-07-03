@@ -37,12 +37,15 @@ namespace k_agv_kids
         int[,] map;
         int entrance_x, entrance_y;
 
+        int stationCounter;
+
         int width_blocks, height_blocks, res_offset;
         string commands = "";
         int commandCounter = 0;
         Point tempLocation = new Point(0, 0);
         int animCounter = 0;
 
+        int seconds = 0;
 
        
         public void initType(int _type)
@@ -308,7 +311,9 @@ namespace k_agv_kids
                         }
                         else if (map[j, i] == 4) //station
                         {
-                            pb_array[array_counter].Name = "Station" + "_" + array_counter;
+                            //detect in which block of array,the station is stored
+                            stationCounter = array_counter;
+                            pb_array[array_counter].Name = "Station";
                             pb_array[array_counter].Image = Image.FromFile(getResDir() + "station.png");
                         }
                         else //load
@@ -323,7 +328,50 @@ namespace k_agv_kids
                 }
         }
 
-        //99% sorcery.nothing to explain here
+        private bool checkForFuelStation(PictureBox AGV)
+        {
+
+            int tempX = AGV.Location.X;
+            int tempy = AGV.Location.Y;
+            //check if station is on the RIGHT block of agv
+            if (AGV.Location.X + res_offset == pb_array[stationCounter].Location.X
+                   && AGV.Location.Y == pb_array[stationCounter].Location.Y)
+            {
+                return true;
+            }
+            else
+            {
+                debug2.Text = "Not found";
+                return false;
+            }
+            
+        }
+        private bool wantGetRefuelled()
+        {
+            anim_timer.Stop();
+            debug2.Text = "fuel station on the right";
+            DialogResult choise = MessageBox.Show("AGV is next to fuel station\r\nRefuel?"
+                                               , "Nearby fuel station!"
+                                               , MessageBoxButtons.YesNo);
+            if (choise == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                anim_timer.Start();//restart time to continue the commands execution
+                return false;
+            }
+
+        }
+        private void getRefuelled()
+        {
+                pb_battery.Value = pb_battery.Maximum;
+                refuel_timer.Start();
+        }
+
+        //99% sorcery.Removes all controls drawn to panel.
+        //nothing to explain here.dont expand!!!heartattack possibility
         private void removeControls(Control _c, Type _toBeRemoved)
         {
             List<Control> controlTemplate = new List<Control>();
