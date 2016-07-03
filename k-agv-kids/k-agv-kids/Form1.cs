@@ -16,8 +16,8 @@ namespace k_agv_kids
 
     public partial class Form1 : Form
     {
-        
-       
+
+
         public Form1()
         {
             InitializeComponent();
@@ -49,7 +49,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_left.BackColor = Color.Gray;
 
-                
+
                 _tempImage = new Bitmap(pb_left.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -61,7 +61,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_right.BackColor = Color.Gray;
 
-                
+
                 _tempImage = new Bitmap(pb_right.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -73,7 +73,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_up.BackColor = Color.Gray;
 
-                
+
                 _tempImage = new Bitmap(pb_up.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -85,7 +85,7 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_down.BackColor = Color.Gray;
 
-                
+
                 _tempImage = new Bitmap(pb_down.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
@@ -97,14 +97,14 @@ namespace k_agv_kids
                 pb_backcolor = pb_left.BackColor;
                 pb_lift.BackColor = Color.Gray;
 
-               
+
                 _tempImage = new Bitmap(pb_lift.Image, new Size(25, 25));//create new image based on PB's one
                 Clipboard.SetImage(_tempImage); //Set it to Clipboard
                 tb_commands.Paste(); //Paste it to RichBox
                 commands += "L";//add the command to our 'command vault'
                 commandCounter++;
             }
-            else //pb_start
+            else //pb_start.THIS IS WHY THERE IS NO EVENT ON PLAY BUTTON.
             {
                 isRunning = !isRunning;
                 if (isRunning)
@@ -183,19 +183,19 @@ namespace k_agv_kids
             MessageBox.Show("This feature is working only on release version.\r\nPlease build from scratch.");
         }
 
-        
+
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             reset();
-            
+
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
             level_label.Text = "Custom level";
 
             if (ofd_level.ShowDialog() == DialogResult.OK)
             {
-               
+
                 groupBox1.Visible = true;
                 StreamReader reader = new StreamReader(ofd_level.FileName);
 
@@ -227,6 +227,7 @@ namespace k_agv_kids
                         else
                         {
                             res_offset = Convert.ToInt32(_s);
+                            //res_offset is the NumericUpDown value from EDITOR.=25
                         }
 
                     }
@@ -258,7 +259,7 @@ namespace k_agv_kids
                             entrance_y = z;
                         }
                         i++;
-                        
+
                     }
                     if (z == map.GetLength(1) - 1)
                     { } //no break = error when trying to read the map.getlenght(1) line
@@ -285,9 +286,10 @@ namespace k_agv_kids
             }
             else
             {
-                
+               
+              
 
-                if (pb_emissions_co2.Value >= pb_emissions_co2.Maximum - 2*kidagv.checkEmissionsCO2())
+                if (pb_emissions_co2.Value >= pb_emissions_co2.Maximum - 2 * kidagv.checkEmissionsCO2())
                 {
                     pbColorChanger.SetState(pb_emissions_co2, 2);
                     emission_status.Text = "Be careful!Too much emission exposed!";
@@ -321,28 +323,29 @@ namespace k_agv_kids
                     }
                 }
 
+
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
-                if (commands_array[animCounter] == '<')
+                if (commands_array[animCounter] == '<') //move 1 box left
                 {
                     tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
                     agv.Location = tempLocation;
                     drawGrid(res_offset);
 
                 }
-                else if (commands_array[animCounter] == '>')
+                else if (commands_array[animCounter] == '>') //move 1 box right
                 {
                     tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
                     agv.Location = tempLocation;
                     drawGrid(res_offset);
 
                 }
-                else if (commands_array[animCounter] == 'V')
+                else if (commands_array[animCounter] == 'V') //move 1 box down
                 {
                     tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
                     agv.Location = tempLocation;
                     drawGrid(res_offset);
                 }
-                else if (commands_array[animCounter] == '^')
+                else if (commands_array[animCounter] == '^') //move 1 box up
                 {
                     tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
                     agv.Location = tempLocation;
@@ -355,7 +358,8 @@ namespace k_agv_kids
                     load_timer.Start();
                     anim_timer.Stop();
                 }
-               
+                
+
 
                 if (kidagv.type == 1)
                 {
@@ -369,14 +373,14 @@ namespace k_agv_kids
                     pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
                     pb_battery.Value -= 1;
                 }
-                else 
+                else
                 {
                     pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
                     pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
                     pb_battery.Value -= 1;
                 }
-                
-                
+
+
                 if (pb_emissions_no2.Value == 10)
                 {
                     MessageBox.Show("You lost!");
@@ -389,11 +393,31 @@ namespace k_agv_kids
                     pb_emissions_no2.Value = pb_emissions_no2.Maximum;
                     anim_timer.Stop();
                 }
+
+                
+                if (checkForFuelStation(agv) && wantGetRefuelled() )
+                {
+                    getRefuelled();
+                }
+
                 animCounter++;
-               
+            }
+        }
+
+        private void refuel_timer_Tick(object sender, EventArgs e)
+        {
+            debug2.Text = "Refuelling " + (3-seconds);
+            System.Threading.Thread.Sleep(1000);//We need sleep here because we want to stop animation while it is refuelling
+           
+            seconds++;
+            if (seconds == 3)
+            {
+                anim_timer.Start();
+                refuel_timer.Stop();
             }
 
         }
+
         private void load_timer_Tick(object sender, EventArgs e)
         {
             if (isLoaded == false)
@@ -426,6 +450,8 @@ namespace k_agv_kids
         {
             initType(3);
         }
+
+      
 
 
     }
