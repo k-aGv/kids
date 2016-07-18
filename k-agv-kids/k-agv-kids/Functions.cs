@@ -414,6 +414,45 @@ namespace k_agv_kids
 
           
         }
+        private void useArrows(bool t)
+        {
+            if (t)
+            {
+
+                pb_right.MouseDown += new MouseEventHandler(pb_left_MouseDown);
+                pb_right.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+
+                pb_up.MouseDown += new MouseEventHandler(pb_left_MouseDown);
+                pb_up.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+
+                pb_down.MouseDown += new MouseEventHandler(pb_left_MouseDown);
+                pb_down.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+
+                pb_lift.MouseDown += new MouseEventHandler(pb_left_MouseDown);
+                pb_lift.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+
+                pb_start.MouseDown += new MouseEventHandler(pb_left_MouseDown);
+                pb_start.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+
+            }
+            else
+            {
+                pb_right.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
+                pb_right.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
+
+                pb_up.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
+                pb_up.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
+
+                pb_down.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
+                pb_down.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
+
+                pb_lift.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
+                pb_lift.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
+
+                pb_start.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
+                pb_start.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
+            }
+        }
 
         //99% sorcery.Removes all controls drawn to panel.
         //nothing to explain here.dont expand!!!heartattack possibility
