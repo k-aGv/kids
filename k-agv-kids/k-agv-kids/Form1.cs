@@ -314,6 +314,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            pb_battery.Value -= 1;
                         }
 
                     }
@@ -329,6 +330,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            pb_battery.Value -= 1;
                         }
                        
 
@@ -345,6 +347,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            pb_battery.Value -= 1;
                         }
                        
                     }
@@ -360,6 +363,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            pb_battery.Value -= 1;
                         }
                      
                     }
@@ -375,7 +379,7 @@ namespace k_agv_kids
                         getRefuelled();
                     }
 
-                    pb_battery.Value -= 1;
+                    
                     animCounter++;
                 
                
