@@ -103,13 +103,13 @@ namespace k_agv_kids
         private void init()
         {
             isRunning = false;
-
+           
+            pb_battery.Maximum = 20;
+            pb_battery.Value = pb_battery.Maximum;
             groupBox1.Visible = false;
             Clipboard.Clear();
 
-            //predefine the maximum emissions that are allowed
-            pb_battery.Value = 10;
-
+            
             //initialize picturebox's attributes
 
             //Carry button
@@ -195,8 +195,9 @@ namespace k_agv_kids
             updateWarningState();
 
         }
-        private void reset()
+        private void reset(bool fromWall)
         {
+            
             //reset commands
             commands = "";
 
@@ -223,6 +224,7 @@ namespace k_agv_kids
             //Reset progress bars
            
             pbColorChanger.SetState(pb_battery, 1);
+            pb_battery.Maximum = 20;
             pb_battery.Value = pb_battery.Maximum;
             emission_status.Text = "emissions status";
             emission_status.ForeColor = Color.Black;
@@ -231,6 +233,11 @@ namespace k_agv_kids
             isFirstRun = true;
 
             commands_array= new char[0];
+            if (fromWall)
+            {
+                pb_start.Visible = true;
+            }
+           
 
         }
         private void updateWarningState()
@@ -362,6 +369,50 @@ namespace k_agv_kids
         {
                 pb_battery.Value = pb_battery.Maximum;
                 refuel_timer.Start();
+        }
+       
+        private bool isWallOnNextMove(char command)
+        {
+            if (command == '<')
+            {
+                if (agv.Location.X  == 0)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            if (command == '>')
+            {
+                if (agv.Location.X + res_offset + 1  == game_panel.Width)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            if (command == '^')
+            {
+                if (agv.Location.Y == 0)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            if (command == 'V')
+            {
+                if (agv.Location.Y + res_offset + 1 == game_panel.Height)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            return false;
+            
+
+          
         }
 
         //99% sorcery.Removes all controls drawn to panel.

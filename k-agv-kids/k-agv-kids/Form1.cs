@@ -164,12 +164,12 @@ namespace k_agv_kids
         {
             game_panel.Invalidate();
             removeControls(game_panel, typeof(PictureBox));
-            reset();
+            reset(false);
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            reset();
+            reset(false);
             drawGrid(grid_res);
             //StartFromLevel_1();
         }
@@ -185,7 +185,7 @@ namespace k_agv_kids
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            reset();
+            reset(false);
 
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
@@ -284,62 +284,101 @@ namespace k_agv_kids
             }
             else
             {
-               
-              
-                if (pb_battery.Value < pb_battery.Maximum - 6)
-                {
-                    pbColorChanger.SetState(pb_battery, 2);
-                    emission_status.Text = "Low fuel!";
-                    emission_status.ForeColor = Color.Red;
-                    using (SolidBrush b = new SolidBrush(Color.Red))
+                    
+                    if (pb_battery.Value < pb_battery.Maximum - 6)
                     {
-                        for_warning.FillEllipse(b, 5, 5, 20, 20);
-                        warning = true;
+                        pbColorChanger.SetState(pb_battery, 2);
+                        emission_status.Text = "Low fuel!";
+                        emission_status.ForeColor = Color.Red;
+                        using (SolidBrush b = new SolidBrush(Color.Red))
+                        {
+                            for_warning.FillEllipse(b, 5, 5, 20, 20);
+                            warning = true;
+                        }
                     }
-                }
 
 
-                score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
-                if (commands_array[animCounter] == '<') //move 1 box left
-                {
-                    tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
-                    agv.Location = tempLocation;
-                    drawGrid(res_offset);
+                    score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
+                    if (commands_array[animCounter] == '<') //move 1 box left
+                    {
 
-                }
-                else if (commands_array[animCounter] == '>') //move 1 box right
-                {
-                    tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
-                    agv.Location = tempLocation;
-                    drawGrid(res_offset);
+                        if (isWallOnNextMove('<'))
+                        {
+                            anim_timer.Stop();
+                            reset(true);
+                            MessageBox.Show("Wall ahead!Give me commands again!");
+                            
+                        }
+                        else
+                        {
+                            tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                        }
 
-                }
-                else if (commands_array[animCounter] == 'V') //move 1 box down
-                {
-                    tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
-                    agv.Location = tempLocation;
-                    drawGrid(res_offset);
-                }
-                else if (commands_array[animCounter] == '^') //move 1 box up
-                {
-                    tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
-                    agv.Location = tempLocation;
-                    drawGrid(res_offset);
+                    }
+                    else if (commands_array[animCounter] == '>') //move 1 box right
+                    {
+                        if (isWallOnNextMove('>'))
+                        {
+                            anim_timer.Stop();
+                            MessageBox.Show("Wall ahead!Give me commands again!");
+                        }
+                        else
+                        {
+                            tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                        }
+                       
 
-                }
-                else //lift
-                {
-                    agv.Image = Image.FromFile(getResDir() + "half.png");
-                    load_timer.Start();
-                    anim_timer.Stop();
-                }
-   
-                if (checkForFuelStation(agv) && wantGetRefuelled() )
-                {
-                    getRefuelled();
-                }
-                pb_battery.Value -= 1;
-                animCounter++;
+                    }
+                    else if (commands_array[animCounter] == 'V') //move 1 box down
+                    {
+                        if (isWallOnNextMove('V'))
+                        {
+                            anim_timer.Stop();
+                            MessageBox.Show("Wall ahead!Give me commands again!");
+                        }
+                        else
+                        {
+                            tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                        }
+                       
+                    }
+                    else if (commands_array[animCounter] == '^') //move 1 box up
+                    {
+                        if (isWallOnNextMove('^'))
+                        {
+                            anim_timer.Stop();
+                            MessageBox.Show("Wall ahead!Give me commands again!");
+                        }
+                        else
+                        {
+                            tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                        }
+                     
+                    }
+                    else //lift
+                    {
+                        agv.Image = Image.FromFile(getResDir() + "half.png");
+                        load_timer.Start();
+                        anim_timer.Stop();
+                    }
+
+                    if (checkForFuelStation(agv) && wantGetRefuelled())
+                    {
+                        getRefuelled();
+                    }
+
+                    pb_battery.Value -= 1;
+                    animCounter++;
+                
+               
             }
         }
 
