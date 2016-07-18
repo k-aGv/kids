@@ -103,6 +103,7 @@ namespace k_agv_kids
         private void init()
         {
             isRunning = false;
+            isFirstRun = true;
            
             pb_battery.Maximum = 20;
             pb_battery.Value = pb_battery.Maximum;
@@ -141,20 +142,7 @@ namespace k_agv_kids
             pb_start.Visible = false;
 
             //clone the event to buttons
-            pb_right.MouseDown += new MouseEventHandler(pb_left_MouseDown);
-            pb_right.MouseUp += new MouseEventHandler(pb_left_MouseUp);
-
-            pb_up.MouseDown += new MouseEventHandler(pb_left_MouseDown);
-            pb_up.MouseUp += new MouseEventHandler(pb_left_MouseUp);
-
-            pb_down.MouseDown += new MouseEventHandler(pb_left_MouseDown);
-            pb_down.MouseUp += new MouseEventHandler(pb_left_MouseUp);
-
-            pb_lift.MouseDown += new MouseEventHandler(pb_left_MouseDown);
-            pb_lift.MouseUp += new MouseEventHandler(pb_left_MouseUp);
-
-            pb_start.MouseDown += new MouseEventHandler(pb_left_MouseDown);
-            pb_start.MouseUp += new MouseEventHandler(pb_left_MouseUp);
+            useArrows(true);
 
 
             //Richbox's backcolor.has to be same as picturebox's
@@ -197,17 +185,19 @@ namespace k_agv_kids
         }
         private void reset(bool fromWall)
         {
-            
-            //reset commands
-            commands = "";
 
+            commands = "";
+            char[] commands_array = new char [500];
+            
+            isRunning = false;
+            isFirstRun = true;
             pb_start.Visible = false;
 
             //Reset to '0' to get prepared for new game
             score_label.Text = "0";
             level_label.Text = "1";
             lift_label.Text = "Waiting orders";
-
+            warning = false;
             updateWarningState();
             //clear RichBox's commands
             tb_commands.Clear();
@@ -224,18 +214,20 @@ namespace k_agv_kids
             //Reset progress bars
            
             pbColorChanger.SetState(pb_battery, 1);
-            pb_battery.Maximum = 20;
-            pb_battery.Value = pb_battery.Maximum;
+           
             emission_status.Text = "emissions status";
             emission_status.ForeColor = Color.Black;
 
-            warning = false;
-            isFirstRun = true;
-
-            commands_array= new char[0];
             if (fromWall)
             {
                 pb_start.Visible = true;
+                useArrows(true);
+                animCounter = 0;
+            }
+            else
+            {
+                pb_battery.Maximum = 20;
+                pb_battery.Value = pb_battery.Maximum;
             }
            
 
@@ -250,6 +242,13 @@ namespace k_agv_kids
             if (!warning)
             {
                 using (SolidBrush b = new SolidBrush(Color.Green))
+                {
+                    for_warning.FillEllipse(b, 5, 5, 20, 20);
+                }
+            }
+            else
+            {
+                using (SolidBrush b = new SolidBrush(Color.Red))
                 {
                     for_warning.FillEllipse(b, 5, 5, 20, 20);
                 }

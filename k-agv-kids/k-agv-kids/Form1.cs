@@ -307,9 +307,12 @@ namespace k_agv_kids
 
                     if (isWallOnNextMove('<'))
                     {
-                        anim_timer.Stop();
+                        
                         reset(true);
-                        MessageBox.Show("Wall ahead!Give me commands again!");
+                       // MessageBox.Show("Wall ahead!Give me commands again!");
+                        warning = true;
+                        updateWarningState();
+
 
                     }
                     else
@@ -325,8 +328,13 @@ namespace k_agv_kids
                 {
                     if (isWallOnNextMove('>'))
                     {
+                      
+                        reset(true);
+                       // MessageBox.Show("Wall ahead!Give me commands again!");
+                        warning = true;
+                        updateWarningState();
                         anim_timer.Stop();
-                        MessageBox.Show("Wall ahead!Give me commands again!");
+
                     }
                     else
                     {
@@ -342,8 +350,12 @@ namespace k_agv_kids
                 {
                     if (isWallOnNextMove('V'))
                     {
+                        
+                        reset(true);
+                        //MessageBox.Show("Wall ahead!Give me commands again!");
+                        warning = true;
+                        updateWarningState();
                         anim_timer.Stop();
-                        MessageBox.Show("Wall ahead!Give me commands again!");
                     }
                     else
                     {
@@ -358,8 +370,12 @@ namespace k_agv_kids
                 {
                     if (isWallOnNextMove('^'))
                     {
+                        
+                        reset(true);
+                        //MessageBox.Show("Wall ahead!Give me commands again!");
+                        warning = true;
+                        updateWarningState();
                         anim_timer.Stop();
-                        MessageBox.Show("Wall ahead!Give me commands again!");
                     }
                     else
                     {
