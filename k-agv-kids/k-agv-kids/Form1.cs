@@ -114,8 +114,6 @@ namespace k_agv_kids
                     commands_array = commands.ToCharArray();
                     if (isFirstRun)
                     {
-                        pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
-                        pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
                         isFirstRun = !isFirstRun;
                     }
                     anim_timer.Start();
@@ -288,29 +286,6 @@ namespace k_agv_kids
             {
                
               
-
-                if (pb_emissions_co2.Value >= pb_emissions_co2.Maximum - 2 * kidagv.checkEmissionsCO2())
-                {
-                    pbColorChanger.SetState(pb_emissions_co2, 2);
-                    emission_status.Text = "Be careful!Too much emission exposed!";
-                    emission_status.ForeColor = Color.Red;
-                    using (SolidBrush b = new SolidBrush(Color.Red))
-                    {
-                        for_warning.FillEllipse(b, 5, 5, 20, 20);
-                    }
-
-                }
-                if (pb_emissions_no2.Value >= pb_emissions_no2.Maximum - 2 * kidagv.checkEmissionsNO2())
-                {
-                    pbColorChanger.SetState(pb_emissions_no2, 2);
-                    emission_status.Text = "Be careful!Too much emission exposed!";
-                    emission_status.ForeColor = Color.Red;
-                    using (SolidBrush b = new SolidBrush(Color.Red))
-                    {
-                        for_warning.FillEllipse(b, 5, 5, 20, 20);
-                        warning = true;
-                    }
-                }
                 if (pb_battery.Value < pb_battery.Maximum - 6)
                 {
                     pbColorChanger.SetState(pb_battery, 2);
@@ -358,48 +333,12 @@ namespace k_agv_kids
                     load_timer.Start();
                     anim_timer.Stop();
                 }
-                
-
-
-                if (kidagv.type == 1)
-                {
-                    pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
-                    pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
-                    pb_battery.Value -= 1;
-                }
-                else if (kidagv.type == 2)
-                {
-                    pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
-                    pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
-                    pb_battery.Value -= 1;
-                }
-                else
-                {
-                    pb_emissions_co2.Value += kidagv.checkEmissionsCO2();
-                    pb_emissions_no2.Value += kidagv.checkEmissionsNO2();
-                    pb_battery.Value -= 1;
-                }
-
-
-                if (pb_emissions_no2.Value == 10)
-                {
-                    MessageBox.Show("You lost!");
-                    pb_emissions_no2.Value = pb_emissions_no2.Maximum;
-                    anim_timer.Stop();
-                }
-                if (pb_emissions_co2.Value == 10)
-                {
-                    MessageBox.Show("You lost!");
-                    pb_emissions_no2.Value = pb_emissions_no2.Maximum;
-                    anim_timer.Stop();
-                }
-
-                
+   
                 if (checkForFuelStation(agv) && wantGetRefuelled() )
                 {
                     getRefuelled();
                 }
-
+                pb_battery.Value -= 1;
                 animCounter++;
             }
         }
