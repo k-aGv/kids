@@ -186,7 +186,8 @@ namespace k_agv_kids
         {
 
             reset(false);
-
+            removeControls(game_panel, typeof(PictureBox));
+            
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
             level_label.Text = "Custom level";
