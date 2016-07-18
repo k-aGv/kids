@@ -280,117 +280,119 @@ namespace k_agv_kids
             {
                 isRunning = !isRunning;
                 pb_start.Visible = true;
+                useArrows(true);
                 anim_timer.Stop();
             }
             else
             {
-                    
-                    if (pb_battery.Value < pb_battery.Maximum - 6)
+                useArrows(false);
+
+                if (pb_battery.Value < pb_battery.Maximum - 6)
+                {
+                    pbColorChanger.SetState(pb_battery, 2);
+                    emission_status.Text = "Low fuel!";
+                    emission_status.ForeColor = Color.Red;
+                    using (SolidBrush b = new SolidBrush(Color.Red))
                     {
-                        pbColorChanger.SetState(pb_battery, 2);
-                        emission_status.Text = "Low fuel!";
-                        emission_status.ForeColor = Color.Red;
-                        using (SolidBrush b = new SolidBrush(Color.Red))
-                        {
-                            for_warning.FillEllipse(b, 5, 5, 20, 20);
-                            warning = true;
-                        }
+                        for_warning.FillEllipse(b, 5, 5, 20, 20);
+                        warning = true;
                     }
+                }
 
 
-                    score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
-                    if (commands_array[animCounter] == '<') //move 1 box left
-                    {
+                score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
+                if (commands_array[animCounter] == '<') //move 1 box left
+                {
 
-                        if (isWallOnNextMove('<'))
-                        {
-                            anim_timer.Stop();
-                            reset(true);
-                            MessageBox.Show("Wall ahead!Give me commands again!");
-                            
-                        }
-                        else
-                        {
-                            tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
-                            agv.Location = tempLocation;
-                            drawGrid(res_offset);
-                            pb_battery.Value -= 1;
-                        }
-
-                    }
-                    else if (commands_array[animCounter] == '>') //move 1 box right
+                    if (isWallOnNextMove('<'))
                     {
-                        if (isWallOnNextMove('>'))
-                        {
-                            anim_timer.Stop();
-                            MessageBox.Show("Wall ahead!Give me commands again!");
-                        }
-                        else
-                        {
-                            tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
-                            agv.Location = tempLocation;
-                            drawGrid(res_offset);
-                            pb_battery.Value -= 1;
-                        }
-                       
-
-                    }
-                    else if (commands_array[animCounter] == 'V') //move 1 box down
-                    {
-                        if (isWallOnNextMove('V'))
-                        {
-                            anim_timer.Stop();
-                            MessageBox.Show("Wall ahead!Give me commands again!");
-                        }
-                        else
-                        {
-                            tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
-                            agv.Location = tempLocation;
-                            drawGrid(res_offset);
-                            pb_battery.Value -= 1;
-                        }
-                       
-                    }
-                    else if (commands_array[animCounter] == '^') //move 1 box up
-                    {
-                        if (isWallOnNextMove('^'))
-                        {
-                            anim_timer.Stop();
-                            MessageBox.Show("Wall ahead!Give me commands again!");
-                        }
-                        else
-                        {
-                            tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
-                            agv.Location = tempLocation;
-                            drawGrid(res_offset);
-                            pb_battery.Value -= 1;
-                        }
-                     
-                    }
-                    else //lift
-                    {
-                        agv.Image = Image.FromFile(getResDir() + "half.png");
-                        load_timer.Start();
                         anim_timer.Stop();
-                    }
+                        reset(true);
+                        MessageBox.Show("Wall ahead!Give me commands again!");
 
-                    if (checkForFuelStation(agv) && wantGetRefuelled())
+                    }
+                    else
                     {
-                        getRefuelled();
+                        tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
+                        agv.Location = tempLocation;
+                        drawGrid(res_offset);
+                        pb_battery.Value -= 1;
                     }
 
-                    
-                    animCounter++;
-                
-               
+                }
+                else if (commands_array[animCounter] == '>') //move 1 box right
+                {
+                    if (isWallOnNextMove('>'))
+                    {
+                        anim_timer.Stop();
+                        MessageBox.Show("Wall ahead!Give me commands again!");
+                    }
+                    else
+                    {
+                        tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
+                        agv.Location = tempLocation;
+                        drawGrid(res_offset);
+                        pb_battery.Value -= 1;
+                    }
+
+
+                }
+                else if (commands_array[animCounter] == 'V') //move 1 box down
+                {
+                    if (isWallOnNextMove('V'))
+                    {
+                        anim_timer.Stop();
+                        MessageBox.Show("Wall ahead!Give me commands again!");
+                    }
+                    else
+                    {
+                        tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
+                        agv.Location = tempLocation;
+                        drawGrid(res_offset);
+                        pb_battery.Value -= 1;
+                    }
+
+                }
+                else if (commands_array[animCounter] == '^') //move 1 box up
+                {
+                    if (isWallOnNextMove('^'))
+                    {
+                        anim_timer.Stop();
+                        MessageBox.Show("Wall ahead!Give me commands again!");
+                    }
+                    else
+                    {
+                        tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
+                        agv.Location = tempLocation;
+                        drawGrid(res_offset);
+                        pb_battery.Value -= 1;
+                    }
+
+                }
+                else //lift
+                {
+                    agv.Image = Image.FromFile(getResDir() + "half.png");
+                    load_timer.Start();
+                    anim_timer.Stop();
+                }
+
+                if (checkForFuelStation(agv) && wantGetRefuelled())
+                {
+                    getRefuelled();
+                }
+
+
+                animCounter++;
+
+
             }
         }
 
         private void refuel_timer_Tick(object sender, EventArgs e)
         {
-            debug2.Text = "Refuelling " + (3-seconds);
+            debug2.Text = "Refuelling " + (3 - seconds);
             System.Threading.Thread.Sleep(1000);//We need sleep here because we want to stop animation while it is refuelling
-           
+
             seconds++;
             if (seconds == 3)
             {
@@ -433,7 +435,7 @@ namespace k_agv_kids
             initType(3);
         }
 
-      
+
 
 
     }
