@@ -192,6 +192,7 @@ namespace k_agv_kids
         {
 
             commands = "";
+            commandCounter = 0;
             char[] commands_array = new char [500];
             
             isRunning = false;
@@ -476,6 +477,7 @@ namespace k_agv_kids
             {
                 if (agv.Location.X  == 0)
                 {
+                    reset(true);
                     return true;
                 }
                 else
@@ -485,6 +487,7 @@ namespace k_agv_kids
             {
                 if (agv.Location.X + res_offset + 1  == game_panel.Width)
                 {
+                    reset(true);
                     return true;
                 }
                 else
@@ -494,6 +497,7 @@ namespace k_agv_kids
             {
                 if (agv.Location.Y == 0)
                 {
+                    reset(true);
                     return true;
                 }
                 else
@@ -503,6 +507,7 @@ namespace k_agv_kids
             {
                 if (agv.Location.Y + res_offset + 1 == game_panel.Height)
                 {
+                    reset(true);
                     return true;
                 }
                 else

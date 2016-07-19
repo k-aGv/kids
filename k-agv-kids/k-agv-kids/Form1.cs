@@ -307,7 +307,7 @@ namespace k_agv_kids
                     if (isWallOnNextMove('<'))
                     {
                         
-                        reset(true);
+                        //reset(true);
                        // MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -320,6 +320,7 @@ namespace k_agv_kids
                         agv.Location = tempLocation;
                         drawGrid(res_offset);
                         pb_battery.Value -= 1;
+                        animCounter++;
                     }
 
                 }
@@ -328,7 +329,7 @@ namespace k_agv_kids
                     if (isWallOnNextMove('>'))
                     {
                       
-                        reset(true);
+                        //reset(true);
                        // MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -341,6 +342,7 @@ namespace k_agv_kids
                         agv.Location = tempLocation;
                         drawGrid(res_offset);
                         pb_battery.Value -= 1;
+                        animCounter++;
                     }
 
 
@@ -350,7 +352,7 @@ namespace k_agv_kids
                     if (isWallOnNextMove('V'))
                     {
                         
-                        reset(true);
+                        //reset(true);
                         //MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -362,6 +364,7 @@ namespace k_agv_kids
                         agv.Location = tempLocation;
                         drawGrid(res_offset);
                         pb_battery.Value -= 1;
+                        animCounter++;
                     }
 
                 }
@@ -370,7 +373,7 @@ namespace k_agv_kids
                     if (isWallOnNextMove('^'))
                     {
                         
-                        reset(true);
+                        //reset(true);
                         //MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -382,7 +385,9 @@ namespace k_agv_kids
                         agv.Location = tempLocation;
                         drawGrid(res_offset);
                         pb_battery.Value -= 1;
+                        animCounter++;
                     }
+
 
                 }
                 else //lift
@@ -400,6 +405,7 @@ namespace k_agv_kids
                         }
                     }
                     k = 0;
+                    animCounter++;
                 }
 
                 if (checkForFuelStation(agv) && wantGetRefuelled())
@@ -408,7 +414,7 @@ namespace k_agv_kids
                 }
                 
 
-                animCounter++;
+                
 
 
             }
