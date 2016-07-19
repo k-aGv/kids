@@ -271,6 +271,7 @@ namespace k_agv_kids
 
         private void anim_timer_Tick(object sender, EventArgs e)
         {
+
             pb_start.Visible = false;
             if (animCounter == commandCounter)
             {
@@ -299,81 +300,163 @@ namespace k_agv_kids
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
                 if (commands_array[animCounter] == '<') //move 1 box left
                 {
-
-                    if (isWallOnNextMove('<'))
+                    int i = 0;
+                    while (i < obstacles_c) //tries to find which block is 
                     {
-                       // MessageBox.Show("Wall ahead!Give me commands again!");
-                        warning = true;
-                        updateWarningState();
+                        if (checkForObstacle(agv, i, '<'))
+                        {
+                            obstacle_found = true;
+                            break;
+                        }
+                        i++;
+                    }
 
+                    if (!obstacle_found)
+                    {
+                        if (isWallOnNextMove('<'))
+                        {
+                            // MessageBox.Show("Wall ahead!Give me commands again!");
+                            warning = true;
+                            updateWarningState();
+                        }
+                        else
+                        {
 
+                            tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                            pb_battery.Value -= 1;
+                            animCounter++;
+
+                        }
                     }
                     else
                     {
-                        tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
-                        agv.Location = tempLocation;
-                        drawGrid(res_offset);
-                        pb_battery.Value -= 1;
-                        animCounter++;
-                    }
-
-                }
-                else if (commands_array[animCounter] == '>') //move 1 box right
-                {
-                    if (isWallOnNextMove('>'))
-                    {
-                       // MessageBox.Show("Wall ahead!Give me commands again!");
+                        reset(true);
                         warning = true;
                         updateWarningState();
                         anim_timer.Stop();
+                    }
+                }
+                else if (commands_array[animCounter] == '>') //move 1 box right
+                {
+                    int i = 0;
+                    while (i < obstacles_c)
+                    {
+                        if (checkForObstacle(agv, i, '>'))
+                        {
+                            obstacle_found = true;
+                            break;
+                        }
+                        i++;
+                    }
+                    if (!obstacle_found)
+                    {
+                        if (isWallOnNextMove('>'))
+                        {
+                            // MessageBox.Show("Wall ahead!Give me commands again!");
+                            warning = true;
+                            updateWarningState();
+                            anim_timer.Stop();
 
+                        }
+                        else
+                        {
+                            tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                            pb_battery.Value -= 1;
+                            animCounter++;
+                        }
                     }
                     else
                     {
-                        tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
-                        agv.Location = tempLocation;
-                        drawGrid(res_offset);
-                        pb_battery.Value -= 1;
-                        animCounter++;
+                        reset(true);
+                        warning = true;
+                        updateWarningState();
+                        anim_timer.Stop();
                     }
 
 
                 }
                 else if (commands_array[animCounter] == 'V') //move 1 box down
                 {
-                    if (isWallOnNextMove('V'))
+
+                    int i = 0;
+                    while (i < obstacles_c)
                     {
-                        //MessageBox.Show("Wall ahead!Give me commands again!");
-                        warning = true;
-                        updateWarningState();
-                        anim_timer.Stop();
+                        if (checkForObstacle(agv, i, 'V'))
+                        {
+                            obstacle_found = true;
+                            break;
+                        }
+                        i++;
+                    }
+                    if (!obstacle_found)
+                    {
+                        if (isWallOnNextMove('V'))
+                        {
+
+                            //MessageBox.Show("Wall ahead!Give me commands again!");
+                            warning = true;
+                            updateWarningState();
+                            anim_timer.Stop();
+                        }
+                        else
+                        {
+                            tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                            pb_battery.Value -= 1;
+                            animCounter++;
+                        }
                     }
                     else
                     {
-                        tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
-                        agv.Location = tempLocation;
-                        drawGrid(res_offset);
-                        pb_battery.Value -= 1;
-                        animCounter++;
+                        reset(true);
+                        warning = true;
+                        updateWarningState();
+                        anim_timer.Stop();
                     }
 
                 }
                 else if (commands_array[animCounter] == '^') //move 1 box up
                 {
-                    if (isWallOnNextMove('^'))
+
+                    int i = 0;
+                    while (i < obstacles_c)
                     {
-                        //MessageBox.Show("Wall ahead!Give me commands again!");
-                        warning = true;
-                        updateWarningState();
-                        anim_timer.Stop();
+                        if (checkForObstacle(agv, i, '^'))
+                        {
+                            obstacle_found = true;
+                            break;
+                        }
+                        i++;
+                    }
+                    if (!obstacle_found)
+                    {
+                        if (isWallOnNextMove('^'))
+                        {
+                            //MessageBox.Show("Wall ahead!Give me commands again!");
+                            warning = true;
+                            updateWarningState();
+                            anim_timer.Stop();
+                        }
+                        else
+                        {
+                            tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
+                            agv.Location = tempLocation;
+                            drawGrid(res_offset);
+                            pb_battery.Value -= 1;
+                            animCounter++;
+                        }
                     }
                     else
                     {
-                        tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
-                        agv.Location = tempLocation;
-                        drawGrid(res_offset);
-                        pb_battery.Value -= 1;
-                        animCounter++;
+                        reset(true);
+                        warning = true;
+                        updateWarningState();
+                        anim_timer.Stop();
                     }
 
 
@@ -387,6 +470,9 @@ namespace k_agv_kids
                             agv.Image = Image.FromFile(getResDir() + "half.png");
                             load_timer.Start();
                             loadsreduceby1(k);
+
+
+                            //anim_timer.Stop(); //I think - no use
                         }
                     }
                     k = 0;

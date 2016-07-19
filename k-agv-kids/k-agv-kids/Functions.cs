@@ -29,6 +29,10 @@ namespace k_agv_kids
         int[] loads = new int[100];
         int loads_c=0; 
         int k = 0; //test value-counter for loadreduceby1
+        int[] obstaclescounter = new int[100];
+        int obstacles_c=0;
+        bool obstacle_found = false;
+
 
         agv kidagv;
 
@@ -197,6 +201,7 @@ namespace k_agv_kids
             
             isRunning = false;
             isFirstRun = true;
+            obstacle_found = false;
             pb_start.Visible = false;
 
             //Reset to '0' to get prepared for new game
@@ -312,8 +317,10 @@ namespace k_agv_kids
                         }
                         else if (map[j, i] == 3) //wall
                         {
+                            obstaclescounter[obstacles_c]=array_counter;
                             pb_array[array_counter].Name = "Wall" + "_" + array_counter;
                             pb_array[array_counter].Image = Image.FromFile(getResDir() + "wall.png");
+                            obstacles_c++;
                         }
                         else if (map[j, i] == 4) //station
                         {
@@ -401,6 +408,41 @@ namespace k_agv_kids
             }
             
         }
+        private bool checkForObstacle(PictureBox AGV, int i, char direction)
+        {
+            int tempX = AGV.Location.X;
+            int tempy = AGV.Location.Y;
+
+
+            //check if obstacle is on the RIGHT block of agv
+            if (direction == '>' && (AGV.Location.X + res_offset == pb_array[obstaclescounter[i]].Location.X
+                   && AGV.Location.Y == pb_array[obstaclescounter[i]].Location.Y))
+            {
+                return true;
+            }
+            //check if obstacle is on the LEFT block of agv
+            else if (direction == '<' && (AGV.Location.X - res_offset == pb_array[obstaclescounter[i]].Location.X
+                   && AGV.Location.Y == pb_array[obstaclescounter[i]].Location.Y))
+            {
+                return true;
+            }
+            //check if obstacle is on the UPPER block of agv
+            else if (direction == '^' && (AGV.Location.X == pb_array[obstaclescounter[i]].Location.X
+                  && AGV.Location.Y - res_offset == pb_array[obstaclescounter[i]].Location.Y))
+            {
+                return true;
+            }
+            //check if obstacle is on the BOTTOM block of agv
+            else if (direction == 'V' && (AGV.Location.X == pb_array[obstaclescounter[i]].Location.X
+                  && AGV.Location.Y + res_offset == pb_array[obstaclescounter[i]].Location.Y))
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
         private bool checkForLoad(PictureBox AGV,int i)
         {
             int tempX = AGV.Location.X;
@@ -414,7 +456,6 @@ namespace k_agv_kids
             if (AGV.Location.X == pb_array[loadscounter[i]].Location.X &&
                 AGV.Location.Y == pb_array[loadscounter[i]].Location.Y)
             {
-                //loadsreduceby1(loadscounter[i]);
                 k = i;
                 return true;
             }
