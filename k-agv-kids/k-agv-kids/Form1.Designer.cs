@@ -43,7 +43,6 @@
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aGVStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,7 +132,7 @@
             this.chooseLevelToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.newGameToolStripMenuItem1.Text = "New Game";
             // 
             // newToolStripMenuItem
@@ -193,58 +192,50 @@
             this.commandsToolStripMenuItem,
             this.scoreToolStripMenuItem,
             this.levelToolStripMenuItem,
-            this.aGVStageToolStripMenuItem,
             this.allToolStripMenuItem});
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // commandsToolStripMenuItem
             // 
             this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
-            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.commandsToolStripMenuItem.Text = "Commands";
             this.commandsToolStripMenuItem.Click += new System.EventHandler(this.commandsToolStripMenuItem_Click);
             // 
             // scoreToolStripMenuItem
             // 
             this.scoreToolStripMenuItem.Name = "scoreToolStripMenuItem";
-            this.scoreToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.scoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.scoreToolStripMenuItem.Text = "Score";
             this.scoreToolStripMenuItem.Click += new System.EventHandler(this.scoreToolStripMenuItem_Click);
             // 
             // levelToolStripMenuItem
             // 
             this.levelToolStripMenuItem.Name = "levelToolStripMenuItem";
-            this.levelToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.levelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.levelToolStripMenuItem.Text = "Level";
             this.levelToolStripMenuItem.Click += new System.EventHandler(this.levelToolStripMenuItem_Click);
-            // 
-            // aGVStageToolStripMenuItem
-            // 
-            this.aGVStageToolStripMenuItem.Name = "aGVStageToolStripMenuItem";
-            this.aGVStageToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.aGVStageToolStripMenuItem.Text = "AGV Stage";
-            this.aGVStageToolStripMenuItem.Click += new System.EventHandler(this.aGVStageToolStripMenuItem_Click);
             // 
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // levelEditorToolStripMenuItem
             // 
             this.levelEditorToolStripMenuItem.Name = "levelEditorToolStripMenuItem";
-            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.levelEditorToolStripMenuItem.Text = "Level Editor";
             this.levelEditorToolStripMenuItem.Click += new System.EventHandler(this.levelEditorToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -712,7 +703,6 @@
         private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem levelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aGVStageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;

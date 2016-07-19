@@ -425,26 +425,14 @@ namespace k_agv_kids
         }
         private void loadsreduceby1(int index)
         {
-            /*
-            if (loads[index] >= 0)
-            {
-                loads[index]--;
-                debugloads.Text = loads[index].ToString();
-            }
-            else
-            {
-                MessageBox.Show("Peos");
-                //pb_array[loadscounter[index]].Image = null;
-            }
-            */
-            if (loads[index] == 0)
-                pb_array[loadscounter[index]].Image = null;
             while (loads[index] > 0)
             {
                 loads[index]--;
                 debugloads.Text = loads[index].ToString();
                 break;
             }
+            if (loads[index] == 0)
+                pb_array[loadscounter[index]].Image = null;
 
         }
         private bool wantGetRefuelled()

@@ -154,11 +154,7 @@ namespace k_agv_kids
             level_label.Text = "1";
         }
 
-        private void aGVStageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Will work on it
-        }
-
+        
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
             game_panel.Invalidate();
@@ -306,8 +302,6 @@ namespace k_agv_kids
 
                     if (isWallOnNextMove('<'))
                     {
-                        
-                        //reset(true);
                        // MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -328,8 +322,6 @@ namespace k_agv_kids
                 {
                     if (isWallOnNextMove('>'))
                     {
-                      
-                        //reset(true);
                        // MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -351,8 +343,6 @@ namespace k_agv_kids
                 {
                     if (isWallOnNextMove('V'))
                     {
-                        
-                        //reset(true);
                         //MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -372,8 +362,6 @@ namespace k_agv_kids
                 {
                     if (isWallOnNextMove('^'))
                     {
-                        
-                        //reset(true);
                         //MessageBox.Show("Wall ahead!Give me commands again!");
                         warning = true;
                         updateWarningState();
@@ -399,9 +387,6 @@ namespace k_agv_kids
                             agv.Image = Image.FromFile(getResDir() + "half.png");
                             load_timer.Start();
                             loadsreduceby1(k);
-
-
-                            //anim_timer.Stop(); //I think - no use
                         }
                     }
                     k = 0;
