@@ -78,6 +78,8 @@
             this.anim_timer = new System.Windows.Forms.Timer(this.components);
             this.load_timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.no2_emissions = new System.Windows.Forms.Label();
+            this.co2_emissions = new System.Windows.Forms.Label();
             this.type = new System.Windows.Forms.Label();
             this.vehicle_type = new System.Windows.Forms.Label();
             this.emissions_no2 = new System.Windows.Forms.Label();
@@ -89,8 +91,7 @@
             this.debug2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.refuel_timer = new System.Windows.Forms.Timer(this.components);
-            this.co2_emissions = new System.Windows.Forms.Label();
-            this.no2_emissions = new System.Windows.Forms.Label();
+            this.debugloads = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lift)).BeginInit();
@@ -521,6 +522,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Vehicle status";
             // 
+            // no2_emissions
+            // 
+            this.no2_emissions.AutoSize = true;
+            this.no2_emissions.Location = new System.Drawing.Point(78, 120);
+            this.no2_emissions.Name = "no2_emissions";
+            this.no2_emissions.Size = new System.Drawing.Size(23, 13);
+            this.no2_emissions.TabIndex = 4;
+            this.no2_emissions.Text = "null";
+            // 
+            // co2_emissions
+            // 
+            this.co2_emissions.AutoSize = true;
+            this.co2_emissions.Location = new System.Drawing.Point(78, 91);
+            this.co2_emissions.Name = "co2_emissions";
+            this.co2_emissions.Size = new System.Drawing.Size(23, 13);
+            this.co2_emissions.TabIndex = 4;
+            this.co2_emissions.Text = "null";
+            // 
             // type
             // 
             this.type.AutoSize = true;
@@ -616,29 +635,21 @@
             this.refuel_timer.Interval = 1000;
             this.refuel_timer.Tick += new System.EventHandler(this.refuel_timer_Tick);
             // 
-            // co2_emissions
+            // debugloads
             // 
-            this.co2_emissions.AutoSize = true;
-            this.co2_emissions.Location = new System.Drawing.Point(78, 91);
-            this.co2_emissions.Name = "co2_emissions";
-            this.co2_emissions.Size = new System.Drawing.Size(23, 13);
-            this.co2_emissions.TabIndex = 4;
-            this.co2_emissions.Text = "null";
-            // 
-            // no2_emissions
-            // 
-            this.no2_emissions.AutoSize = true;
-            this.no2_emissions.Location = new System.Drawing.Point(78, 120);
-            this.no2_emissions.Name = "no2_emissions";
-            this.no2_emissions.Size = new System.Drawing.Size(23, 13);
-            this.no2_emissions.TabIndex = 4;
-            this.no2_emissions.Text = "null";
+            this.debugloads.AutoSize = true;
+            this.debugloads.Location = new System.Drawing.Point(765, 291);
+            this.debugloads.Name = "debugloads";
+            this.debugloads.Size = new System.Drawing.Size(37, 13);
+            this.debugloads.TabIndex = 14;
+            this.debugloads.Text = "debug";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 388);
+            this.Controls.Add(this.debugloads);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.debug2);
             this.Controls.Add(this.debug);
@@ -738,6 +749,7 @@
         private System.Windows.Forms.Timer refuel_timer;
         private System.Windows.Forms.Label no2_emissions;
         private System.Windows.Forms.Label co2_emissions;
+        private System.Windows.Forms.Label debugloads;
     }
 }
 

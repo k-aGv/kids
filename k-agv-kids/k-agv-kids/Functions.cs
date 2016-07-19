@@ -26,6 +26,10 @@ namespace k_agv_kids
         PictureBox agv = new PictureBox();
         PictureBox[] pb_array = new PictureBox[100];
 
+        int[] loads = new int[100];
+        int loads_c=0; 
+        int k = 0; //test value-counter for loadreduceby1
+
         agv kidagv;
 
         int array_counter = 0;
@@ -38,6 +42,7 @@ namespace k_agv_kids
         int entrance_x, entrance_y;
 
         int stationCounter;
+        int[] loadscounter = new int[100]; //this is something to count how many loads I have in my map
 
         int width_blocks, height_blocks, res_offset;
         string commands = "";
@@ -318,8 +323,11 @@ namespace k_agv_kids
                         }
                         else //load
                         {
+                            loads[loads_c] = 5;
+                            loadscounter[loads_c] = array_counter;
                             pb_array[array_counter].Name = "Load" + "_" + array_counter;
                             pb_array[array_counter].Image = Image.FromFile(getResDir() + "loads.png");
+                            loads_c++;
                         }
 
                         game_panel.Controls.Add(pb_array[array_counter]);
@@ -391,6 +399,52 @@ namespace k_agv_kids
                 return false;
             }
             
+        }
+        private bool checkForLoad(PictureBox AGV,int i)
+        {
+            int tempX = AGV.Location.X;
+            int tempy = AGV.Location.Y;
+            //MessageBox.Show(loadscounter[0] + "  index= " + 0
+            // +"\n"+ pb_array[loadscounter[0]].Location.X + " , "+pb_array[loadscounter[0]].Location.Y);
+            //MessageBox.Show(loadscounter[1] + "  index= " + 1
+            //+ "\n" + pb_array[loadscounter[1]].Location.X + " , " + pb_array[loadscounter[1]].Location.Y);
+
+
+            if (AGV.Location.X == pb_array[loadscounter[i]].Location.X &&
+                AGV.Location.Y == pb_array[loadscounter[i]].Location.Y)
+            {
+                //loadsreduceby1(loadscounter[i]);
+                k = i;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void loadsreduceby1(int index)
+        {
+            /*
+            if (loads[index] >= 0)
+            {
+                loads[index]--;
+                debugloads.Text = loads[index].ToString();
+            }
+            else
+            {
+                MessageBox.Show("Peos");
+                //pb_array[loadscounter[index]].Image = null;
+            }
+            */
+            if (loads[index] == 0)
+                pb_array[loadscounter[index]].Image = null;
+            while (loads[index] > 0)
+            {
+                loads[index]--;
+                debugloads.Text = loads[index].ToString();
+                break;
+            }
+
         }
         private bool wantGetRefuelled()
         {

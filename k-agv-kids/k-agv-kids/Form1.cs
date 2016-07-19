@@ -124,7 +124,6 @@ namespace k_agv_kids
                     isRunning = !isRunning;
                     anim_timer.Stop();
                 }
-
             }
         }
         private void pb_left_MouseUp(object sender, MouseEventArgs e)
@@ -388,16 +387,26 @@ namespace k_agv_kids
                 }
                 else //lift
                 {
-                    agv.Image = Image.FromFile(getResDir() + "half.png");
-                    load_timer.Start();
-                    anim_timer.Stop();
+                    for (int i = 0; i < loads_c; i++)
+                    {
+                        if (checkForLoad(agv, i))
+                        {
+                            agv.Image = Image.FromFile(getResDir() + "half.png");
+                            load_timer.Start();
+                            loadsreduceby1(k);
+
+
+                            //anim_timer.Stop(); //I think - no use
+                        }
+                    }
+                    k = 0;
                 }
 
                 if (checkForFuelStation(agv) && wantGetRefuelled())
                 {
                     getRefuelled();
                 }
-
+                
 
                 animCounter++;
 
@@ -425,6 +434,7 @@ namespace k_agv_kids
             {
                 agv.Image = Image.FromFile(getResDir() + "full.png");
                 isLoaded = true;
+                
                 load_timer.Stop();
                 anim_timer.Start();
             }
