@@ -325,6 +325,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X - res_offset, agv.Location.Y);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            emissions(agvtype);
                             pb_battery.Value -= 1;
                             animCounter++;
 
@@ -365,6 +366,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            emissions(agvtype);
                             pb_battery.Value -= 1;
                             animCounter++;
                         }
@@ -407,6 +409,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            emissions(agvtype);
                             pb_battery.Value -= 1;
                             animCounter++;
                         }
@@ -447,6 +450,7 @@ namespace k_agv_kids
                             tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
+                            emissions(agvtype);
                             pb_battery.Value -= 1;
                             animCounter++;
                         }
@@ -467,7 +471,8 @@ namespace k_agv_kids
                     {
                         if (checkForLoad(agv, i))
                         {
-                            agv.Image = Image.FromFile(getResDir() + "half.png");
+                            if(!isLoaded)
+                                agv.Image = Image.FromFile(getResDir() + "half.png");
                             load_timer.Start();
                             loadsreduceby1(k);
 
@@ -507,21 +512,23 @@ namespace k_agv_kids
 
         private void load_timer_Tick(object sender, EventArgs e)
         {
-            if (isLoaded == false)
-            {
+            //if statements will be added/removed after deciding exactly how it should behave
+
+            //if (isLoaded == false)
+            //{
                 agv.Image = Image.FromFile(getResDir() + "full.png");
                 isLoaded = true;
                 
                 load_timer.Stop();
                 anim_timer.Start();
-            }
-            else
-            {
-                agv.Image = Image.FromFile(getResDir() + "empty.png");
-                isLoaded = false;
-                load_timer.Stop();
-                anim_timer.Start();
-            }
+            //}
+            //else
+            //{
+            //    agv.Image = Image.FromFile(getResDir() + "empty.png");
+            //    isLoaded = false;
+            //    load_timer.Stop();
+            //    anim_timer.Start();
+            //}
         }
 
         private void batteryToolStripMenuItem_Click(object sender, EventArgs e)

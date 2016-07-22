@@ -33,8 +33,8 @@ namespace k_agv_kids
         int obstacles_c=0;
         bool obstacle_found = false;
 
-
         agv kidagv;
+        int agvtype;
 
         int array_counter = 0;
         bool isLoaded = false;
@@ -61,6 +61,7 @@ namespace k_agv_kids
         {
             if (_type == 1)
             {
+                agvtype = 1;
                 type.Text = "Battery";
                 type_label.Text = "Battery level:";
                 kidagv = new agv(1);
@@ -71,6 +72,7 @@ namespace k_agv_kids
             }
             else if (_type == 2)
             {
+                agvtype = 2;
                 type.Text = "Petrol";
                 type_label.Text = "Petrol level:";
                 kidagv = new agv(2);
@@ -81,6 +83,7 @@ namespace k_agv_kids
             }
             else
             {
+                agvtype = 3;
                 type.Text = "LPG";
                 type_label.Text = "LPG level:";
                 kidagv = new agv(3);
@@ -88,6 +91,70 @@ namespace k_agv_kids
                 batteryToolStripMenuItem.Checked = false;
                 petrolToolStripMenuItem.Checked = false;
                 lPGToolStripMenuItem.Checked = true;
+            }
+        }
+
+        public void emissions(int _type)
+        {
+            if (_type == 1)//electric
+            {
+                if (isLoaded)
+                {
+                    co2_emissions.Text = 0 + " gr / km";
+                    co_emissions.Text = 0 + " gr / km";
+                    nox_emissions.Text = 0 + " gr / km";
+                    thc_emissions.Text = 0 + " gr / km";
+                    global_warming_emissions.Text = 0.67 + " gr / km";
+                }
+                else
+                {
+                    co2_emissions.Text = 0 + " gr / km";
+                    co_emissions.Text = 0 + " gr / km";
+                    nox_emissions.Text = 0 + " gr / km";
+                    thc_emissions.Text = 0 + " gr / km";
+                    global_warming_emissions.Text = 0.64 + " gr / km";
+                }
+            }
+            else if (_type == 2)//petrol
+            {
+                if (isLoaded)
+                {
+                    co2_emissions.Text = 2130.11 + " gr / km";
+                    co_emissions.Text = 7.28 + " gr / km";
+                    nox_emissions.Text =20.16 + " gr / km";
+                    thc_emissions.Text = 1.77 + " gr / km";
+                    global_warming_emissions.Text = 2.49 + " gr / km";
+
+                }
+                else
+                {
+                    co2_emissions.Text = 1510.83 + " gr / km";
+                    co_emissions.Text = 3.84 + " gr / km";
+                    nox_emissions.Text = 14.33 + " gr / km";
+                    thc_emissions.Text = 1.08 + " gr / km";
+                    global_warming_emissions.Text = 1.2 + " gr / km";
+                }
+
+            }
+            else //LPG
+            {
+                if (isLoaded)
+                {
+                    co2_emissions.Text = 2959.57 + " gr / km";
+                    co_emissions.Text = 27.04 + " gr / km";
+                    nox_emissions.Text = 19.63 + " gr / km";
+                    thc_emissions.Text = 3.06 + " gr / km";
+                    global_warming_emissions.Text = 3.58 + " gr / km";
+                }
+                else
+                {
+                    co2_emissions.Text = 1935.16 + " gr / km";
+                    co_emissions.Text = 13.36 + " gr / km";
+                    nox_emissions.Text = 13.90 + " gr / km";
+                    thc_emissions.Text = 1.51 + " gr / km";
+                    global_warming_emissions.Text = 2.33 + " gr / km";
+                }
+
             }
         }
 
