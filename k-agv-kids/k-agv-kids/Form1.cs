@@ -155,14 +155,6 @@ namespace k_agv_kids
             score_label.Text = "0";
         }
 
-
-
-        private void levelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            level_label.Text = "1";
-        }
-
-        
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
             game_panel.Invalidate();
@@ -193,7 +185,6 @@ namespace k_agv_kids
             
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
-            level_label.Text = "Custom level";
 
             if (ofd_level.ShowDialog() == DialogResult.OK)
             {

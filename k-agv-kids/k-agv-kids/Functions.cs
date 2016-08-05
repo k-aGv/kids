@@ -373,7 +373,6 @@ namespace k_agv_kids
 
             //Reset to '0' to get prepared for new game
             score_label.Text = "0";
-            level_label.Text = "1";
             lift_label.Text = "Waiting orders";
             warning = false;
             updateWarningState();

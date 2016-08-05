@@ -42,7 +42,6 @@
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.levelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,9 +65,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lift_label = new System.Windows.Forms.Label();
             this.lift_state = new System.Windows.Forms.Label();
-            this.level_label = new System.Windows.Forms.Label();
             this.score_label = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_commands = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -202,10 +199,9 @@
             this.clearToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.commandsToolStripMenuItem,
             this.scoreToolStripMenuItem,
-            this.levelToolStripMenuItem,
             this.allToolStripMenuItem});
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // commandsToolStripMenuItem
@@ -221,13 +217,6 @@
             this.scoreToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.scoreToolStripMenuItem.Text = "Score";
             this.scoreToolStripMenuItem.Click += new System.EventHandler(this.scoreToolStripMenuItem_Click);
-            // 
-            // levelToolStripMenuItem
-            // 
-            this.levelToolStripMenuItem.Name = "levelToolStripMenuItem";
-            this.levelToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.levelToolStripMenuItem.Text = "Level";
-            this.levelToolStripMenuItem.Click += new System.EventHandler(this.levelToolStripMenuItem_Click);
             // 
             // allToolStripMenuItem
             // 
@@ -384,13 +373,11 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.lift_label);
             this.groupBox2.Controls.Add(this.lift_state);
-            this.groupBox2.Controls.Add(this.level_label);
             this.groupBox2.Controls.Add(this.score_label);
-            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(12, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(225, 117);
+            this.groupBox2.Size = new System.Drawing.Size(225, 95);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Score and stats";
@@ -415,7 +402,7 @@
             // lift_label
             // 
             this.lift_label.AutoSize = true;
-            this.lift_label.Location = new System.Drawing.Point(78, 92);
+            this.lift_label.Location = new System.Drawing.Point(78, 68);
             this.lift_label.Name = "lift_label";
             this.lift_label.Size = new System.Drawing.Size(10, 13);
             this.lift_label.TabIndex = 5;
@@ -424,20 +411,11 @@
             // lift_state
             // 
             this.lift_state.AutoSize = true;
-            this.lift_state.Location = new System.Drawing.Point(7, 92);
+            this.lift_state.Location = new System.Drawing.Point(7, 68);
             this.lift_state.Name = "lift_state";
             this.lift_state.Size = new System.Drawing.Size(50, 13);
             this.lift_state.TabIndex = 4;
             this.lift_state.Text = "Lift state:";
-            // 
-            // level_label
-            // 
-            this.level_label.AutoSize = true;
-            this.level_label.Location = new System.Drawing.Point(78, 68);
-            this.level_label.Name = "level_label";
-            this.level_label.Size = new System.Drawing.Size(13, 13);
-            this.level_label.TabIndex = 3;
-            this.level_label.Text = "0";
             // 
             // score_label
             // 
@@ -447,15 +425,6 @@
             this.score_label.Size = new System.Drawing.Size(13, 13);
             this.score_label.TabIndex = 3;
             this.score_label.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Level:";
             // 
             // label1
             // 
@@ -806,9 +775,7 @@
         private System.Windows.Forms.PictureBox pb_up;
         private System.Windows.Forms.PictureBox pb_lift;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label level_label;
         private System.Windows.Forms.Label score_label;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lift_label;
         private System.Windows.Forms.Label lift_state;
@@ -818,7 +785,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scoreToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem levelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
