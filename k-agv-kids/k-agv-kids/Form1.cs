@@ -286,8 +286,9 @@ namespace k_agv_kids
                 if (pb_battery.Value < pb_battery.Maximum - 6)
                 {
                     pbColorChanger.SetState(pb_battery, 2);
-                    emission_status.Text = "Low fuel!";
-                    emission_status.ForeColor = Color.Red;
+                    low_fuel.Text = "Low fuel!";
+                    low_fuel.ForeColor = Color.Red;
+                    low_fuel.Visible = true;
                     using (SolidBrush b = new SolidBrush(Color.Red))
                     {
                         for_warning.FillEllipse(b, 5, 5, 20, 20);

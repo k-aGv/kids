@@ -664,8 +664,17 @@ namespace k_agv_kids
         }
         private void getRefuelled()
         {
-                pb_battery.Value = pb_battery.Maximum;
-                refuel_timer.Start();
+            seconds = 0; //if removed, refuel will keep counting reaching negative numbers (refuel will fail)
+            refuel_timer.Start();
+
+            pb_battery.Value = pb_battery.Maximum;
+            low_fuel.Visible = false;
+            pbColorChanger.SetState(pb_battery, 1);
+            using (SolidBrush b = new SolidBrush(Color.Green))
+            {
+                for_warning.FillEllipse(b, 5, 5, 20, 20);
+                warning = false;
+            }
         }
        
         private bool isWallOnNextMove(char command)
