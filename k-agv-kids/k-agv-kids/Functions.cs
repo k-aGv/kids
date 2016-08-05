@@ -56,6 +56,12 @@ namespace k_agv_kids
 
         int seconds = 0;
 
+        //emissions
+        double co2 = 0;
+        double co = 0;
+        double nox = 0;
+        double thc = 0;
+        double global = 0;
        
         public void initType(int _type)
         {
@@ -100,39 +106,87 @@ namespace k_agv_kids
             {
                 if (isLoaded)
                 {
-                    co2_emissions.Text = 0 + " gr / km";
-                    co_emissions.Text = 0 + " gr / km";
-                    nox_emissions.Text = 0 + " gr / km";
-                    thc_emissions.Text = 0 + " gr / km";
-                    global_warming_emissions.Text = 0.67 + " gr / km";
+                    co2_emissions_value.Text = 0+"";
+                    co2_emissions_text.Text = " gr / km";
+
+                    co_emissions_value.Text = 0+"";
+                    co_emissions_text.Text = " gr / km";
+
+                    nox_emissions_value.Text = 0+"";
+                    nox_emissions_text.Text = " gr / km";
+
+                    thc_emissions_value.Text = 0+"";
+                    thc_emissions_text.Text = " gr / km";
+
+                    global += 0.67/100;
+                    global_warming_emissions_value.Text = global + "";
+                    global_warming_emissions_text.Text = " kgr / km";
                 }
                 else
                 {
-                    co2_emissions.Text = 0 + " gr / km";
-                    co_emissions.Text = 0 + " gr / km";
-                    nox_emissions.Text = 0 + " gr / km";
-                    thc_emissions.Text = 0 + " gr / km";
-                    global_warming_emissions.Text = 0.64 + " gr / km";
+                    co2_emissions_value.Text = 0 + "";
+                    co2_emissions_text.Text = " gr / km";
+
+                    co_emissions_value.Text = 0 + "";
+                    co_emissions_text.Text = " gr / km";
+
+                    nox_emissions_value.Text = 0 + "";
+                    nox_emissions_text.Text = " gr / km";
+
+                    thc_emissions_value.Text = 0 + "";
+                    thc_emissions_text.Text = " gr / km";
+
+                    global += 0.64/100;
+                    global_warming_emissions_value.Text = global + "";
+                    global_warming_emissions_text.Text = " kgr / km";
                 }
             }
             else if (_type == 2)//petrol
             {
                 if (isLoaded)
                 {
-                    co2_emissions.Text = 2130.11 + " gr / km";
-                    co_emissions.Text = 7.28 + " gr / km";
-                    nox_emissions.Text =20.16 + " gr / km";
-                    thc_emissions.Text = 1.77 + " gr / km";
-                    global_warming_emissions.Text = 2.49 + " gr / km";
+                    co2 += 2130.11 / 100;
+                    co2_emissions_value.Text = co2 + "";
+                    co2_emissions_text.Text = " gr / km";
+
+                    co += 7.28 / 100;
+                    co_emissions_value.Text = co + "";
+                    co_emissions_text.Text = " gr / km";
+
+                    nox += 20.16 / 100;
+                    nox_emissions_value.Text = nox + "";
+                    nox_emissions_text.Text = " gr / km";
+
+                    thc += 1.77 / 100;
+                    thc_emissions_value.Text = thc + "";
+                    thc_emissions_text.Text = " gr / km";
+
+                    global += 2.49 / 100;
+                    global_warming_emissions_value.Text = global + "";
+                    global_warming_emissions_text.Text = " kgr / km";
 
                 }
                 else
                 {
-                    co2_emissions.Text = 1510.83 + " gr / km";
-                    co_emissions.Text = 3.84 + " gr / km";
-                    nox_emissions.Text = 14.33 + " gr / km";
-                    thc_emissions.Text = 1.08 + " gr / km";
-                    global_warming_emissions.Text = 1.2 + " gr / km";
+                    co2 += 1510.83 / 100;
+                    co2_emissions_value.Text = co2 + "";
+                    co2_emissions_text.Text = " gr / km";
+
+                    co += 3.84 / 100;
+                    co_emissions_value.Text = co + "";
+                    co_emissions_text.Text = " gr / km";
+
+                    nox += 14.33 / 100;
+                    nox_emissions_value.Text = nox + "";
+                    nox_emissions_text.Text = " gr / km";
+
+                    thc += 1.08 / 100;
+                    thc_emissions_value.Text = thc + "";
+                    thc_emissions_text.Text = " gr / km";
+
+                    global += 1.2 / 100;
+                    global_warming_emissions_value.Text = global + "";
+                    global_warming_emissions_text.Text = " kgr / km";
                 }
 
             }
@@ -140,19 +194,47 @@ namespace k_agv_kids
             {
                 if (isLoaded)
                 {
-                    co2_emissions.Text = 2959.57 + " gr / km";
-                    co_emissions.Text = 27.04 + " gr / km";
-                    nox_emissions.Text = 19.63 + " gr / km";
-                    thc_emissions.Text = 3.06 + " gr / km";
-                    global_warming_emissions.Text = 3.58 + " gr / km";
+                    co2 += 2959.57 / 100;
+                    co2_emissions_value.Text = co2 + "";
+                    co2_emissions_text.Text = " gr / km";
+
+                    co += 27.04 / 100;
+                    co_emissions_value.Text = co + "";
+                    co_emissions_text.Text = " gr / km";
+
+                    nox += 19.63 / 100;
+                    nox_emissions_value.Text = nox + "";
+                    nox_emissions_text.Text = " gr / km";
+
+                    thc += 3.06 / 100;
+                    thc_emissions_value.Text = thc + "";
+                    thc_emissions_text.Text = " gr / km";
+
+                    global += 3.58 / 100;
+                    global_warming_emissions_value.Text = global + "";
+                    global_warming_emissions_text.Text = " kgr / km";
                 }
                 else
                 {
-                    co2_emissions.Text = 1935.16 + " gr / km";
-                    co_emissions.Text = 13.36 + " gr / km";
-                    nox_emissions.Text = 13.90 + " gr / km";
-                    thc_emissions.Text = 1.51 + " gr / km";
-                    global_warming_emissions.Text = 2.33 + " gr / km";
+                    co2 += 1935.16 / 100;
+                    co2_emissions_value.Text = co2 + "";
+                    co2_emissions_text.Text = " gr / km";
+
+                    co += 13.36 / 100;
+                    co_emissions_value.Text = co + "";
+                    co_emissions_text.Text = " gr / km";
+
+                    nox += 13.90 / 100;
+                    nox_emissions_value.Text = nox + "";
+                    nox_emissions_text.Text = " gr / km";
+
+                    thc += 1.51 / 100;
+                    thc_emissions_value.Text = thc + "";
+                    thc_emissions_text.Text = " gr / km";
+
+                    global += 2.33 / 100;
+                    global_warming_emissions_value.Text = global + "";
+                    global_warming_emissions_text.Text = " kgr / km";
                 }
 
             }
@@ -261,6 +343,24 @@ namespace k_agv_kids
         }
         private void reset(bool fromWall)
         {
+            //emissions reset
+            co2 = 0;
+            co = 0;
+            nox = 0;
+            thc = 0;
+            global = 0;
+            co2_emissions_value.Text = "null";
+            co2_emissions_text.Text = "";
+            co_emissions_text.Text = "";
+            co_emissions_value.Text = "null";
+            nox_emissions_text.Text = "";
+            nox_emissions_value.Text = "null";
+            thc_emissions_text.Text = "";
+            thc_emissions_value.Text = "null";
+            global_warming_emissions_text.Text = "";
+            global_warming_emissions_value.Text = "null";
+
+            
 
             commands = "";
             commandCounter = 0;
@@ -398,10 +498,10 @@ namespace k_agv_kids
                         }
                         else //load
                         {
-                            loads[loads_c] = 5;
+                            loads[loads_c] = 6;
                             loadscounter[loads_c] = array_counter;
                             pb_array[array_counter].Name = "Load" + "_" + array_counter;
-                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "loads.png");
+                            pb_array[array_counter].Image = Image.FromFile(getResDir() + "loads-6.png");
                             loads_c++;
                         }
 
@@ -535,8 +635,10 @@ namespace k_agv_kids
         {
             while (loads[index] > 0)
             {
-                loads[index]--;
+                loads[index]-=2;
                 debugloads.Text = loads[index].ToString();
+                if(loads[index]!=0) 
+                    pb_array[loadscounter[index]].Image = Image.FromFile(getResDir() +"loads-"+loads[index]+".png");
                 break;
             }
             if (loads[index] == 0)

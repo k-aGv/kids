@@ -77,8 +77,14 @@
             this.anim_timer = new System.Windows.Forms.Timer(this.components);
             this.load_timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.co_emissions = new System.Windows.Forms.Label();
-            this.co2_emissions = new System.Windows.Forms.Label();
+            this.global_warming_emissions_value = new System.Windows.Forms.Label();
+            this.thc_emissions_value = new System.Windows.Forms.Label();
+            this.nox_emissions_value = new System.Windows.Forms.Label();
+            this.global_warming_eq = new System.Windows.Forms.Label();
+            this.emissions_THC = new System.Windows.Forms.Label();
+            this.emissions_NOx = new System.Windows.Forms.Label();
+            this.co_emissions_value = new System.Windows.Forms.Label();
+            this.co2_emissions_value = new System.Windows.Forms.Label();
             this.type = new System.Windows.Forms.Label();
             this.vehicle_type = new System.Windows.Forms.Label();
             this.emissions_co = new System.Windows.Forms.Label();
@@ -91,12 +97,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.refuel_timer = new System.Windows.Forms.Timer(this.components);
             this.debugloads = new System.Windows.Forms.Label();
-            this.emissions_NOx = new System.Windows.Forms.Label();
-            this.emissions_THC = new System.Windows.Forms.Label();
-            this.global_warming_eq = new System.Windows.Forms.Label();
-            this.nox_emissions = new System.Windows.Forms.Label();
-            this.thc_emissions = new System.Windows.Forms.Label();
-            this.global_warming_emissions = new System.Windows.Forms.Label();
+            this.thc_emissions_text = new System.Windows.Forms.Label();
+            this.nox_emissions_text = new System.Windows.Forms.Label();
+            this.co_emissions_text = new System.Windows.Forms.Label();
+            this.co2_emissions_text = new System.Windows.Forms.Label();
+            this.global_warming_emissions_text = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lift)).BeginInit();
@@ -128,8 +133,8 @@
             this.levelEditorToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.newGameToolStripMenuItem.Text = "Game";
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.newGameToolStripMenuItem.Text = "Start";
             // 
             // newGameToolStripMenuItem1
             // 
@@ -138,8 +143,8 @@
             this.chooseLevelToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
-            this.newGameToolStripMenuItem1.Text = "New Game";
+            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newGameToolStripMenuItem1.Text = "New";
             // 
             // newToolStripMenuItem
             // 
@@ -504,14 +509,19 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.global_warming_emissions);
-            this.groupBox3.Controls.Add(this.thc_emissions);
-            this.groupBox3.Controls.Add(this.nox_emissions);
+            this.groupBox3.Controls.Add(this.global_warming_emissions_text);
+            this.groupBox3.Controls.Add(this.thc_emissions_text);
+            this.groupBox3.Controls.Add(this.nox_emissions_text);
+            this.groupBox3.Controls.Add(this.co_emissions_text);
+            this.groupBox3.Controls.Add(this.co2_emissions_text);
+            this.groupBox3.Controls.Add(this.global_warming_emissions_value);
+            this.groupBox3.Controls.Add(this.thc_emissions_value);
+            this.groupBox3.Controls.Add(this.nox_emissions_value);
             this.groupBox3.Controls.Add(this.global_warming_eq);
             this.groupBox3.Controls.Add(this.emissions_THC);
             this.groupBox3.Controls.Add(this.emissions_NOx);
-            this.groupBox3.Controls.Add(this.co_emissions);
-            this.groupBox3.Controls.Add(this.co2_emissions);
+            this.groupBox3.Controls.Add(this.co_emissions_value);
+            this.groupBox3.Controls.Add(this.co2_emissions_value);
             this.groupBox3.Controls.Add(this.type);
             this.groupBox3.Controls.Add(this.vehicle_type);
             this.groupBox3.Controls.Add(this.emissions_co);
@@ -525,23 +535,77 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Vehicle status";
             // 
-            // co_emissions
+            // global_warming_emissions_value
             // 
-            this.co_emissions.AutoSize = true;
-            this.co_emissions.Location = new System.Drawing.Point(78, 112);
-            this.co_emissions.Name = "co_emissions";
-            this.co_emissions.Size = new System.Drawing.Size(23, 13);
-            this.co_emissions.TabIndex = 4;
-            this.co_emissions.Text = "null";
+            this.global_warming_emissions_value.AutoSize = true;
+            this.global_warming_emissions_value.Location = new System.Drawing.Point(118, 175);
+            this.global_warming_emissions_value.Name = "global_warming_emissions_value";
+            this.global_warming_emissions_value.Size = new System.Drawing.Size(23, 13);
+            this.global_warming_emissions_value.TabIndex = 10;
+            this.global_warming_emissions_value.Text = "null";
             // 
-            // co2_emissions
+            // thc_emissions_value
             // 
-            this.co2_emissions.AutoSize = true;
-            this.co2_emissions.Location = new System.Drawing.Point(78, 91);
-            this.co2_emissions.Name = "co2_emissions";
-            this.co2_emissions.Size = new System.Drawing.Size(23, 13);
-            this.co2_emissions.TabIndex = 4;
-            this.co2_emissions.Text = "null";
+            this.thc_emissions_value.AutoSize = true;
+            this.thc_emissions_value.Location = new System.Drawing.Point(78, 154);
+            this.thc_emissions_value.Name = "thc_emissions_value";
+            this.thc_emissions_value.Size = new System.Drawing.Size(23, 13);
+            this.thc_emissions_value.TabIndex = 9;
+            this.thc_emissions_value.Text = "null";
+            // 
+            // nox_emissions_value
+            // 
+            this.nox_emissions_value.AutoSize = true;
+            this.nox_emissions_value.Location = new System.Drawing.Point(78, 133);
+            this.nox_emissions_value.Name = "nox_emissions_value";
+            this.nox_emissions_value.Size = new System.Drawing.Size(23, 13);
+            this.nox_emissions_value.TabIndex = 8;
+            this.nox_emissions_value.Text = "null";
+            // 
+            // global_warming_eq
+            // 
+            this.global_warming_eq.AutoSize = true;
+            this.global_warming_eq.Location = new System.Drawing.Point(15, 175);
+            this.global_warming_eq.Name = "global_warming_eq";
+            this.global_warming_eq.Size = new System.Drawing.Size(97, 13);
+            this.global_warming_eq.TabIndex = 7;
+            this.global_warming_eq.Text = "Global warming EQ";
+            // 
+            // emissions_THC
+            // 
+            this.emissions_THC.AutoSize = true;
+            this.emissions_THC.Location = new System.Drawing.Point(16, 154);
+            this.emissions_THC.Name = "emissions_THC";
+            this.emissions_THC.Size = new System.Drawing.Size(29, 13);
+            this.emissions_THC.TabIndex = 6;
+            this.emissions_THC.Text = "THC";
+            // 
+            // emissions_NOx
+            // 
+            this.emissions_NOx.AutoSize = true;
+            this.emissions_NOx.Location = new System.Drawing.Point(15, 133);
+            this.emissions_NOx.Name = "emissions_NOx";
+            this.emissions_NOx.Size = new System.Drawing.Size(28, 13);
+            this.emissions_NOx.TabIndex = 5;
+            this.emissions_NOx.Text = "NOx";
+            // 
+            // co_emissions_value
+            // 
+            this.co_emissions_value.AutoSize = true;
+            this.co_emissions_value.Location = new System.Drawing.Point(78, 112);
+            this.co_emissions_value.Name = "co_emissions_value";
+            this.co_emissions_value.Size = new System.Drawing.Size(23, 13);
+            this.co_emissions_value.TabIndex = 4;
+            this.co_emissions_value.Text = "null";
+            // 
+            // co2_emissions_value
+            // 
+            this.co2_emissions_value.AutoSize = true;
+            this.co2_emissions_value.Location = new System.Drawing.Point(78, 91);
+            this.co2_emissions_value.Name = "co2_emissions_value";
+            this.co2_emissions_value.Size = new System.Drawing.Size(23, 13);
+            this.co2_emissions_value.TabIndex = 4;
+            this.co2_emissions_value.Text = "null";
             // 
             // type
             // 
@@ -647,59 +711,45 @@
             this.debugloads.TabIndex = 14;
             this.debugloads.Text = "debug";
             // 
-            // emissions_NOx
+            // thc_emissions_text
             // 
-            this.emissions_NOx.AutoSize = true;
-            this.emissions_NOx.Location = new System.Drawing.Point(15, 133);
-            this.emissions_NOx.Name = "emissions_NOx";
-            this.emissions_NOx.Size = new System.Drawing.Size(28, 13);
-            this.emissions_NOx.TabIndex = 5;
-            this.emissions_NOx.Text = "NOx";
+            this.thc_emissions_text.AutoSize = true;
+            this.thc_emissions_text.Location = new System.Drawing.Point(127, 154);
+            this.thc_emissions_text.Name = "thc_emissions_text";
+            this.thc_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.thc_emissions_text.TabIndex = 14;
             // 
-            // emissions_THC
+            // nox_emissions_text
             // 
-            this.emissions_THC.AutoSize = true;
-            this.emissions_THC.Location = new System.Drawing.Point(16, 154);
-            this.emissions_THC.Name = "emissions_THC";
-            this.emissions_THC.Size = new System.Drawing.Size(29, 13);
-            this.emissions_THC.TabIndex = 6;
-            this.emissions_THC.Text = "THC";
+            this.nox_emissions_text.AutoSize = true;
+            this.nox_emissions_text.Location = new System.Drawing.Point(127, 133);
+            this.nox_emissions_text.Name = "nox_emissions_text";
+            this.nox_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.nox_emissions_text.TabIndex = 13;
             // 
-            // global_warming_eq
+            // co_emissions_text
             // 
-            this.global_warming_eq.AutoSize = true;
-            this.global_warming_eq.Location = new System.Drawing.Point(15, 175);
-            this.global_warming_eq.Name = "global_warming_eq";
-            this.global_warming_eq.Size = new System.Drawing.Size(97, 13);
-            this.global_warming_eq.TabIndex = 7;
-            this.global_warming_eq.Text = "Global warming EQ";
+            this.co_emissions_text.AutoSize = true;
+            this.co_emissions_text.Location = new System.Drawing.Point(127, 112);
+            this.co_emissions_text.Name = "co_emissions_text";
+            this.co_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.co_emissions_text.TabIndex = 11;
             // 
-            // nox_emissions
+            // co2_emissions_text
             // 
-            this.nox_emissions.AutoSize = true;
-            this.nox_emissions.Location = new System.Drawing.Point(78, 133);
-            this.nox_emissions.Name = "nox_emissions";
-            this.nox_emissions.Size = new System.Drawing.Size(23, 13);
-            this.nox_emissions.TabIndex = 8;
-            this.nox_emissions.Text = "null";
+            this.co2_emissions_text.AutoSize = true;
+            this.co2_emissions_text.Location = new System.Drawing.Point(127, 91);
+            this.co2_emissions_text.Name = "co2_emissions_text";
+            this.co2_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.co2_emissions_text.TabIndex = 12;
             // 
-            // thc_emissions
+            // global_warming_emissions_text
             // 
-            this.thc_emissions.AutoSize = true;
-            this.thc_emissions.Location = new System.Drawing.Point(78, 154);
-            this.thc_emissions.Name = "thc_emissions";
-            this.thc_emissions.Size = new System.Drawing.Size(23, 13);
-            this.thc_emissions.TabIndex = 9;
-            this.thc_emissions.Text = "null";
-            // 
-            // global_warming_emissions
-            // 
-            this.global_warming_emissions.AutoSize = true;
-            this.global_warming_emissions.Location = new System.Drawing.Point(118, 175);
-            this.global_warming_emissions.Name = "global_warming_emissions";
-            this.global_warming_emissions.Size = new System.Drawing.Size(23, 13);
-            this.global_warming_emissions.TabIndex = 10;
-            this.global_warming_emissions.Text = "null";
+            this.global_warming_emissions_text.AutoSize = true;
+            this.global_warming_emissions_text.Location = new System.Drawing.Point(157, 175);
+            this.global_warming_emissions_text.Name = "global_warming_emissions_text";
+            this.global_warming_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.global_warming_emissions_text.TabIndex = 15;
             // 
             // Form1
             // 
@@ -803,15 +853,20 @@
         private System.Windows.Forms.Label debug2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer refuel_timer;
-        private System.Windows.Forms.Label co_emissions;
-        private System.Windows.Forms.Label co2_emissions;
+        private System.Windows.Forms.Label co_emissions_value;
+        private System.Windows.Forms.Label co2_emissions_value;
         private System.Windows.Forms.Label debugloads;
-        private System.Windows.Forms.Label global_warming_emissions;
-        private System.Windows.Forms.Label thc_emissions;
-        private System.Windows.Forms.Label nox_emissions;
+        private System.Windows.Forms.Label global_warming_emissions_value;
+        private System.Windows.Forms.Label thc_emissions_value;
+        private System.Windows.Forms.Label nox_emissions_value;
         private System.Windows.Forms.Label global_warming_eq;
         private System.Windows.Forms.Label emissions_THC;
         private System.Windows.Forms.Label emissions_NOx;
+        private System.Windows.Forms.Label global_warming_emissions_text;
+        private System.Windows.Forms.Label thc_emissions_text;
+        private System.Windows.Forms.Label nox_emissions_text;
+        private System.Windows.Forms.Label co_emissions_text;
+        private System.Windows.Forms.Label co2_emissions_text;
     }
 }
 

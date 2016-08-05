@@ -106,6 +106,14 @@ namespace k_agv_kids
             }
             else //pb_start.THIS IS WHY THERE IS NO EVENT ON PLAY BUTTON.
             {
+
+                if (batteryToolStripMenuItem.Enabled)
+                {
+                    batteryToolStripMenuItem.Enabled = false;
+                    petrolToolStripMenuItem.Enabled = false;
+                    lPGToolStripMenuItem.Enabled = false;
+                }
+
                 isRunning = !isRunning;
                 if (isRunning)
                 {
@@ -326,7 +334,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 1;
                             animCounter++;
 
                         }
@@ -367,7 +375,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -410,7 +418,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -451,7 +459,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
