@@ -392,8 +392,8 @@ namespace k_agv_kids
            
             pbColorChanger.SetState(pb_battery, 1);
            
-            emission_status.Text = "emissions status";
-            emission_status.ForeColor = Color.Black;
+            //emission_status.Text = "emissions status";
+            //emission_status.ForeColor = Color.Black;
 
             if (fromWall)
             {
@@ -403,7 +403,7 @@ namespace k_agv_kids
             }
             else
             {
-                pb_battery.Maximum = 20;
+                pb_battery.Maximum = 100;
                 pb_battery.Value = pb_battery.Maximum;
             }
            
@@ -613,10 +613,6 @@ namespace k_agv_kids
         {
             int tempX = AGV.Location.X;
             int tempy = AGV.Location.Y;
-            //MessageBox.Show(loadscounter[0] + "  index= " + 0
-            // +"\n"+ pb_array[loadscounter[0]].Location.X + " , "+pb_array[loadscounter[0]].Location.Y);
-            //MessageBox.Show(loadscounter[1] + "  index= " + 1
-            //+ "\n" + pb_array[loadscounter[1]].Location.X + " , " + pb_array[loadscounter[1]].Location.Y);
 
 
             if (AGV.Location.X == pb_array[loadscounter[i]].Location.X &&

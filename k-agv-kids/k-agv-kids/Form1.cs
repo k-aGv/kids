@@ -477,7 +477,7 @@ namespace k_agv_kids
                             loadsreduceby1(k);
 
 
-                            //anim_timer.Stop(); //I think - no use
+                            anim_timer.Stop(); //I think - no use
                         }
                     }
                     k = 0;
