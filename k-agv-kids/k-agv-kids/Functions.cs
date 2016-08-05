@@ -56,6 +56,7 @@ namespace k_agv_kids
 
         int seconds = 0;
 
+        int orderme_time = 0;
         //emissions
         double co2 = 0;
         double co = 0;
@@ -262,6 +263,11 @@ namespace k_agv_kids
         {
             isRunning = false;
             isFirstRun = true;
+
+            lb_orderme.Visible = false;
+            lb_orderme.ForeColor = Color.Red;
+            lb_orderme.Text = "Please send a command";
+            orderme_timer.Interval = 300;
            
             pb_battery.Maximum = 100;
             pb_battery.Value = pb_battery.Maximum;
@@ -341,6 +347,29 @@ namespace k_agv_kids
             updateWarningState();
 
         }
+        bool isCommandPressed=false;
+        private void commandPressed(bool x)
+        {
+            isCommandPressed = x;
+        }
+        //overload the function
+        private bool commandPressed()
+        {
+            if (isCommandPressed)
+                return true;
+            else
+                return false;
+        }
+        private void cleanVars()
+        {
+            commands = "";
+            orderme_time = 0;
+            commandCounter = 0;
+            animCounter = 0;
+            commands_array = new char[500];
+            Clipboard.Clear();
+        }
+
         private void reset(bool fromWall)
         {
             //emissions reset
@@ -360,7 +389,8 @@ namespace k_agv_kids
             global_warming_emissions_text.Text = "";
             global_warming_emissions_value.Text = "null";
 
-            
+
+            orderme_time = 0;
 
             commands = "";
             commandCounter = 0;

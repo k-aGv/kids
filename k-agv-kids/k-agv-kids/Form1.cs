@@ -17,7 +17,6 @@ namespace k_agv_kids
     public partial class Form1 : Form
     {
 
-
         public Form1()
         {
             InitializeComponent();
@@ -55,6 +54,8 @@ namespace k_agv_kids
                 tb_commands.Paste(); //Paste it to RichBox
                 commands += "<";//add the command to our 'command vault'
                 commandCounter++;
+                commandPressed(true);
+               
             }
             else if ((sender as PictureBox).Name == "pb_right")
             {
@@ -67,6 +68,8 @@ namespace k_agv_kids
                 tb_commands.Paste(); //Paste it to RichBox
                 commands += ">";//add the command to our 'command vault'
                 commandCounter++;
+                commandPressed(true);
+               
             }
             else if ((sender as PictureBox).Name == "pb_up")
             {
@@ -79,6 +82,8 @@ namespace k_agv_kids
                 tb_commands.Paste(); //Paste it to RichBox
                 commands += "^";//add the command to our 'command vault'
                 commandCounter++;
+                commandPressed(true);
+                
             }
             else if ((sender as PictureBox).Name == "pb_down")
             {
@@ -91,6 +96,8 @@ namespace k_agv_kids
                 tb_commands.Paste(); //Paste it to RichBox
                 commands += "V";//add the command to our 'command vault'
                 commandCounter++;
+                commandPressed(true);
+               
             }
             else if ((sender as PictureBox).Name == "pb_lift")
             {
@@ -103,9 +110,18 @@ namespace k_agv_kids
                 tb_commands.Paste(); //Paste it to RichBox
                 commands += "L";//add the command to our 'command vault'
                 commandCounter++;
+                commandPressed(true);
+                
             }
-            else //pb_start.THIS IS WHY THERE IS NO EVENT ON PLAY BUTTON.
+            else if ((sender as PictureBox).Name == "pb_start") //pb_start.THIS IS WHY THERE IS NO EVENT ON PLAY BUTTON.
             {
+                if (!commandPressed())
+                {
+                  //if no command pressed ,get the PLAY button out of order
+                    orderme_timer.Start();
+
+                    return;
+                }
 
                 if (batteryToolStripMenuItem.Enabled)
                 {
@@ -115,10 +131,12 @@ namespace k_agv_kids
                 }
 
                 isRunning = !isRunning;
+
                 if (isRunning)
                 {
+
                     pb_start.Image = Image.FromFile(getResDir() + "start.png");
-                    commands_array = new char[commandCounter];
+                    commands_array = new char[500];
                     commands_array = commands.ToCharArray();
                     if (isFirstRun)
                     {
@@ -127,10 +145,8 @@ namespace k_agv_kids
                     anim_timer.Start();
                 }
                 else
-                {
-                    commands = "";
-                    isRunning = !isRunning;
-                    anim_timer.Stop();
+                { 
+                    anim_timer.Stop();  
                 }
             }
         }
@@ -274,9 +290,14 @@ namespace k_agv_kids
             pb_start.Visible = false;
             if (animCounter == commandCounter)
             {
-                isRunning = !isRunning;
+               
+
                 pb_start.Visible = true;
                 useArrows(true);
+                commandPressed(false);
+                isRunning = !isRunning;
+                cleanVars();
+
                 anim_timer.Stop();
             }
             else
@@ -477,7 +498,7 @@ namespace k_agv_kids
                             loadsreduceby1(k);
 
 
-                            anim_timer.Stop(); //I think - no use
+                            anim_timer.Stop(); //I think - no use //////// NEW NEW NEW reenabled because load would cause agv to stuck
                         }
                     }
                     k = 0;
@@ -544,6 +565,20 @@ namespace k_agv_kids
         private void lPGToolStripMenuItem_Click(object sender, EventArgs e)
         {
             initType(3);
+        }
+
+        private void orderme_timer_Tick(object sender, EventArgs e)
+        {
+            lb_orderme.Visible = !lb_orderme.Visible;
+            orderme_time += orderme_timer.Interval;
+            if (orderme_time == 1500)
+            {
+                lb_orderme.Visible = false;
+                orderme_time = 0;
+                orderme_timer.Stop();
+            }
+           
+
         }
 
 

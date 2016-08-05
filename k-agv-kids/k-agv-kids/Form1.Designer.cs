@@ -100,6 +100,8 @@
             this.co2_emissions_text = new System.Windows.Forms.Label();
             this.global_warming_emissions_text = new System.Windows.Forms.Label();
             this.low_fuel = new System.Windows.Forms.Label();
+            this.lb_orderme = new System.Windows.Forms.Label();
+            this.orderme_timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lift)).BeginInit();
@@ -731,11 +733,25 @@
             this.low_fuel.TabIndex = 16;
             this.low_fuel.Visible = false;
             // 
+            // lb_orderme
+            // 
+            this.lb_orderme.AutoSize = true;
+            this.lb_orderme.Location = new System.Drawing.Point(808, 310);
+            this.lb_orderme.Name = "lb_orderme";
+            this.lb_orderme.Size = new System.Drawing.Size(35, 13);
+            this.lb_orderme.TabIndex = 15;
+            this.lb_orderme.Text = "label3";
+            // 
+            // orderme_timer
+            // 
+            this.orderme_timer.Tick += new System.EventHandler(this.orderme_timer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 388);
+            this.Controls.Add(this.lb_orderme);
             this.Controls.Add(this.debugloads);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.debug2);
@@ -845,6 +861,8 @@
         private System.Windows.Forms.Label co_emissions_text;
         private System.Windows.Forms.Label co2_emissions_text;
         private System.Windows.Forms.Label low_fuel;
+        private System.Windows.Forms.Label lb_orderme;
+        private System.Windows.Forms.Timer orderme_timer;
     }
 }
 
