@@ -334,7 +334,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 1;
+                            pb_battery.Value -= 1;
                             animCounter++;
 
                         }
@@ -375,7 +375,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 1;
+                            pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -418,7 +418,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 1;
+                            pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -459,7 +459,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 1;
+                            pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }

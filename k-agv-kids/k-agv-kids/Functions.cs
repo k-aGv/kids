@@ -263,7 +263,7 @@ namespace k_agv_kids
             isRunning = false;
             isFirstRun = true;
            
-            pb_battery.Maximum = 20;
+            pb_battery.Maximum = 100;
             pb_battery.Value = pb_battery.Maximum;
             groupBox1.Visible = false;
             Clipboard.Clear();
