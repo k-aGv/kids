@@ -15,6 +15,10 @@ namespace k_agv_kids
     {
         public int _colorstate;
 
+        //variables to store form's height and width
+        int w;
+        int h;
+        
         bool isRunning = false;
         bool warning = false;
         bool isFirstRun = true;
@@ -267,8 +271,7 @@ namespace k_agv_kids
             //return Convert.ToString(Directory.GetCurrentDirectory() + "\\Resources\\");
 
         }
-        int w;
-        int h;
+        
         private void init()
         {
             this.Text = "AGV Emulator - 1";
@@ -451,9 +454,6 @@ namespace k_agv_kids
            
             pbColorChanger.SetState(pb_battery, 1);
            
-            //emission_status.Text = "emissions status";
-            //emission_status.ForeColor = Color.Black;
-
             if (fromWall)
             {
                 pb_start.Visible = true;
@@ -682,9 +682,7 @@ namespace k_agv_kids
                 return true;
             }
             else
-            {
                 return false;
-            }
         }
 
         private bool checkForExit(PictureBox AGV)
@@ -699,9 +697,7 @@ namespace k_agv_kids
                 return true;
             }
             else
-            {
                 return false;
-            }
         }
 
         private void loadsreduceby1(int index)
@@ -726,9 +722,7 @@ namespace k_agv_kids
                                                , "Nearby fuel station!"
                                                , MessageBoxButtons.YesNo);
             if (choise == DialogResult.Yes)
-            {
                 return true;
-            }
             else
             {
                 anim_timer.Start();//restart time to continue the commands execution
@@ -795,8 +789,6 @@ namespace k_agv_kids
             }
             return false;
             
-
-          
         }
         private void useArrows(bool t)
         {

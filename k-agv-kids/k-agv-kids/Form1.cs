@@ -254,8 +254,6 @@ namespace k_agv_kids
 
                 //parse the map
                 //prepare the delims to get coords
-
-
                 words = reader.ReadLine().Split(delim);
 
                 for (int z = 0; z < map.GetLength(1); z++)
@@ -306,52 +304,7 @@ namespace k_agv_kids
             else
             {
                 useArrows(false);
-                /*
-                if (pb_battery.Value < pb_battery.Maximum - 60)
-                {
-                    if(!pb_color_change)
-                    if (pbColorChanger.SetState(pb_battery, 1) == 1)
-                    {
-                        pb_color_change = true;
-                        pbColorChanger.SetState(pb_battery, 2);
-                    }
-                    if (pb_color_change && !pb_color_change_next_step)
-                    {
-                        pb_color_change_next_step = true;
-                        pb_battery.Value -= 2;
-                    }
-                    if (pb_battery.Value - 2 !=0)
-                    {
-                        if (pb_color_change && pb_color_change_next_step)
-                        {
-                            pb_battery.Value -= 2;
-                        }
-                    }
-                    else
-                        MessageBox.Show("You have ran out of fuel.\r\nGame is Over");
-                    
-
-                    low_fuel.Text = "Low fuel!";
-                    low_fuel.ForeColor = Color.Red;
-                    low_fuel.Visible = true;
-                    using (SolidBrush b = new SolidBrush(Color.Red))
-                    {
-                        for_warning.FillEllipse(b, 5, 5, 20, 20);
-                        warning = true;
-                    }
-                    
-                }
-                else
-                {
-                    if (pbColorChanger.SetState(pb_battery, 2) == 2)
-                    {
-                        pbColorChanger.SetState(pb_battery, 1);
-                    }
-                    pb_battery.Value -= 2;
-                    
-                }
-               */
-
+               
 
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
                 if (commands_array[animCounter] == '<') //move 1 box left
@@ -603,8 +556,6 @@ namespace k_agv_kids
 
                 }
                 
-
-
             }
             
         }
@@ -625,23 +576,11 @@ namespace k_agv_kids
 
         private void load_timer_Tick(object sender, EventArgs e)
         {
-            //if statements will be added/removed after deciding exactly how it should behave
-
-            //if (isLoaded == false)
-            //{
                 agv.Image = Image.FromFile(getResDir() + "full.png");
                 isLoaded = true;
                 
                 load_timer.Stop();
                 anim_timer.Start();
-            //}
-            //else
-            //{
-            //    agv.Image = Image.FromFile(getResDir() + "empty.png");
-            //    isLoaded = false;
-            //    load_timer.Stop();
-            //    anim_timer.Start();
-            //}
         }
 
         private void batteryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -670,7 +609,6 @@ namespace k_agv_kids
                 orderme_timer.Stop();
             }
            
-
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -678,9 +616,6 @@ namespace k_agv_kids
             this.Width = w;
             this.Height = h;
         }
-
-
-
 
     }
 }
