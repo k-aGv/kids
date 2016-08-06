@@ -13,6 +13,8 @@ namespace k_agv_kids
 {
     public partial class Form1 : Form
     {
+        public int _colorstate;
+
         bool isRunning = false;
         bool warning = false;
         bool isFirstRun = true;
@@ -33,6 +35,10 @@ namespace k_agv_kids
         int obstacles_c=0;
         bool obstacle_found = false;
 
+        //pb_battery bools
+        bool pb_color_change = false;
+        bool pb_color_change_next_step = false;
+
         agv kidagv;
         int agvtype;
 
@@ -44,6 +50,7 @@ namespace k_agv_kids
 
         int[,] map;
         int entrance_x, entrance_y;
+        int exitCounter;
 
         int stationCounter;
         int[] loadscounter = new int[100]; //this is something to count how many loads I have in my map
@@ -57,6 +64,7 @@ namespace k_agv_kids
         int seconds = 0;
 
         int orderme_time = 0;
+
         //emissions
         double co2 = 0;
         double co = 0;
@@ -367,6 +375,9 @@ namespace k_agv_kids
             commandCounter = 0;
             animCounter = 0;
             commands_array = new char[500];
+            array_counter = 0;
+            loads_c = 0;
+            obstacles_c = 0;
             Clipboard.Clear();
         }
 
@@ -388,12 +399,23 @@ namespace k_agv_kids
             thc_emissions_value.Text = "null";
             global_warming_emissions_text.Text = "";
             global_warming_emissions_value.Text = "null";
+            low_fuel.Visible = false;
 
+            //vehicles enabled
+            batteryToolStripMenuItem.Enabled = true;
+            petrolToolStripMenuItem.Enabled = true;
+            lPGToolStripMenuItem.Enabled = true;
+
+            //pb_battery bools
+            pb_color_change = false;
+            pb_color_change_next_step = false;
+
+            cleanVars();
 
             orderme_time = 0;
 
-            commands = "";
-            commandCounter = 0;
+            
+            
             char[] commands_array = new char [500];
             
             isRunning = false;
@@ -508,6 +530,7 @@ namespace k_agv_kids
                         }
                         else if (map[j, i] == 2) //exit
                         {
+                            exitCounter = array_counter;
                             pb_array[array_counter].Name = "Exit" + "_" + array_counter;
                             pb_array[array_counter].Image = Image.FromFile(getResDir() + "exit.png");
                         }
@@ -656,6 +679,24 @@ namespace k_agv_kids
                 return false;
             }
         }
+
+        private bool checkForExit(PictureBox AGV)
+        {
+            int tempX = AGV.Location.X;
+            int tempy = AGV.Location.Y;
+
+
+            if (AGV.Location.X == pb_array[exitCounter].Location.X &&
+                AGV.Location.Y == pb_array[exitCounter].Location.Y)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void loadsreduceby1(int index)
         {
             while (loads[index] > 0)

@@ -286,27 +286,48 @@ namespace k_agv_kids
 
         private void anim_timer_Tick(object sender, EventArgs e)
         {
+            
 
             pb_start.Visible = false;
             if (animCounter == commandCounter)
             {
                
-
                 pb_start.Visible = true;
                 useArrows(true);
                 commandPressed(false);
                 isRunning = !isRunning;
                 cleanVars();
-
                 anim_timer.Stop();
+                return;
             }
             else
             {
                 useArrows(false);
-
-                if (pb_battery.Value < pb_battery.Maximum - 6)
+                /*
+                if (pb_battery.Value < pb_battery.Maximum - 60)
                 {
-                    pbColorChanger.SetState(pb_battery, 2);
+                    if(!pb_color_change)
+                    if (pbColorChanger.SetState(pb_battery, 1) == 1)
+                    {
+                        pb_color_change = true;
+                        pbColorChanger.SetState(pb_battery, 2);
+                    }
+                    if (pb_color_change && !pb_color_change_next_step)
+                    {
+                        pb_color_change_next_step = true;
+                        pb_battery.Value -= 2;
+                    }
+                    if (pb_battery.Value - 2 !=0)
+                    {
+                        if (pb_color_change && pb_color_change_next_step)
+                        {
+                            pb_battery.Value -= 2;
+                        }
+                    }
+                    else
+                        MessageBox.Show("You have ran out of fuel.\r\nGame is Over");
+                    
+
                     low_fuel.Text = "Low fuel!";
                     low_fuel.ForeColor = Color.Red;
                     low_fuel.Visible = true;
@@ -315,7 +336,18 @@ namespace k_agv_kids
                         for_warning.FillEllipse(b, 5, 5, 20, 20);
                         warning = true;
                     }
+                    
                 }
+                else
+                {
+                    if (pbColorChanger.SetState(pb_battery, 2) == 2)
+                    {
+                        pbColorChanger.SetState(pb_battery, 1);
+                    }
+                    pb_battery.Value -= 2;
+                    
+                }
+               */
 
 
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
@@ -347,7 +379,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 1;
                             animCounter++;
 
                         }
@@ -388,7 +420,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -431,7 +463,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 10;
                             animCounter++;
                         }
                     }
@@ -472,7 +504,7 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            pb_battery.Value -= 1;
+                            //pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -492,14 +524,22 @@ namespace k_agv_kids
                     {
                         if (checkForLoad(agv, i))
                         {
-                            if(!isLoaded)
+                            if (!isLoaded)
+                            {
                                 agv.Image = Image.FromFile(getResDir() + "half.png");
-                            load_timer.Start();
-                            loadsreduceby1(k);
+                                load_timer.Start();
+                                loadsreduceby1(k);
 
 
-                            anim_timer.Stop(); //I think - no use //////// NEW NEW NEW reenabled because load would cause agv to stuck
+                                anim_timer.Stop(); //re-enabled because load would cause agv to stuck
+                            }
                         }
+                        else if (checkForExit(agv))
+                        {
+                            agv.Image = Image.FromFile(getResDir() + "empty.png");
+                            isLoaded = false;
+                        }
+
                     }
                     k = 0;
                     animCounter++;
@@ -509,12 +549,61 @@ namespace k_agv_kids
                 {
                     getRefuelled();
                 }
-                
 
+                if (pb_battery.Value < pb_battery.Maximum - 60)
+                {
+                    if (!pb_color_change)
+                        if (pbColorChanger.SetState(pb_battery, 1) == 1)
+                        {
+                            pb_color_change = true;
+                            pbColorChanger.SetState(pb_battery, 2);
+                        }
+                    if (pb_color_change && !pb_color_change_next_step)
+                    {
+                        pb_color_change_next_step = true;
+                        pb_battery.Value -= 2;
+                    }
+                    if (pb_battery.Value - 2 != 0)
+                    {
+                        if (pb_color_change && pb_color_change_next_step)
+                        {
+                            pb_battery.Value -= 2;
+                        }
+                    }
+                    else
+                    {
+                        pb_battery.Value = pb_battery.Minimum;
+                        MessageBox.Show("You have ran out of fuel.\r\nGame is Over");
+                        if(anim_timer.Enabled)
+                            anim_timer.Stop();
+                        pb_start.Visible = false;
+                    }
+
+
+                    low_fuel.Text = "Low fuel!";
+                    low_fuel.ForeColor = Color.Red;
+                    low_fuel.Visible = true;
+                    using (SolidBrush b = new SolidBrush(Color.Red))
+                    {
+                        for_warning.FillEllipse(b, 5, 5, 20, 20);
+                        warning = true;
+                    }
+
+                }
+                else
+                {
+                    if (pbColorChanger.SetState(pb_battery, 2) == 2)
+                    {
+                        pbColorChanger.SetState(pb_battery, 1);
+                    }
+                    pb_battery.Value -= 2;
+
+                }
                 
 
 
             }
+            
         }
 
         private void refuel_timer_Tick(object sender, EventArgs e)

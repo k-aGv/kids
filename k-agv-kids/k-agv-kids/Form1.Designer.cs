@@ -74,6 +74,12 @@
             this.anim_timer = new System.Windows.Forms.Timer(this.components);
             this.load_timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.low_fuel = new System.Windows.Forms.Label();
+            this.global_warming_emissions_text = new System.Windows.Forms.Label();
+            this.thc_emissions_text = new System.Windows.Forms.Label();
+            this.nox_emissions_text = new System.Windows.Forms.Label();
+            this.co_emissions_text = new System.Windows.Forms.Label();
+            this.co2_emissions_text = new System.Windows.Forms.Label();
             this.global_warming_emissions_value = new System.Windows.Forms.Label();
             this.thc_emissions_value = new System.Windows.Forms.Label();
             this.nox_emissions_value = new System.Windows.Forms.Label();
@@ -94,12 +100,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.refuel_timer = new System.Windows.Forms.Timer(this.components);
             this.debugloads = new System.Windows.Forms.Label();
-            this.thc_emissions_text = new System.Windows.Forms.Label();
-            this.nox_emissions_text = new System.Windows.Forms.Label();
-            this.co_emissions_text = new System.Windows.Forms.Label();
-            this.co2_emissions_text = new System.Windows.Forms.Label();
-            this.global_warming_emissions_text = new System.Windows.Forms.Label();
-            this.low_fuel = new System.Windows.Forms.Label();
             this.lb_orderme = new System.Windows.Forms.Label();
             this.orderme_timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
@@ -143,7 +143,7 @@
             this.chooseLevelToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
             this.newGameToolStripMenuItem1.Text = "New";
             // 
             // newToolStripMenuItem
@@ -204,41 +204,41 @@
             this.scoreToolStripMenuItem,
             this.allToolStripMenuItem});
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // commandsToolStripMenuItem
             // 
             this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
-            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.commandsToolStripMenuItem.Text = "Commands";
             this.commandsToolStripMenuItem.Click += new System.EventHandler(this.commandsToolStripMenuItem_Click);
             // 
             // scoreToolStripMenuItem
             // 
             this.scoreToolStripMenuItem.Name = "scoreToolStripMenuItem";
-            this.scoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.scoreToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.scoreToolStripMenuItem.Text = "Score";
             this.scoreToolStripMenuItem.Click += new System.EventHandler(this.scoreToolStripMenuItem_Click);
             // 
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // levelEditorToolStripMenuItem
             // 
             this.levelEditorToolStripMenuItem.Name = "levelEditorToolStripMenuItem";
-            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.levelEditorToolStripMenuItem.Text = "Level Editor";
             this.levelEditorToolStripMenuItem.Click += new System.EventHandler(this.levelEditorToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -258,7 +258,7 @@
             this.petrolToolStripMenuItem,
             this.lPGToolStripMenuItem});
             this.vehicleTypeToolStripMenuItem.Name = "vehicleTypeToolStripMenuItem";
-            this.vehicleTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vehicleTypeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.vehicleTypeToolStripMenuItem.Text = "Vehicle Type";
             // 
             // batteryToolStripMenuItem
@@ -266,21 +266,21 @@
             this.batteryToolStripMenuItem.Checked = true;
             this.batteryToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.batteryToolStripMenuItem.Name = "batteryToolStripMenuItem";
-            this.batteryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.batteryToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.batteryToolStripMenuItem.Text = "Battery";
             this.batteryToolStripMenuItem.Click += new System.EventHandler(this.batteryToolStripMenuItem_Click);
             // 
             // petrolToolStripMenuItem
             // 
             this.petrolToolStripMenuItem.Name = "petrolToolStripMenuItem";
-            this.petrolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.petrolToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.petrolToolStripMenuItem.Text = "Petrol";
             this.petrolToolStripMenuItem.Click += new System.EventHandler(this.petrolToolStripMenuItem_Click);
             // 
             // lPGToolStripMenuItem
             // 
             this.lPGToolStripMenuItem.Name = "lPGToolStripMenuItem";
-            this.lPGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lPGToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.lPGToolStripMenuItem.Text = "LPG";
             this.lPGToolStripMenuItem.Click += new System.EventHandler(this.lPGToolStripMenuItem_Click);
             // 
@@ -291,7 +291,7 @@
             this.englishToolStripMenuItem});
             this.languageToolStripMenuItem.Enabled = false;
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.languageToolStripMenuItem.Text = "Language";
             // 
             // greekToolStripMenuItem
@@ -451,7 +451,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(943, 22);
+            this.label5.Location = new System.Drawing.Point(943, 27);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 4;
@@ -507,6 +507,55 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Vehicle status";
+            // 
+            // low_fuel
+            // 
+            this.low_fuel.AutoSize = true;
+            this.low_fuel.Location = new System.Drawing.Point(132, 37);
+            this.low_fuel.Name = "low_fuel";
+            this.low_fuel.Size = new System.Drawing.Size(0, 13);
+            this.low_fuel.TabIndex = 16;
+            this.low_fuel.Visible = false;
+            // 
+            // global_warming_emissions_text
+            // 
+            this.global_warming_emissions_text.AutoSize = true;
+            this.global_warming_emissions_text.Location = new System.Drawing.Point(157, 175);
+            this.global_warming_emissions_text.Name = "global_warming_emissions_text";
+            this.global_warming_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.global_warming_emissions_text.TabIndex = 15;
+            // 
+            // thc_emissions_text
+            // 
+            this.thc_emissions_text.AutoSize = true;
+            this.thc_emissions_text.Location = new System.Drawing.Point(127, 154);
+            this.thc_emissions_text.Name = "thc_emissions_text";
+            this.thc_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.thc_emissions_text.TabIndex = 14;
+            // 
+            // nox_emissions_text
+            // 
+            this.nox_emissions_text.AutoSize = true;
+            this.nox_emissions_text.Location = new System.Drawing.Point(127, 133);
+            this.nox_emissions_text.Name = "nox_emissions_text";
+            this.nox_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.nox_emissions_text.TabIndex = 13;
+            // 
+            // co_emissions_text
+            // 
+            this.co_emissions_text.AutoSize = true;
+            this.co_emissions_text.Location = new System.Drawing.Point(127, 112);
+            this.co_emissions_text.Name = "co_emissions_text";
+            this.co_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.co_emissions_text.TabIndex = 11;
+            // 
+            // co2_emissions_text
+            // 
+            this.co2_emissions_text.AutoSize = true;
+            this.co2_emissions_text.Location = new System.Drawing.Point(127, 91);
+            this.co2_emissions_text.Name = "co2_emissions_text";
+            this.co2_emissions_text.Size = new System.Drawing.Size(0, 13);
+            this.co2_emissions_text.TabIndex = 12;
             // 
             // global_warming_emissions_value
             // 
@@ -683,55 +732,6 @@
             this.debugloads.Size = new System.Drawing.Size(37, 13);
             this.debugloads.TabIndex = 14;
             this.debugloads.Text = "debug";
-            // 
-            // thc_emissions_text
-            // 
-            this.thc_emissions_text.AutoSize = true;
-            this.thc_emissions_text.Location = new System.Drawing.Point(127, 154);
-            this.thc_emissions_text.Name = "thc_emissions_text";
-            this.thc_emissions_text.Size = new System.Drawing.Size(0, 13);
-            this.thc_emissions_text.TabIndex = 14;
-            // 
-            // nox_emissions_text
-            // 
-            this.nox_emissions_text.AutoSize = true;
-            this.nox_emissions_text.Location = new System.Drawing.Point(127, 133);
-            this.nox_emissions_text.Name = "nox_emissions_text";
-            this.nox_emissions_text.Size = new System.Drawing.Size(0, 13);
-            this.nox_emissions_text.TabIndex = 13;
-            // 
-            // co_emissions_text
-            // 
-            this.co_emissions_text.AutoSize = true;
-            this.co_emissions_text.Location = new System.Drawing.Point(127, 112);
-            this.co_emissions_text.Name = "co_emissions_text";
-            this.co_emissions_text.Size = new System.Drawing.Size(0, 13);
-            this.co_emissions_text.TabIndex = 11;
-            // 
-            // co2_emissions_text
-            // 
-            this.co2_emissions_text.AutoSize = true;
-            this.co2_emissions_text.Location = new System.Drawing.Point(127, 91);
-            this.co2_emissions_text.Name = "co2_emissions_text";
-            this.co2_emissions_text.Size = new System.Drawing.Size(0, 13);
-            this.co2_emissions_text.TabIndex = 12;
-            // 
-            // global_warming_emissions_text
-            // 
-            this.global_warming_emissions_text.AutoSize = true;
-            this.global_warming_emissions_text.Location = new System.Drawing.Point(157, 175);
-            this.global_warming_emissions_text.Name = "global_warming_emissions_text";
-            this.global_warming_emissions_text.Size = new System.Drawing.Size(0, 13);
-            this.global_warming_emissions_text.TabIndex = 15;
-            // 
-            // low_fuel
-            // 
-            this.low_fuel.AutoSize = true;
-            this.low_fuel.Location = new System.Drawing.Point(132, 37);
-            this.low_fuel.Name = "low_fuel";
-            this.low_fuel.Size = new System.Drawing.Size(0, 13);
-            this.low_fuel.TabIndex = 16;
-            this.low_fuel.Visible = false;
             // 
             // lb_orderme
             // 
