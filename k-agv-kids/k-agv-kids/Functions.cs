@@ -376,8 +376,6 @@ namespace k_agv_kids
             animCounter = 0;
             commands_array = new char[500];
             array_counter = 0;
-            loads_c = 0;
-            obstacles_c = 0;
             Clipboard.Clear();
         }
 
@@ -400,6 +398,9 @@ namespace k_agv_kids
             global_warming_emissions_text.Text = "";
             global_warming_emissions_value.Text = "null";
             low_fuel.Visible = false;
+
+            loads_c = 0;
+            obstacles_c = 0;
 
             //vehicles enabled
             batteryToolStripMenuItem.Enabled = true;

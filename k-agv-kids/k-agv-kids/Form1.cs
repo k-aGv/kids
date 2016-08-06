@@ -196,14 +196,16 @@ namespace k_agv_kids
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            reset(false);
-            removeControls(game_panel, typeof(PictureBox));
+            
+            
             
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
 
             if (ofd_level.ShowDialog() == DialogResult.OK)
             {
+                removeControls(game_panel, typeof(PictureBox));
+                reset(false);
 
                 groupBox1.Visible = true;
                 StreamReader reader = new StreamReader(ofd_level.FileName);
