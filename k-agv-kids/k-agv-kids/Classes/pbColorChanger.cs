@@ -14,7 +14,7 @@ namespace k_agv_kids
     
     public static class pbColorChanger
     {
-        
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
         static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
         public static int SetState( ProgressBar pBar, int state)
         {
