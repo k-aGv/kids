@@ -271,6 +271,7 @@ namespace k_agv_kids
         int h;
         private void init()
         {
+            this.Text = "AGV Emulator - 1";
             w = this.Width;
             h = this.Height;
 
