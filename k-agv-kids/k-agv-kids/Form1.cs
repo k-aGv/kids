@@ -30,6 +30,7 @@ namespace k_agv_kids
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             init();
             //just to be initialized.
             kidagv = new agv(1);
@@ -670,6 +671,12 @@ namespace k_agv_kids
             }
            
 
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            this.Width = w;
+            this.Height = h;
         }
 
 

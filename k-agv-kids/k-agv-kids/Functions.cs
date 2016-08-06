@@ -267,8 +267,13 @@ namespace k_agv_kids
             //return Convert.ToString(Directory.GetCurrentDirectory() + "\\Resources\\");
 
         }
+        int w;
+        int h;
         private void init()
         {
+            w = this.Width;
+            h = this.Height;
+
             isRunning = false;
             isFirstRun = true;
 
