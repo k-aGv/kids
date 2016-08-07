@@ -13,15 +13,13 @@ namespace k_agv_kids
 {
     public partial class Form1 : Form
     {
-        public int _colorstate;
 
-        //variables to store form's height and width
-        int w;
-        int h;
-        
         bool isRunning = false;
         bool warning = false;
         bool isFirstRun = true;
+        bool drawnGridOnce = false;
+        bool cleanedOnce = false;
+        bool isCommandPressed = false;
 
         Graphics for_warning;
         Graphics for_grid;
@@ -34,8 +32,8 @@ namespace k_agv_kids
 
         int[] loads = new int[100];
         int loads_c=0; 
-        int k = 0; //test value-counter for loadreduceby1
-        int[] obstaclescounter = new int[100];
+        int loadCounter = 0; //test value-counter for loadreduceby1
+        int[] obstaclescounter = new int[1000];
         int obstacles_c=0;
         bool obstacle_found = false;
 
@@ -43,21 +41,19 @@ namespace k_agv_kids
         bool pb_color_change = false;
         bool pb_color_change_next_step = false;
 
-        agv kidagv;
+        agv myagv;
         int agvtype;
 
         int array_counter = 0;
         bool isLoaded = false;
         char[] commands_array;
 
-        int grid_res = 50;//levels should have a random resolution 
-
         int[,] map;
         int entrance_x, entrance_y;
         int exitCounter;
 
         int stationCounter;
-        int[] loadscounter = new int[100]; //this is something to count how many loads I have in my map
+        int[] loadscounter = new int[1000]; //this is something to count how many loads I have in my map
 
         int width_blocks, height_blocks, res_offset;
         string commands = "";
@@ -66,7 +62,6 @@ namespace k_agv_kids
         int animCounter = 0;
 
         int seconds = 0;
-
         int orderme_time = 0;
 
         //emissions
@@ -83,7 +78,7 @@ namespace k_agv_kids
                 agvtype = 1;
                 type.Text = "Battery";
                 type_label.Text = "Battery level:";
-                kidagv = new agv(1);
+                myagv = new agv(1);
                 pb_battery.Value = 100;
                 batteryToolStripMenuItem.Checked = true;
                 petrolToolStripMenuItem.Checked = false;
@@ -94,7 +89,7 @@ namespace k_agv_kids
                 agvtype = 2;
                 type.Text = "Petrol";
                 type_label.Text = "Petrol level:";
-                kidagv = new agv(2);
+                myagv = new agv(2);
                 //emissions has to start from value '0'
                 batteryToolStripMenuItem.Checked = false;
                 petrolToolStripMenuItem.Checked = true;
@@ -105,7 +100,7 @@ namespace k_agv_kids
                 agvtype = 3;
                 type.Text = "LPG";
                 type_label.Text = "LPG level:";
-                kidagv = new agv(3);
+                myagv = new agv(3);
                 //emissions has to start from value '0'
                 batteryToolStripMenuItem.Checked = false;
                 petrolToolStripMenuItem.Checked = false;
@@ -275,8 +270,6 @@ namespace k_agv_kids
         private void init()
         {
             this.Text = "AGV Emulator - 1";
-            w = this.Width;
-            h = this.Height;
 
             isRunning = false;
             isFirstRun = true;
@@ -288,7 +281,7 @@ namespace k_agv_kids
            
             pb_battery.Maximum = 100;
             pb_battery.Value = pb_battery.Maximum;
-            groupBox1.Visible = false;
+            groupBox1.Enabled = false;
             Clipboard.Clear();
 
             
@@ -323,7 +316,7 @@ namespace k_agv_kids
             pb_start.Visible = false;
 
             //clone the event to buttons
-            useArrows(true);
+            useArrows();
 
 
             //Richbox's backcolor.has to be same as picturebox's
@@ -339,6 +332,7 @@ namespace k_agv_kids
         /// <param name="grid_res">The grid resolution (Pixels)</param>
         private void drawGrid(int grid_res)
         {
+
             for_grid = game_panel.CreateGraphics();
             int a, b;
 
@@ -362,9 +356,11 @@ namespace k_agv_kids
             }
 
             updateWarningState();
+            drawnGridOnce = true;
+            cleanedOnce = false;
 
         }
-        bool isCommandPressed=false;
+        
         private void commandPressed(bool x)
         {
             isCommandPressed = x;
@@ -420,7 +416,7 @@ namespace k_agv_kids
             pb_color_change = false;
             pb_color_change_next_step = false;
 
-            cleanVars();
+            
 
             orderme_time = 0;
 
@@ -453,12 +449,12 @@ namespace k_agv_kids
             //Reset progress bars
            
             pbColorChanger.SetState(pb_battery, 1);
-           
+            cleanVars();
             if (fromWall)
             {
                 pb_start.Visible = true;
-                useArrows(true);
                 animCounter = 0;
+                
             }
             else
             {
@@ -671,14 +667,11 @@ namespace k_agv_kids
 
         private bool checkForLoad(PictureBox AGV,int i)
         {
-            int tempX = AGV.Location.X;
-            int tempy = AGV.Location.Y;
-
 
             if (AGV.Location.X == pb_array[loadscounter[i]].Location.X &&
                 AGV.Location.Y == pb_array[loadscounter[i]].Location.Y)
             {
-                k = i;
+                loadCounter = i;
                 return true;
             }
             else
@@ -790,11 +783,9 @@ namespace k_agv_kids
             return false;
             
         }
-        private void useArrows(bool t)
+        private void useArrows()
         {
-            if (t)
-            {
-
+          
                 pb_right.MouseDown += new MouseEventHandler(pb_left_MouseDown);
                 pb_right.MouseUp += new MouseEventHandler(pb_left_MouseUp);
 
@@ -810,26 +801,8 @@ namespace k_agv_kids
                 pb_start.MouseDown += new MouseEventHandler(pb_left_MouseDown);
                 pb_start.MouseUp += new MouseEventHandler(pb_left_MouseUp);
 
-            }
-            else
-            {
-                pb_right.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
-                pb_right.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
-
-                pb_up.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
-                pb_up.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
-
-                pb_down.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
-                pb_down.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
-
-                pb_lift.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
-                pb_lift.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
-
-                pb_start.MouseDown -= new MouseEventHandler(pb_left_MouseDown);
-                pb_start.MouseUp -= new MouseEventHandler(pb_left_MouseUp);
-            }
         }
-
+    
         //99% sorcery.Removes all controls drawn to panel.
         //nothing to explain here.dont expand!!!heartattack possibility
         private void removeControls(Control _c, Type _toBeRemoved)

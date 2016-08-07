@@ -135,13 +135,13 @@
             this.newGameToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
             this.newGameToolStripMenuItem1.Text = "New";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.exportToolStripMenuItem.Text = "Import";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -152,7 +152,7 @@
             this.scoreToolStripMenuItem,
             this.allToolStripMenuItem});
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // commandsToolStripMenuItem
@@ -179,14 +179,14 @@
             // levelEditorToolStripMenuItem
             // 
             this.levelEditorToolStripMenuItem.Name = "levelEditorToolStripMenuItem";
-            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.levelEditorToolStripMenuItem.Text = "Level Editor";
             this.levelEditorToolStripMenuItem.Click += new System.EventHandler(this.levelEditorToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -257,7 +257,7 @@
             // game_panel
             // 
             this.game_panel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.game_panel.Location = new System.Drawing.Point(257, 22);
+            this.game_panel.Location = new System.Drawing.Point(257, 25);
             this.game_panel.Name = "game_panel";
             this.game_panel.Size = new System.Drawing.Size(501, 351);
             this.game_panel.TabIndex = 1;
@@ -713,13 +713,14 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.game_panel);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
+            this.Move += new System.EventHandler(this.Form1_Move);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

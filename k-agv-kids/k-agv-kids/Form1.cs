@@ -30,126 +30,136 @@ namespace k_agv_kids
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
             init();
             //just to be initialized.
-            kidagv = new agv(1);
+            myagv = new agv(1);
             initType(1);
 
         }
 
         private void pb_left_MouseDown(object sender, MouseEventArgs e)
         {
-            Clipboard.Clear();//Empty the clipboard
-            Application.DoEvents();
-
-            //Tricky way to detect which button pressed
-            if ((sender as PictureBox).Name == "pb_left")
-            {
-                pb_backcolor = pb_left.BackColor;
-                pb_left.BackColor = Color.Gray;
-
-
-                _tempImage = new Bitmap(pb_left.Image, new Size(25, 25));//create new image based on PB's one
-                Clipboard.SetImage(_tempImage); //Set it to Clipboard
-                tb_commands.Paste(); //Paste it to RichBox
-                commands += "<";//add the command to our 'command vault'
-                commandCounter++;
-                commandPressed(true);
-               
-            }
-            else if ((sender as PictureBox).Name == "pb_right")
-            {
-                pb_backcolor = pb_left.BackColor;
-                pb_right.BackColor = Color.Gray;
-
-
-                _tempImage = new Bitmap(pb_right.Image, new Size(25, 25));//create new image based on PB's one
-                Clipboard.SetImage(_tempImage); //Set it to Clipboard
-                tb_commands.Paste(); //Paste it to RichBox
-                commands += ">";//add the command to our 'command vault'
-                commandCounter++;
-                commandPressed(true);
-               
-            }
-            else if ((sender as PictureBox).Name == "pb_up")
-            {
-                pb_backcolor = pb_left.BackColor;
-                pb_up.BackColor = Color.Gray;
-
-
-                _tempImage = new Bitmap(pb_up.Image, new Size(25, 25));//create new image based on PB's one
-                Clipboard.SetImage(_tempImage); //Set it to Clipboard
-                tb_commands.Paste(); //Paste it to RichBox
-                commands += "^";//add the command to our 'command vault'
-                commandCounter++;
-                commandPressed(true);
+           
                 
-            }
-            else if ((sender as PictureBox).Name == "pb_down")
-            {
-                pb_backcolor = pb_left.BackColor;
-                pb_down.BackColor = Color.Gray;
+                Clipboard.Clear();//Empty the clipboard
+                Application.DoEvents();
 
-
-                _tempImage = new Bitmap(pb_down.Image, new Size(25, 25));//create new image based on PB's one
-                Clipboard.SetImage(_tempImage); //Set it to Clipboard
-                tb_commands.Paste(); //Paste it to RichBox
-                commands += "V";//add the command to our 'command vault'
-                commandCounter++;
-                commandPressed(true);
-               
-            }
-            else if ((sender as PictureBox).Name == "pb_lift")
-            {
-                pb_backcolor = pb_left.BackColor;
-                pb_lift.BackColor = Color.Gray;
-
-
-                _tempImage = new Bitmap(pb_lift.Image, new Size(25, 25));//create new image based on PB's one
-                Clipboard.SetImage(_tempImage); //Set it to Clipboard
-                tb_commands.Paste(); //Paste it to RichBox
-                commands += "L";//add the command to our 'command vault'
-                commandCounter++;
-                commandPressed(true);
-                
-            }
-            else if ((sender as PictureBox).Name == "pb_start") //pb_start.THIS IS WHY THERE IS NO EVENT ON PLAY BUTTON.
-            {
-                if (!commandPressed())
+                //Tricky way to detect which button pressed
+                if ((sender as PictureBox).Name == "pb_left")
                 {
-                  //if no command pressed ,get the PLAY button out of order
-                    orderme_timer.Start();
+                    pb_backcolor = pb_left.BackColor;
+                    pb_left.BackColor = Color.Gray;
 
-                    return;
+
+                    _tempImage = new Bitmap(pb_left.Image, new Size(25, 25));//create new image based on PB's one
+                    Clipboard.SetImage(_tempImage); //Set it to Clipboard
+                    tb_commands.Paste(); //Paste it to RichBox
+                    commands += "<";//add the command to our 'command vault'
+                    commandCounter++;
+                    commandPressed(true);
+
                 }
-
-                if (batteryToolStripMenuItem.Enabled)
+                else if ((sender as PictureBox).Name == "pb_right")
                 {
-                    batteryToolStripMenuItem.Enabled = false;
-                    petrolToolStripMenuItem.Enabled = false;
-                    lPGToolStripMenuItem.Enabled = false;
+                    pb_backcolor = pb_left.BackColor;
+                    pb_right.BackColor = Color.Gray;
+
+
+                    _tempImage = new Bitmap(pb_right.Image, new Size(25, 25));//create new image based on PB's one
+                    Clipboard.SetImage(_tempImage); //Set it to Clipboard
+                    tb_commands.Paste(); //Paste it to RichBox
+                    commands += ">";//add the command to our 'command vault'
+                    commandCounter++;
+                    commandPressed(true);
+
                 }
-
-                isRunning = !isRunning;
-
-                if (isRunning)
+                else if ((sender as PictureBox).Name == "pb_up")
                 {
+                    pb_backcolor = pb_left.BackColor;
+                    pb_up.BackColor = Color.Gray;
 
-                    pb_start.Image = Image.FromFile(getResDir() + "start.png");
-                    commands_array = new char[500];
-                    commands_array = commands.ToCharArray();
+
+                    _tempImage = new Bitmap(pb_up.Image, new Size(25, 25));//create new image based on PB's one
+                    Clipboard.SetImage(_tempImage); //Set it to Clipboard
+                    tb_commands.Paste(); //Paste it to RichBox
+                    commands += "^";//add the command to our 'command vault'
+                    commandCounter++;
+                    commandPressed(true);
+
+                }
+                else if ((sender as PictureBox).Name == "pb_down")
+                {
+                    pb_backcolor = pb_left.BackColor;
+                    pb_down.BackColor = Color.Gray;
+
+
+                    _tempImage = new Bitmap(pb_down.Image, new Size(25, 25));//create new image based on PB's one
+                    Clipboard.SetImage(_tempImage); //Set it to Clipboard
+                    tb_commands.Paste(); //Paste it to RichBox
+                    commands += "V";//add the command to our 'command vault'
+                    commandCounter++;
+                    commandPressed(true);
+
+                }
+                else if ((sender as PictureBox).Name == "pb_lift")
+                {
+                    pb_backcolor = pb_left.BackColor;
+                    pb_lift.BackColor = Color.Gray;
+
+
+                    _tempImage = new Bitmap(pb_lift.Image, new Size(25, 25));//create new image based on PB's one
+                    Clipboard.SetImage(_tempImage); //Set it to Clipboard
+                    tb_commands.Paste(); //Paste it to RichBox
+                    commands += "L";//add the command to our 'command vault'
+                    commandCounter++;
+                    commandPressed(true);
+
+                }
+                else if ((sender as PictureBox).Name == "pb_start") //pb_start.THIS IS WHY THERE IS NO EVENT ON PLAY BUTTON.
+                {
                     if (isFirstRun)
                     {
-                        isFirstRun = !isFirstRun;
+                        isRunning = true;
                     }
-                    anim_timer.Start();
-                }
-                else
-                { 
-                    anim_timer.Stop();  
-                }
+                
+                    if (!commandPressed())
+                    {
+                        //if no command pressed ,get the PLAY button out of order
+                        orderme_timer.Start();
+
+                        return;
+                    }
+
+                    if (batteryToolStripMenuItem.Enabled)
+                    {
+                        batteryToolStripMenuItem.Enabled = false;
+                        petrolToolStripMenuItem.Enabled = false;
+                        lPGToolStripMenuItem.Enabled = false;
+                    }
+
+                   
+                    if (isRunning)
+                    {
+
+                        pb_start.Image = Image.FromFile(getResDir() + "start.png");
+                        commands_array = new char[500];
+                        commands_array = commands.ToCharArray();
+                        if (isFirstRun)
+                        {
+                            isFirstRun = !isFirstRun;
+                        }
+                        anim_timer.Start();
+                    }
+                    else
+                    {
+                        groupBox1.Enabled = true;
+                        anim_timer.Stop();
+                    }
+                    isRunning = !isRunning;
+
             }
+            
         }
         private void pb_left_MouseUp(object sender, MouseEventArgs e)
         {
@@ -179,12 +189,7 @@ namespace k_agv_kids
             reset(false);
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            reset(false);
-            drawGrid(grid_res);
-            //StartFromLevel_1();
-        }
+
 
         private void levelEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -208,7 +213,7 @@ namespace k_agv_kids
                 removeControls(game_panel, typeof(PictureBox));
                 reset(false);
 
-                groupBox1.Visible = true;
+                groupBox1.Enabled = true;
                 StreamReader reader = new StreamReader(ofd_level.FileName);
 
                 reader.ReadLine();//read the first line "Map Info:"
@@ -287,24 +292,22 @@ namespace k_agv_kids
 
         private void anim_timer_Tick(object sender, EventArgs e)
         {
-            
 
+           groupBox1.Enabled = false;
             pb_start.Visible = false;
             if (animCounter == commandCounter)
             {
                
                 pb_start.Visible = true;
-                useArrows(true);
                 commandPressed(false);
                 isRunning = !isRunning;
                 cleanVars();
+               groupBox1.Enabled = true;
                 anim_timer.Stop();
                 return;
             }
             else
             {
-                useArrows(false);
-               
 
                 score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
                 if (commands_array[animCounter] == '<') //move 1 box left
@@ -345,6 +348,7 @@ namespace k_agv_kids
                         reset(true);
                         warning = true;
                         updateWarningState();
+                        groupBox1.Enabled = true;
                         anim_timer.Stop();
                     }
                 }
@@ -367,6 +371,7 @@ namespace k_agv_kids
                             // MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
+                           groupBox1.Enabled = true;
                             anim_timer.Stop();
 
                         }
@@ -385,6 +390,7 @@ namespace k_agv_kids
                         reset(true);
                         warning = true;
                         updateWarningState();
+                       groupBox1.Enabled = true;
                         anim_timer.Stop();
                     }
 
@@ -411,6 +417,7 @@ namespace k_agv_kids
                             //MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
+                           groupBox1.Enabled = true;
                             anim_timer.Stop();
                         }
                         else
@@ -428,6 +435,7 @@ namespace k_agv_kids
                         reset(true);
                         warning = true;
                         updateWarningState();
+                       groupBox1.Enabled = true;
                         anim_timer.Stop();
                     }
 
@@ -452,6 +460,7 @@ namespace k_agv_kids
                             //MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
+                           groupBox1.Enabled = true;
                             anim_timer.Stop();
                         }
                         else
@@ -469,6 +478,7 @@ namespace k_agv_kids
                         reset(true);
                         warning = true;
                         updateWarningState();
+                       groupBox1.Enabled = true;
                         anim_timer.Stop();
                     }
 
@@ -484,9 +494,9 @@ namespace k_agv_kids
                             {
                                 agv.Image = Image.FromFile(getResDir() + "half.png");
                                 load_timer.Start();
-                                loadsreduceby1(k);
+                                loadsreduceby1(loadCounter);
 
-
+                               groupBox1.Enabled = true;
                                 anim_timer.Stop(); //re-enabled because load would cause agv to stuck
                             }
                         }
@@ -497,14 +507,11 @@ namespace k_agv_kids
                         }
 
                     }
-                    k = 0;
+                    loadCounter = 0;
                     animCounter++;
                 }
 
-                if (checkForFuelStation(agv) && wantGetRefuelled())
-                {
-                    getRefuelled();
-                }
+              
 
                 if (pb_battery.Value < pb_battery.Maximum - 60)
                 {
@@ -530,8 +537,11 @@ namespace k_agv_kids
                     {
                         pb_battery.Value = pb_battery.Minimum;
                         MessageBox.Show("You have ran out of fuel.\r\nGame is Over");
-                        if(anim_timer.Enabled)
+                        if (anim_timer.Enabled)
+                        {
+                           groupBox1.Enabled = true;
                             anim_timer.Stop();
+                        }
                         pb_start.Visible = false;
                     }
 
@@ -555,7 +565,10 @@ namespace k_agv_kids
                     pb_battery.Value -= 2;
 
                 }
-                
+                if (checkForFuelStation(agv) && wantGetRefuelled())
+                {
+                    getRefuelled();
+                }
             }
             
         }
@@ -569,6 +582,7 @@ namespace k_agv_kids
             if (seconds == 3)
             {
                 anim_timer.Start();
+                groupBox1.Enabled = true;
                 refuel_timer.Stop();
             }
 
@@ -578,7 +592,7 @@ namespace k_agv_kids
         {
                 agv.Image = Image.FromFile(getResDir() + "full.png");
                 isLoaded = true;
-                
+               groupBox1.Enabled = true;
                 load_timer.Stop();
                 anim_timer.Start();
         }
@@ -606,16 +620,43 @@ namespace k_agv_kids
             {
                 lb_orderme.Visible = false;
                 orderme_time = 0;
+               groupBox1.Enabled = true;
                 orderme_timer.Stop();
             }
            
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e)
+
+        private void Form1_Move(object sender, EventArgs e)
         {
-            this.Width = w;
-            this.Height = h;
+            int offsetX = this.Location.X + game_panel.Location.X + game_panel.Width + 30;
+            int offsetY =  this.Location.Y + game_panel.Location.Y + game_panel.Height + 30;
+            if (offsetX > Screen.PrimaryScreen.Bounds.Width-offsetX
+                ||offsetY > Screen.PrimaryScreen.Bounds.Height-(game_panel.Width+game_panel.Location.X)
+                 )
+            {
+                if (drawnGridOnce)
+                {
+                    game_panel.Refresh();
+                    drawGrid(res_offset);
+                    cleanedOnce = true;
+                }
+
+            }
+            else
+            {
+                if (cleanedOnce)
+                {
+                    drawGrid(res_offset);
+                }
+            }
+            
+          
         }
+
+       
+
+      
 
     }
 }
