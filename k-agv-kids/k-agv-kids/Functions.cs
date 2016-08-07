@@ -405,8 +405,6 @@ namespace k_agv_kids
             global_warming_emissions_value.Text = "null";
             low_fuel.Visible = false;
 
-            //loads_c = 0;
-            //obstacles_c = 0;
 
             //vehicles enabled
             batteryToolStripMenuItem.Enabled = true;
@@ -675,7 +673,6 @@ namespace k_agv_kids
                 loadCounter = i;
                 if (loads[currentLoadQuantity] == 0)
                 {
-                   // MessageBox.Show("adiase");
                     return false;
                 }
                 return true;
@@ -742,6 +739,8 @@ namespace k_agv_kids
             pb_battery.Value = pb_battery.Maximum;
             low_fuel.Visible = false;
             pbColorChanger.SetState(pb_battery, 1);
+            pb_color_change=false;
+            pb_color_change_next_step = false;
             using (SolidBrush b = new SolidBrush(Color.Green))
             {
                 for_warning.FillEllipse(b, 5, 5, 20, 20);

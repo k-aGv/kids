@@ -330,7 +330,6 @@ namespace k_agv_kids
                     {
                         if (isWallOnNextMove('<'))
                         {
-                            // MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
                         }
@@ -372,7 +371,6 @@ namespace k_agv_kids
                     {
                         if (isWallOnNextMove('>'))
                         {
-                            // MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
                             groupBox1.Enabled = true;
@@ -418,8 +416,6 @@ namespace k_agv_kids
                     {
                         if (isWallOnNextMove('V'))
                         {
-
-                            //MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
                             groupBox1.Enabled = true;
@@ -463,8 +459,6 @@ namespace k_agv_kids
                     {
                         if (isWallOnNextMove('^'))
                         {
-                            //MessageBox.Show("Ntouvari panw");
-                            //MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
                             groupBox1.Enabled = true;
@@ -494,12 +488,10 @@ namespace k_agv_kids
                 }
                 else //lift
                 {
-                    //MessageBox.Show("Load");
                     for (int i = 0; i < loads_c; i++)
                     {
                         if (checkForLoad(agv, i))
                         {
-                            //MessageBox.Show("Exw load na sikwsw");
                             if (!isLoaded)
                             {
                                 agv.Image = Image.FromFile(getResDir() + "half.png");
@@ -546,6 +538,7 @@ namespace k_agv_kids
                     else
                     {
                         pb_battery.Value = pb_battery.Minimum;
+                        anim_timer.Stop();
                         MessageBox.Show("You have ran out of fuel.\r\nGame is Over");
                         if (anim_timer.Enabled)
                         {
