@@ -201,7 +201,7 @@ namespace k_agv_kids
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
             
             
             
@@ -212,6 +212,9 @@ namespace k_agv_kids
             {
                 removeControls(game_panel, typeof(PictureBox));
                 reset(false);
+
+                loads_c = 0;
+                obstacles_c = 0;
 
                 groupBox1.Enabled = true;
                 StreamReader reader = new StreamReader(ofd_level.FileName);
@@ -293,7 +296,7 @@ namespace k_agv_kids
         private void anim_timer_Tick(object sender, EventArgs e)
         {
 
-           groupBox1.Enabled = false;
+            groupBox1.Enabled = false;
             pb_start.Visible = false;
             if (animCounter == commandCounter)
             {
@@ -302,7 +305,7 @@ namespace k_agv_kids
                 commandPressed(false);
                 isRunning = !isRunning;
                 cleanVars();
-               groupBox1.Enabled = true;
+                groupBox1.Enabled = true;
                 anim_timer.Stop();
                 return;
             }
@@ -338,13 +341,14 @@ namespace k_agv_kids
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 1;
                             animCounter++;
 
                         }
                     }
                     else
                     {
+                        warning = false;
+                        updateWarningState();
                         reset(true);
                         warning = true;
                         updateWarningState();
@@ -371,17 +375,18 @@ namespace k_agv_kids
                             // MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
-                           groupBox1.Enabled = true;
+                            groupBox1.Enabled = true;
                             anim_timer.Stop();
 
                         }
                         else
                         {
+                            warning = false;
+                            updateWarningState();
                             tempLocation = new Point(agv.Location.X + res_offset, agv.Location.Y);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -390,7 +395,7 @@ namespace k_agv_kids
                         reset(true);
                         warning = true;
                         updateWarningState();
-                       groupBox1.Enabled = true;
+                        groupBox1.Enabled = true;
                         anim_timer.Stop();
                     }
 
@@ -417,16 +422,17 @@ namespace k_agv_kids
                             //MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
-                           groupBox1.Enabled = true;
+                            groupBox1.Enabled = true;
                             anim_timer.Stop();
                         }
                         else
                         {
+                            warning = false;
+                            updateWarningState();
                             tempLocation = new Point(agv.Location.X, agv.Location.Y + res_offset);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 10;
                             animCounter++;
                         }
                     }
@@ -435,7 +441,7 @@ namespace k_agv_kids
                         reset(true);
                         warning = true;
                         updateWarningState();
-                       groupBox1.Enabled = true;
+                        groupBox1.Enabled = true;
                         anim_timer.Stop();
                     }
 
@@ -457,19 +463,21 @@ namespace k_agv_kids
                     {
                         if (isWallOnNextMove('^'))
                         {
+                            //MessageBox.Show("Ntouvari panw");
                             //MessageBox.Show("Wall ahead!Give me commands again!");
                             warning = true;
                             updateWarningState();
-                           groupBox1.Enabled = true;
+                            groupBox1.Enabled = true;
                             anim_timer.Stop();
                         }
                         else
                         {
+                            warning = false;
+                            updateWarningState();
                             tempLocation = new Point(agv.Location.X, agv.Location.Y - res_offset);
                             agv.Location = tempLocation;
                             drawGrid(res_offset);
                             emissions(agvtype);
-                            //pb_battery.Value -= 1;
                             animCounter++;
                         }
                     }
@@ -478,7 +486,7 @@ namespace k_agv_kids
                         reset(true);
                         warning = true;
                         updateWarningState();
-                       groupBox1.Enabled = true;
+                        groupBox1.Enabled = true;
                         anim_timer.Stop();
                     }
 
@@ -486,17 +494,19 @@ namespace k_agv_kids
                 }
                 else //lift
                 {
+                    //MessageBox.Show("Load");
                     for (int i = 0; i < loads_c; i++)
                     {
                         if (checkForLoad(agv, i))
                         {
+                            //MessageBox.Show("Exw load na sikwsw");
                             if (!isLoaded)
                             {
                                 agv.Image = Image.FromFile(getResDir() + "half.png");
                                 load_timer.Start();
                                 loadsreduceby1(loadCounter);
 
-                               groupBox1.Enabled = true;
+                                groupBox1.Enabled = true;
                                 anim_timer.Stop(); //re-enabled because load would cause agv to stuck
                             }
                         }
@@ -592,7 +602,7 @@ namespace k_agv_kids
         {
                 agv.Image = Image.FromFile(getResDir() + "full.png");
                 isLoaded = true;
-               groupBox1.Enabled = true;
+                groupBox1.Enabled = true;
                 load_timer.Stop();
                 anim_timer.Start();
         }

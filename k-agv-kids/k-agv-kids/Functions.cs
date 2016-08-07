@@ -30,6 +30,7 @@ namespace k_agv_kids
         PictureBox agv = new PictureBox();
         PictureBox[] pb_array = new PictureBox[100];
 
+        int currentLoadQuantity; //usage: represent the array cell which contains the current picturebox's remaining loads
         int[] loads = new int[100];
         int loads_c=0; 
         int loadCounter = 0; //test value-counter for loadreduceby1
@@ -404,8 +405,8 @@ namespace k_agv_kids
             global_warming_emissions_value.Text = "null";
             low_fuel.Visible = false;
 
-            loads_c = 0;
-            obstacles_c = 0;
+            //loads_c = 0;
+            //obstacles_c = 0;
 
             //vehicles enabled
             batteryToolStripMenuItem.Enabled = true;
@@ -672,10 +673,17 @@ namespace k_agv_kids
                 AGV.Location.Y == pb_array[loadscounter[i]].Location.Y)
             {
                 loadCounter = i;
+                if (loads[currentLoadQuantity] == 0)
+                {
+                   // MessageBox.Show("adiase");
+                    return false;
+                }
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
 
         private bool checkForExit(PictureBox AGV)
@@ -704,8 +712,11 @@ namespace k_agv_kids
                 break;
             }
             if (loads[index] == 0)
+            {
                 pb_array[loadscounter[index]].Image = null;
-
+               
+            }
+            currentLoadQuantity = index;
         }
         private bool wantGetRefuelled()
         {
