@@ -575,21 +575,7 @@ namespace k_agv_kids
             
         }
 
-        private void refuel_timer_Tick(object sender, EventArgs e)
-        {
-            debug2.Text = "Refuelling " + (3 - seconds);
-            System.Threading.Thread.Sleep(500);//We need sleep here because we want to stop animation while it is refuelling
 
-            seconds++;
-            if (seconds == 3)
-            {
-                anim_timer.Start();
-                groupBox1.Enabled = true;
-                pb_start.Visible = true;
-                refuel_timer.Stop();
-            }
-
-        }
 
         private void load_timer_Tick(object sender, EventArgs e)
         {

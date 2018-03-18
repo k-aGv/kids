@@ -62,8 +62,6 @@ namespace k_agv_kids
         int commandCounter = 0;
         Point tempLocation = new Point(0, 0);
         int animCounter = 0;
-
-        int seconds = 0;
         int orderme_time = 0;
 
         //emissions
@@ -684,9 +682,6 @@ namespace k_agv_kids
         }
         private void getRefuelled()
         {
-            seconds = 0; //if removed, refuel will keep counting reaching negative numbers (refuel will fail)
-        
-
             pb_battery.Value = pb_battery.Maximum;
             low_fuel.Visible = false;
             pbColorChanger.SetState(pb_battery, 1);
