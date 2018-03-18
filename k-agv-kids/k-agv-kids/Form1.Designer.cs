@@ -59,7 +59,7 @@
             this.lift_label = new System.Windows.Forms.Label();
             this.lift_state = new System.Windows.Forms.Label();
             this.score_label = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lb_steps = new System.Windows.Forms.Label();
             this.tb_commands = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pb_start = new System.Windows.Forms.PictureBox();
@@ -138,7 +138,7 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Import";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -315,7 +315,7 @@
             this.groupBox2.Controls.Add(this.lift_label);
             this.groupBox2.Controls.Add(this.lift_state);
             this.groupBox2.Controls.Add(this.score_label);
-            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.lb_steps);
             this.groupBox2.Location = new System.Drawing.Point(12, 27);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(225, 95);
@@ -367,14 +367,14 @@
             this.score_label.TabIndex = 3;
             this.score_label.Text = "0";
             // 
-            // label1
+            // lb_steps
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Score:";
+            this.lb_steps.AutoSize = true;
+            this.lb_steps.Location = new System.Drawing.Point(7, 42);
+            this.lb_steps.Name = "lb_steps";
+            this.lb_steps.Size = new System.Drawing.Size(32, 13);
+            this.lb_steps.TabIndex = 0;
+            this.lb_steps.Text = "Step:";
             // 
             // tb_commands
             // 
@@ -739,7 +739,7 @@
         private System.Windows.Forms.PictureBox pb_lift;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label score_label;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_steps;
         private System.Windows.Forms.Label lift_label;
         private System.Windows.Forms.Label lift_state;
         private System.Windows.Forms.Panel warning_panel;

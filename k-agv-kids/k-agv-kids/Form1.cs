@@ -311,7 +311,7 @@ namespace k_agv_kids
             else
             {
 
-                score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 10);
+                score_label.Text = Convert.ToString(Convert.ToInt32(score_label.Text) + 1);
                 if (commands_array[animCounter] == '<') //move 1 box left
                 {
                     int i = 0;
