@@ -194,8 +194,8 @@ namespace k_agv_kids
         private void levelEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Run the editor.RELEASE ONLY
-            //Process.Start(Directory.GetCurrentDirectory() + "\\editor.exe");
-            MessageBox.Show("This feature is working only on release version.\r\nPlease build from scratch.");
+            System.Diagnostics.Process.Start(editorDir);
+           // MessageBox.Show("This feature is working only on release version.\r\nPlease build from scratch.");
         }
 
 

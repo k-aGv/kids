@@ -37,7 +37,6 @@
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.levelEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,7 +123,6 @@
             this.newGameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newGameToolStripMenuItem1,
             this.clearToolStripMenuItem,
-            this.levelEditorToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
             this.newGameToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
@@ -135,7 +133,7 @@
             this.newGameToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.newGameToolStripMenuItem1.Text = "New";
             // 
             // exportToolStripMenuItem
@@ -152,7 +150,7 @@
             this.scoreToolStripMenuItem,
             this.allToolStripMenuItem});
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // commandsToolStripMenuItem
@@ -176,17 +174,10 @@
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
-            // levelEditorToolStripMenuItem
-            // 
-            this.levelEditorToolStripMenuItem.Name = "levelEditorToolStripMenuItem";
-            this.levelEditorToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.levelEditorToolStripMenuItem.Text = "Level Editor";
-            this.levelEditorToolStripMenuItem.Click += new System.EventHandler(this.levelEditorToolStripMenuItem_Click);
-            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -206,7 +197,7 @@
             this.petrolToolStripMenuItem,
             this.lPGToolStripMenuItem});
             this.vehicleTypeToolStripMenuItem.Name = "vehicleTypeToolStripMenuItem";
-            this.vehicleTypeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.vehicleTypeToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.vehicleTypeToolStripMenuItem.Text = "Vehicle Type";
             // 
             // batteryToolStripMenuItem
@@ -239,7 +230,7 @@
             this.englishToolStripMenuItem});
             this.languageToolStripMenuItem.Enabled = false;
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            this.languageToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.languageToolStripMenuItem.Text = "Language";
             // 
             // greekToolStripMenuItem
@@ -771,7 +762,6 @@
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.PictureBox pb_start;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem levelEditorToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofd_level;
         private System.Windows.Forms.Timer anim_timer;
         private System.Windows.Forms.Timer load_timer;

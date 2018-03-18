@@ -13,7 +13,7 @@ namespace k_agv_kids
 {
     public partial class Form1 : Form
     {
-
+        string editorDir = Convert.ToString(Directory.GetCurrentDirectory() + "\\Resources\\_editor\\k-agv-editor.exe");
         bool isRunning = false;
         bool warning = false;
         bool isFirstRun = true;
@@ -37,6 +37,7 @@ namespace k_agv_kids
         int[] obstaclescounter = new int[1000];
         int obstacles_c=0;
         bool obstacle_found = false;
+        
 
         //pb_battery bools
         bool pb_color_change = false;
