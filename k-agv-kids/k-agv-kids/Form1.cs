@@ -205,7 +205,7 @@ namespace k_agv_kids
             
             ofd_level.Filter = "k-aGv Map (*.kmap)|*.kmap";
             ofd_level.FileName = "";
-            ofd_level.InitialDirectory = Directory.GetCurrentDirectory();
+            ofd_level.InitialDirectory = Directory.GetCurrentDirectory()+"\\Resources\\levels";
 
             if (ofd_level.ShowDialog() == DialogResult.OK)
             {
