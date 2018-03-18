@@ -671,7 +671,7 @@ namespace k_agv_kids
                 return true;
             else
             {
-                anim_timer.Start();//restart time to continue the commands execution
+                //anim_timer.Start();//restart time to continue the commands execution
                 return false;
             }
 
