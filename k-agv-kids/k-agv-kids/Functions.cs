@@ -314,7 +314,7 @@ namespace k_agv_kids
 
 
             //Richbox's backcolor.has to be same as picturebox's
-            tb_commands.BackColor = game_panel.BackColor;
+            tb_commands.BackColor = Color.LightGray ;
 
 
 
