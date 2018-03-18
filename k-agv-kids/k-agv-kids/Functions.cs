@@ -13,6 +13,21 @@ namespace k_agv_kids
 {
     public partial class Form1 : Form
     {
+        public class Utils
+        {
+            [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+            private static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
+
+            private const int WM_VSCROLL = 277;
+            private const int SB_BOTTOM = 7;
+
+            public static void ScrollToBottom(RichTextBox tb)
+            {
+                SendMessage(tb.Handle, WM_VSCROLL, new IntPtr(SB_BOTTOM), IntPtr.Zero);
+            }
+
+        }
+
         string editorDir = Convert.ToString(Directory.GetCurrentDirectory() + "\\Resources\\_editor\\k-agv-editor.exe");
         bool isRunning = false;
         bool warning = false;

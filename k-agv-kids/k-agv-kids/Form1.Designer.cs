@@ -381,6 +381,7 @@
             this.tb_commands.TabIndex = 0;
             this.tb_commands.TabStop = false;
             this.tb_commands.Text = "";
+            this.tb_commands.TextChanged += new System.EventHandler(this.tb_commands_TextChanged);
             // 
             // label5
             // 

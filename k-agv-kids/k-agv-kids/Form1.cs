@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
 
-using System.Runtime.InteropServices;
 namespace k_agv_kids
 {
 
@@ -643,9 +642,12 @@ namespace k_agv_kids
           
         }
 
-       
+     
 
-      
 
+        private void tb_commands_TextChanged(object sender, EventArgs e)
+        {
+            Utils.ScrollToBottom(tb_commands);
+        }
     }
 }
