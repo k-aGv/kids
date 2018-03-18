@@ -668,7 +668,7 @@ namespace k_agv_kids
         }
         private bool wantGetRefuelled()
         {
-            anim_timer.Stop();
+        
             debug2.Text = "Fuel Station Nearby";
             DialogResult choise = MessageBox.Show("AGV is next to fuel station\r\nRefuel?"
                                                , "Nearby fuel station!"
@@ -685,7 +685,7 @@ namespace k_agv_kids
         private void getRefuelled()
         {
             seconds = 0; //if removed, refuel will keep counting reaching negative numbers (refuel will fail)
-            refuel_timer.Start();
+        
 
             pb_battery.Value = pb_battery.Maximum;
             low_fuel.Visible = false;

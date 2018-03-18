@@ -91,7 +91,6 @@
             this.debug = new System.Windows.Forms.Label();
             this.debug2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.refuel_timer = new System.Windows.Forms.Timer(this.components);
             this.debugloads = new System.Windows.Forms.Label();
             this.lb_orderme = new System.Windows.Forms.Label();
             this.orderme_timer = new System.Windows.Forms.Timer(this.components);
@@ -658,11 +657,6 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "label2";
             // 
-            // refuel_timer
-            // 
-            this.refuel_timer.Interval = 1000;
-            this.refuel_timer.Tick += new System.EventHandler(this.refuel_timer_Tick);
-            // 
             // debugloads
             // 
             this.debugloads.AutoSize = true;
@@ -780,7 +774,6 @@
         private System.Windows.Forms.Label debug;
         private System.Windows.Forms.Label debug2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Timer refuel_timer;
         private System.Windows.Forms.Label co_emissions_value;
         private System.Windows.Forms.Label co2_emissions_value;
         private System.Windows.Forms.Label debugloads;
