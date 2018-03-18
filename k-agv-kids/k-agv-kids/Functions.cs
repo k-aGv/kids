@@ -316,6 +316,15 @@ namespace k_agv_kids
             //Richbox's backcolor.has to be same as picturebox's
             tb_commands.BackColor = Color.LightGray ;
 
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.UserPaint |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.ResizeRedraw |
+                          ControlStyles.ContainerControl |
+                          ControlStyles.OptimizedDoubleBuffer |
+                          ControlStyles.SupportsTransparentBackColor
+                          , true);
+
 
 
         }
@@ -502,7 +511,7 @@ namespace k_agv_kids
             agv.BackColor = game_panel.BackColor;
             agv.BorderStyle = BorderStyle.FixedSingle;
             agv.SizeMode = PictureBoxSizeMode.StretchImage;
-            agv.Size = new Size(res_offset + 1, res_offset + 1);
+            agv.Size = new Size(res_offset+1 , res_offset +1);
             agv.Visible = true;
             agv.Image = Image.FromFile(getResDir() + "empty.png");
             game_panel.Controls.Add(agv);
