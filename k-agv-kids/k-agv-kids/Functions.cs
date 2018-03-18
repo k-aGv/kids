@@ -475,6 +475,8 @@ namespace k_agv_kids
                 using (SolidBrush b = new SolidBrush(Color.Red))
                 {
                     for_warning.FillEllipse(b, 5, 5, 20, 20);
+                    MessageBox.Show(this, "Game over...Please try again.", "sdsd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    allToolStripMenuItem_Click(new object(), new EventArgs());
                 }
             }
         }
