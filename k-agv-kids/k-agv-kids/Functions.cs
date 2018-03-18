@@ -565,57 +565,13 @@ namespace k_agv_kids
 
             int tempX = AGV.Location.X;
             int tempy = AGV.Location.Y;
-            //it could be done with a single if but i need things tided...
-            
-            //check if station is on the RIGHT block of agv
-            if (AGV.Location.X + res_offset == pb_array[stationCounter].Location.X
+           
+            //check if agv is ON the station
+            if (AGV.Location.X == pb_array[stationCounter].Location.X
                    && AGV.Location.Y == pb_array[stationCounter].Location.Y)
             {
                 return true;
             }
-            //check if station is on the LEFT block of agv
-            else if (AGV.Location.X - res_offset == pb_array[stationCounter].Location.X
-                   && AGV.Location.Y == pb_array[stationCounter].Location.Y)
-            {
-                return true;
-            }
-            //check if station is on the UPPER block of agv
-            else if (AGV.Location.X == pb_array[stationCounter].Location.X
-                  && AGV.Location.Y - res_offset == pb_array[stationCounter].Location.Y)
-            {
-                return true;
-            }
-            //check if station is on the BOTTOM block of agv
-            else if (AGV.Location.X == pb_array[stationCounter].Location.X
-                  && AGV.Location.Y + res_offset == pb_array[stationCounter].Location.Y)
-            {
-                return true;
-            }
-            //check if AGV is on the TOP RIGHT corner of the station
-            else if (AGV.Location.X - res_offset == pb_array[stationCounter].Location.X
-                  && AGV.Location.Y - res_offset == pb_array[stationCounter].Location.Y)
-            {
-                return true;
-            }
-            //check if AGV is on the TOP LEFT corner of the station
-            else if (AGV.Location.X + res_offset == pb_array[stationCounter].Location.X
-              && AGV.Location.Y - res_offset == pb_array[stationCounter].Location.Y)
-            {
-                return true;
-            }
-            //check if AGV is on the BOTTOM RIGHT corner of the station
-            else if (AGV.Location.X - res_offset == pb_array[stationCounter].Location.X
-              && AGV.Location.Y + res_offset == pb_array[stationCounter].Location.Y)
-            {
-                return true;
-            }
-            //check if AGV is on the BOTTOM LEFT corner of the station
-            else if (AGV.Location.X + res_offset == pb_array[stationCounter].Location.X
-              && AGV.Location.Y + res_offset == pb_array[stationCounter].Location.Y)
-            {
-                return true;
-            }
-
             //else inform the debug message
             else
             {
