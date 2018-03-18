@@ -256,13 +256,7 @@ namespace k_agv_kids
         /// <returns>Returns the local Resources directory</returns>
         private string getResDir()
         {
-            
-            DirectoryInfo dir = new DirectoryInfo(
-            Directory.GetCurrentDirectory());
-            while (dir != null && !dir.GetFiles("*.sln").Any())
-            {
-                dir = dir.Parent;
-            }
+           
            // return Convert.ToString(dir.FullName + "\\k-agv-kids\\Resources\\");
             //ONLY FOR RELEASE
             return Convert.ToString(Directory.GetCurrentDirectory() + "\\Resources\\");
