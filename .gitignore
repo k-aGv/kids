@@ -1,2 +1,4 @@
 $cat .gitignore
-/k-agv-kids/k-agv-kids/obj
+k-agv-kids/k-agv-kids/bin
+k-agv-kids/k-agv-kids/obj
+.vs
