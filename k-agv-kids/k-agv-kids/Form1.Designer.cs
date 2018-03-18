@@ -88,10 +88,6 @@
             this.type_label = new System.Windows.Forms.Label();
             this.pb_battery = new System.Windows.Forms.ProgressBar();
             this.emission_status = new System.Windows.Forms.Label();
-            this.debug = new System.Windows.Forms.Label();
-            this.debug2 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.debugloads = new System.Windows.Forms.Label();
             this.lb_orderme = new System.Windows.Forms.Label();
             this.orderme_timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
@@ -132,13 +128,13 @@
             this.newGameToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportToolStripMenuItem});
             this.newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.newGameToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
             this.newGameToolStripMenuItem1.Text = "New";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.exportToolStripMenuItem.Text = "Import";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -149,7 +145,7 @@
             this.scoreToolStripMenuItem,
             this.allToolStripMenuItem});
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             // 
             // commandsToolStripMenuItem
@@ -176,7 +172,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -630,42 +626,6 @@
             this.emission_status.TabIndex = 10;
             this.emission_status.Text = "emissions status";
             // 
-            // debug
-            // 
-            this.debug.AutoSize = true;
-            this.debug.Location = new System.Drawing.Point(765, 336);
-            this.debug.Name = "debug";
-            this.debug.Size = new System.Drawing.Size(37, 13);
-            this.debug.TabIndex = 11;
-            this.debug.Text = "debug";
-            // 
-            // debug2
-            // 
-            this.debug2.AutoSize = true;
-            this.debug2.Location = new System.Drawing.Point(808, 336);
-            this.debug2.Name = "debug2";
-            this.debug2.Size = new System.Drawing.Size(25, 13);
-            this.debug2.TabIndex = 12;
-            this.debug2.Text = "dbg";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(808, 366);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "label2";
-            // 
-            // debugloads
-            // 
-            this.debugloads.AutoSize = true;
-            this.debugloads.Location = new System.Drawing.Point(765, 291);
-            this.debugloads.Name = "debugloads";
-            this.debugloads.Size = new System.Drawing.Size(37, 13);
-            this.debugloads.TabIndex = 14;
-            this.debugloads.Text = "debug";
-            // 
             // lb_orderme
             // 
             this.lb_orderme.AutoSize = true;
@@ -685,10 +645,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 388);
             this.Controls.Add(this.lb_orderme);
-            this.Controls.Add(this.debugloads);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.debug2);
-            this.Controls.Add(this.debug);
             this.Controls.Add(this.emission_status);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pb_start);
@@ -771,12 +727,8 @@
         private System.Windows.Forms.ToolStripMenuItem petrolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lPGToolStripMenuItem;
         private System.Windows.Forms.Label emission_status;
-        private System.Windows.Forms.Label debug;
-        private System.Windows.Forms.Label debug2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label co_emissions_value;
         private System.Windows.Forms.Label co2_emissions_value;
-        private System.Windows.Forms.Label debugloads;
         private System.Windows.Forms.Label global_warming_emissions_value;
         private System.Windows.Forms.Label thc_emissions_value;
         private System.Windows.Forms.Label nox_emissions_value;

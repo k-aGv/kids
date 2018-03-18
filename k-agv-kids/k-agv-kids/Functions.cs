@@ -573,7 +573,6 @@ namespace k_agv_kids
             //else inform the debug message
             else
             {
-                debug2.Text = "Not found";
                 return false;
             }
             
@@ -652,7 +651,6 @@ namespace k_agv_kids
             while (loads[index] > 0)
             {
                 loads[index]-=2;
-                debugloads.Text = loads[index].ToString();
                 if(loads[index]!=0) 
                     pb_array[loadscounter[index]].Image = Image.FromFile(getResDir() +"loads-"+loads[index]+".png");
                 break;
@@ -666,8 +664,6 @@ namespace k_agv_kids
         }
         private bool wantGetRefuelled()
         {
-        
-            debug2.Text = "Fuel Station Nearby";
             DialogResult choise = MessageBox.Show("AGV is next to fuel station\r\nRefuel?"
                                                , "Nearby fuel station!"
                                                , MessageBoxButtons.YesNo);
